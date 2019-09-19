@@ -20,8 +20,9 @@ In addition to this, you will need your SSH key-pair, consisting of both a publi
 
 The following are the connection details to the SFTP server:
 
-| Host            | [sftp://sftp.clearstreet.io](sftp://sftp.clearstreet.io)     |
+| Parameter       | Value                                                        |
 | --------------- | ------------------------------------------------------------ |
+| Host            | [sftp://sftp.clearstreet.io](sftp://sftp.clearstreet.io)     |
 | Port            | 22                                                           |
 | Username        | Your Clear Street provided username                          |
 | Password        | Blank - Your SSH Private Key is used for this                |
@@ -31,7 +32,7 @@ Follow the instructions of your chosen FTP client to connect to the SFTP server.
 
 ### Programmatic Access
 
-If you wish to connect using a programmatic method, the following Python sample code should help:
+If you wish to connect using a programmatic method, the following Python sample code that uses the [`pysftp`](https://pypi.org/project/pysftp/) library should help:
 
 ```python
 import pysftp
@@ -43,7 +44,7 @@ print(srv.listdir())
 srv.close()
 ```
 
-Note: if you get key file type errors, such as when using a OpenSSH private key format, you may need to convert to the RSA format, which can be done through the following command:
+Note: if you get key file type errors, such as when using a OpenSSH private key format, you may need to convert to the RSA format, which can be done through the following command on a UNIX, Linux, or MacOS system:
 
 ```bash
 ssh-keygen -p -f /Path/To/File -m pem
