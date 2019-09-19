@@ -9,4 +9,4 @@
 </div>
 
 ### Table of Contents
- - [SFTP](https://github.com/clear-street/docs/blob/master/sftp.md)
+ - [SFTP Access](https://github.com/clear-street/docs/blob/master/sftp.md)
