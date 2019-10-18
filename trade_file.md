@@ -10,11 +10,9 @@
 
 Clear Street's trade file is a CSV file that contains post-trade details. This file is used by Clear Street to manage the life-cycle of all post-trade trading activity.
 
-## Format
-
 The trade file should be a CSV file with `*.csv` extension. The first row of the file must be the "header" row where you specifiy column names. Column names are case-insenstive, but we recommend you always use lowercase. Column ordering does *not* matter; you can specify the columns in the order you prefer.
 
-Each row in the file represents a single trade. Columns that are unrecognized or columns that might be conditionally unapplicable, are ignored. A trade has a `type` that dictates what columns apply to it. Columns that do not apply to a specific trade type are ignored. Therefore, you can provide all columns in your file, and selectively populate each column for a given row. 
+Each row in the file represents a single trade. Columns that are unrecognized, or columns that might be conditionally unapplicable, are ignored. A trade has a `type` that dictates what columns apply to it. Columns that do not apply to a specific trade type are ignored. Therefore, you can provide all columns in your file, and selectively populate each column for a given row.
 
 ### Columns
 
@@ -89,7 +87,7 @@ This trade represents a trade between a trading entity and an exchange. For exam
 
 ### Bilateral Trade
 
-This trade represents a trade between two trading entities. For example, trading XYZ buys 100 share of AAPL from trading firm ABC.
+This trade represents a trade between two trading entities. For example, trading firm XYZ buys 100 share of AAPL from trading firm ABC.
 
 | Column | Required? | Default | Notes |
 | - | - | - | - |
@@ -125,6 +123,8 @@ This trade represents a trade between two trading entities. For example, trading
 
 ### Allocation Trade
 
+This trade type is used to facilitate average-price workflows, i.e. averaging many trades for a customer and allocating it to them as a single trade.
+
 | Column | Required? | Default | Notes |
 | - | - | - | - |
 | `type` | Yes |
@@ -154,7 +154,7 @@ This trade represents a trade between two trading entities. For example, trading
 
 ### Transfer Trade
 
-blah blah
+This trade type is to facilitate trade movement between Clear Street internal accounts. For example, trade movement from a proprietary account to an average price account.
 
 | Column | Required? | Default | Notes |
 | - | - | - | - |
@@ -182,3 +182,8 @@ blah blah
 | `fees.omit_sec` | No | `false` |
 | `fees.omit_taf` | No | `false` |
 
+### Insert vs. Cancel
+
+By default, the trades provided in your file are trades you wish to *insert* into our systems. When you insert a trade into Clear Street, it is remembered forever with a `(account_id, client_trade_id)` pair. If you wish to cancel a trade, because perhaps your provided incorrect details, then you only need to provide us a file that contains the `(account_id, client_trade_id)` pair at a minimum.
+
+Therefore, to cancel all trades in a file, you can provide us the same exact file you used to insert the trades. Or you can construct a new file that contains just the `account_id` and `client_trade_id` columns.
