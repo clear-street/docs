@@ -65,8 +65,8 @@ This trade represents a trade between a trading entity and an exchange. For exam
 | `quantity` | Yes |
 | `price` | Yes |
 | `behalf_of_entity_id` | No | `null` |
-| `solicited` | No | `false` |
-| `registered_rep` | No | `null` |
+| `solicited` | Yes | `false` |
+| `registered_rep` | Yes | `null` |
 | `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
 | `instrument.identifier_type` | Yes |
@@ -101,8 +101,8 @@ This trade represents a trade between two trading entities. For example, trading
 | `quantity` | Yes |
 | `price` | Yes |
 | `behalf_of_entity_id` | No | `null` |
-| `solicited` | No | `false` |
-| `registered_rep` | No | `null` |
+| `solicited` | Yes | `false` |
+| `registered_rep` | Yes | `null` |
 | `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
 | `instrument.identifier_type` | Yes |
@@ -138,8 +138,8 @@ This trade type is used to facilitate average-price workflows, i.e. averaging ma
 | `quantity` | Yes |
 | `price` | Yes |
 | `behalf_of_entity_id` | No | `null` |
-| `solicited` | No | `false` |
-| `registered_rep` | No | `null` |
+| `solicited` | Yes | `false` |
+| `registered_rep` | Yes | `null` |
 | `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
 | `instrument.identifier_type` | Yes |
@@ -170,8 +170,8 @@ This trade type is to facilitate trade movement between Clear Street internal ac
 | `quantity` | Yes |
 | `price` | Yes |
 | `behalf_of_entity_id` | No | `null` |
-| `solicited` | No | `false` |
-| `registered_rep` | No | `null` |
+| `solicited` | Yes | `false` |
+| `registered_rep` | Yes | `null` |
 | `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
 | `instrument.identifier_type` | Yes |
