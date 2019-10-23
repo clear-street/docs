@@ -28,7 +28,7 @@ Each row in the file represents a single trade. Columns that are unrecognized, o
 | `behalf_of_entity_id` | `integer` | Clear Street provided entity_id if this trade is on behalf of another legal entity | `23` |
 | `solicited` | `bool` | True if this trade was solicited, false otherwise | `false` |
 | `registered_rep` | `string` | The registered rep on this trade | `joe` |
-| `branch office` | `string` | The branch office for this trade | `NY` |
+| `branch_office` | `string` | The branch office for this trade | `NY` |
 | `instrument.identifier` | `string` | The identifier string, e.g. `AAPL` if `identifier_type` is `ticker` | `AAPL` |
 | `instrument.identifier_type` | `string` | Identifier type, either `ticker`, `cusip`, `isin` or `sedol` | `ticker` |
 | `instrument.country` | `string` | ISO 3166 alpha-3 country code where the instrument trades | `USA` |
