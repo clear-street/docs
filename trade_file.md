@@ -26,8 +26,9 @@ Each row in the file represents a single trade. Columns that are unrecognized, o
 | `quantity` | `numeric` | The quantity of the trade (supports fractional quantities) | `100` |
 | `price` | `numeric` | The price of the trade | `100.01` |
 | `behalf_of_entity_id` | `integer` | Clear Street provided entity_id if this trade is on behalf of another legal entity | `23` |
-| `solicited` | `bool` | True if this trade was solicited, false otherwise | `false`
+| `solicited` | `bool` | True if this trade was solicited, false otherwise | `false` |
 | `registered_rep` | `string` | The registered rep on this trade | `joe` |
+| `branch office` | `string` | The branch office for this trade | `NY` |
 | `instrument.identifier` | `string` | The identifier string, e.g. `AAPL` if `identifier_type` is `ticker` | `AAPL` |
 | `instrument.identifier_type` | `string` | Identifier type, either `ticker`, `cusip`, `isin` or `sedol` | `ticker` |
 | `instrument.country` | `string` | ISO 3166 alpha-3 country code where the instrument trades | `USA` |
@@ -64,8 +65,9 @@ This trade represents a trade between a trading entity and an exchange. For exam
 | `quantity` | Yes |
 | `price` | Yes |
 | `behalf_of_entity_id` | No | `null` |
-| `solicited` | No | `false` |
-| `registered_rep` | No | `null` |
+| `solicited` | Yes |
+| `registered_rep` | Yes |
+| `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
 | `instrument.identifier_type` | Yes |
 | `instrument.country` | Yes |
@@ -99,8 +101,9 @@ This trade represents a trade between two trading entities. For example, trading
 | `quantity` | Yes |
 | `price` | Yes |
 | `behalf_of_entity_id` | No | `null` |
-| `solicited` | No | `false` |
-| `registered_rep` | No | `null` |
+| `solicited` | Yes |
+| `registered_rep` | Yes |
+| `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
 | `instrument.identifier_type` | Yes |
 | `instrument.country` | Yes |
@@ -135,8 +138,9 @@ This trade type is used to facilitate average-price workflows, i.e. averaging ma
 | `quantity` | Yes |
 | `price` | Yes |
 | `behalf_of_entity_id` | No | `null` |
-| `solicited` | No | `false` |
-| `registered_rep` | No | `null` |
+| `solicited` | Yes |
+| `registered_rep` | Yes |
+| `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
 | `instrument.identifier_type` | Yes |
 | `instrument.country` | Yes |
@@ -166,8 +170,9 @@ This trade type is to facilitate trade movement between Clear Street internal ac
 | `quantity` | Yes |
 | `price` | Yes |
 | `behalf_of_entity_id` | No | `null` |
-| `solicited` | No | `false` |
-| `registered_rep` | No | `null` |
+| `solicited` | Yes |
+| `registered_rep` | Yes |
+| `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
 | `instrument.identifier_type` | Yes |
 | `instrument.country` | Yes |
