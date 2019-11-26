@@ -3,7 +3,7 @@
   <h1 align="center">Clear Street</h1>
   <p align="center">
   	<h2 align="center">
-    	ReadMe
+    	Documentation
   	</h2>
 	</p>
 </div>
@@ -11,3 +11,4 @@
 ### Table of Contents
  - [Trade File](/trade_file.md)
  - [SFTP Access](/sftp.md)
+ - [OMS](/oms.md)
