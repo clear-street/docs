@@ -8,12 +8,10 @@
 	</p>
 </div>
 
-Clear Street integrates with third party Order Management Systems to book and access open orders. Margin accounts traded on Clear Street have buying power dependent on positional and cash holdings. OMSs are provided with start of day information necessary, and the OMS tracks an account's open orders, cash, and positions in real time.
+Clear Street works with third party OMS vendors to track open orders, cash, and positions in real time. Below is a list of fields Clear Street may provide to vendors at the start of day. Currently, Clear Street integrates with [sterling](https://www.sterlingtradingtech.com/), [das](https://dastrader.com/), and [redi](https://www.refinitiv.com/en/products/redi-execution-management/).
 
-## Sterling, Das
 
-* https://www.sterlingtradingtech.com/
-* https://dastrader.com/
+## Fields
 
 | Name                                | Description                                         |
 | ----------------------------------- | --------------------------------------------------- |
@@ -30,29 +28,3 @@ Clear Street integrates with third party Order Management Systems to book and ac
 | `Day Trader Buying Power`           | Buying Power                                        |
 | `Day Trader Buying Power Yesterday` | Previous Day's Buying Power                         |
 | `Equity`                            | Total Value of Account, Cash and Positions          |
-
-
-## Redi
-
-Clear Street also integrates with Redi; the start-of-day file contains information regarding instrument holdings.
-
-* https://www.refinitiv.com/en/products/redi-execution-management/
-
-| Name               | Description                                     |
-| ------------------ | ----------------------------------------------- |
-| `Account`          | Clear Street's Mapping of Account ID            |
-| `Symbol`           | Equity Symbol                                   |
-| `Symbology`        | Symbol used (e.g. `CUSIP`)                      |
-| `Exchange `        | Exchange that Symbol is Traded On (e.g. `NYSE`) |
-| `AccType`          | Account Type (e.g. `Margin`)                    |
-| `Shares`           | Number of shares of Symbol                      |
-| `Price`            | Per Share Price of Symbol                       |
-| `Currency`         | Currency of Price (`USD`)                       |
-| `Value`            | Value of Shares, Shares x Price                 |
-| `Underlying`*      | Underlying Stock of Option                      |
-| `Class`*           | Option Class Symbol                             |
-| `Strike`*          | Option Strike Price                             |
-| `Expiration Date`* | Option Expiration Date                          |
-| `PutCall`*         | Option Put or Call                              |
-
-\* Options are currently not supported
