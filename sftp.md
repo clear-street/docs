@@ -176,7 +176,7 @@ The Summary Activity file details account value per account for a specific day. 
 
 #### Trade Confirmations
 
-Daily trade confirmations are delivered to the `confirms` directory under every day where trades were done. These confirms are in PDF human readable format and are not expected to be machine readable. There is a trade confirm generated per account for each day where trades were made. The file has the following naming convention:
+Daily trade confirmations are delivered to the `confirms` directory under every day where trades were done. These files are only created at an account level. These confirms are in PDF human readable format and are not expected to be machine readable. There is a trade confirm generated per account for each day where trades were made. The file has the following naming convention:
 
 ```
 {Date in YYYMM Format}_{Identifier_Name}_confirm_{SHA256 Hash of the data}.csv
@@ -190,7 +190,7 @@ For example:
 
 ### Monthly Content
 
-On a monthly basis, account statements are delivered to the `YYYY/MM/monthly` folder. These statements are in PDF human readable format and are not expected to be machine readable. There is a statement generated per account. The file has the following naming convention:
+On a monthly basis, account statements are delivered to the `YYYY/MM/monthly` folder. These files are only created at an account level. These statements are in PDF human readable format and are not expected to be machine readable. There is a statement generated per account. The file has the following naming convention:
 
 ```
 {Date in YYYMM Format}_{Identifier_Name}_statement_{SHA256 Hash of the data}.csv
