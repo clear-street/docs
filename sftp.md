@@ -172,7 +172,7 @@ The Summary Activity file details account value per account for a specific day. 
 
 | Date     | Org Name     | Entity Name           | Account ID | Account Name                  | Account Full Name | Currency | TD Long Market Value | TD Short Market Value | TD Balance | SD Long Market Value | SD Short Market Value | SD Balance |
 | -------- | ------------ | --------------------- | ---------- | ----------------------------- | ----------------- | -------- | -------------------- | --------------------- | ---------- | -------------------- | --------------------- | ---------- |
-| 20190207 | Clear Street | clearstreet.4.clrstrt | 00XX00     | clearstreet.4.22.clr-strt-ftp | Clear Street FTP  | USD      | 21080                | 0                     | 20178.66   | 42160                | 0                     | -500.67    |
+| 20191017 | Clear Street | clearstreet.4.clrstrt | 00XX00     | clearstreet.4.22.clr-strt-ftp | Clear Street FTP  | USD      | 21080                | 0                     | 20178.66   | 42160                | 0                     | -500.67    |
 
 #### Trade Confirmations
 
