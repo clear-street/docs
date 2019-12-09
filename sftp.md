@@ -62,30 +62,29 @@ The directory structure is as follows:
 home
   |- 2019
   | |- 01
-  | 	|- 02
-  | 		|- activities
-  | 			|- org level file 1
-  | 			|- org level file 2
-  | 			|- ...
-  |- myOrg
-    |- entities
-    	|- myEntity1
-    	  |- 2019
-        | |- 01
-        |   |- 02
-        |     |- activities
-        |       |- entity 1 level file 1
-        |       |- entity 1 level file 2
-        |       |- ...
-        |- accounts
-          |- myAccount1
-            |- 2019
-              |- 01
-                |- 02
-                  |- activities
-                    |- account 1 level file 1
-                    |- account 1 level file 2
-                    |- ...
+  |   |- 02
+  |     |- activities
+  |       |- org level file 1
+  |       |- org level file 2
+  |       |- ...
+  |- entities
+    |- myEntity1
+      |- 2019
+      | |- 01
+      |   |- 02
+      |     |- activities
+      |       |- entity 1 level file 1
+      |       |- entity 1 level file 2
+      |       |- ...
+      |- accounts
+        |- myAccount1
+          |- 2019
+            |- 01
+              |- 02
+                |- activities
+                  |- account 1 level file 1
+                  |- account 1 level file 2
+                  |- ...
 ```
 
 The FTP is organized by:
