@@ -63,7 +63,7 @@ home
   |- 2019
   | |- 01
   |   |- 02
-  |     |- activities
+  |     |- activity
   |       |- org level file 1
   |       |- org level file 2
   |       |- ...
@@ -72,7 +72,7 @@ home
       |- 2019
       | |- 01
       |   |- 02
-      |     |- activities
+      |     |- activity
       |       |- entity 1 level file 1
       |       |- entity 1 level file 2
       |       |- ...
@@ -81,7 +81,7 @@ home
           |- 2019
             |- 01
               |- 02
-                |- activities
+                |- activity
                   |- account 1 level file 1
                   |- account 1 level file 2
                   |- ...
