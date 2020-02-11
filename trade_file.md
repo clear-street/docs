@@ -85,6 +85,8 @@ This trade represents a trade between a trading entity and an exchange. For exam
 | `fees.omit_taf` | No | `false` |
 | `locate.id` | Conditional | `null` | Required if short-sale |
 | `locate.source` | Conditional | `null` | Required if short-sale |
+| `order_id` | No | `null` | Links executions in avg price account to allocation trade type
+| `cancel_trade_id` | No | `null` | Straight cancel vs a correction of a trade from one account into another account
 
 
 ### Bilateral Trade
@@ -122,6 +124,10 @@ This trade represents a trade between two trading entities. For example, trading
 | `fees.omit_taf` | No | `false` |
 | `locate.id` | Conditional | `null` | Required if short-sale |
 | `locate.source` | Conditional | `null` | Required if short-sale |
+| `order_id` | No | `null` | Links executions in avg price account to allocation trade type
+| `cancel_trade_id` | No | `null` | Straight cancel vs a correction of a trade from one account into another account
+| `last_market` | No | `null` | Contains the exchange where orders were routed to by broker on a bilateral trade
+| `nscc_clearing` | No | `null` | Bilateral trade type, either `contra`, `agu`, `qsr`, `corr`, `corr_fees` or `null`
 
 
 ### Allocation Trade
@@ -155,6 +161,8 @@ This trade type is used to facilitate average-price workflows, i.e. averaging ma
 | `fees.commission` | No | `null` |
 | `fees.omit_sec` | No | `false` |
 | `fees.omit_taf` | No | `false` |
+| `order_id` | No | `null` | Links executions in avg price account to allocation trade type
+| `cancel_trade_id` | No | `null` | Straight cancel vs a correction of a trade from one account into another account
 
 ### Transfer Trade
 
@@ -186,6 +194,8 @@ This trade type is to facilitate trade movement between Clear Street internal ac
 | `fees.commission` | No | `null` |
 | `fees.omit_sec` | No | `false` |
 | `fees.omit_taf` | No | `false` |
+| `order_id` | No | `null` | Links executions in avg price account to allocation trade type
+| `cancel_trade_id` | No | `null` | Straight cancel vs a correction of a trade from one account into another account
 
 ### Insert vs. Cancel
 
