@@ -25,7 +25,8 @@ Each row in the file represents a single trade. Columns that are unrecognized, o
 | `account_id` | `integer` | Clear Street provided account_id the trade should be booked to | `100023` |
 | `quantity` | `numeric` | The quantity of the trade (supports fractional quantities) | `100` |
 | `price` | `numeric` | The price of the trade | `100.01` |
-| `behalf_of_account_id` | `integer` | Clear Street provided account_id if this trade is on behalf of another legal account | `23` |
+| `behalf_of_account_id` | `integer` | Clear Street provided account_id if this trade is on behalf of another account | `23` |
+| `behalf_of_entity_id` | `integer` | [DEPRECATED] Clear Street provided entity_id if this trade is on behalf of another entity | `23` |
 | `solicited` | `bool` | True if this trade was solicited, false otherwise | `false` |
 | `registered_rep` | `string` | The registered rep on this trade | `joe` |
 | `branch_office` | `string` | The branch office for this trade | `NY` |
@@ -50,6 +51,8 @@ Each row in the file represents a single trade. Columns that are unrecognized, o
 | `locate.source` | `string` | Identifies the firm supplying the locate (usually the MPID) | `Z322` |
 | `target_account_id` | `string` | Clear Street provided account_id that is the contra to this trade | `100024` |
 | `mic` | `string` | ISO 10383 Market Identifer Code for the exchange where this trade took place | `XNYS` |
+| `order_id` | `string` | The order id is to link all the executions in the avg price account to the allocation trade type | `13454` |
+| `cancel_trade_id` | `string` | The original trade_id this trade is replacing | `13454` |
 
 ### Exchange Trade
 
