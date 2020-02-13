@@ -197,7 +197,6 @@ This trade type is to facilitate trade movement between Clear Street internal ac
 | `fees.commission` | No | `null` |
 | `fees.omit_sec` | No | `false` |
 | `fees.omit_taf` | No | `false` |
-| `order_id` | No | `null` | Links executions in avg price account to allocation trade type
 | `cancel_trade_id` | No | `null` | Straight cancel vs a correction of a trade from one account into another account
 
 ### Insert vs. Cancel
