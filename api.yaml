@@ -25,7 +25,7 @@ paths:
         - Uploads
       summary: Create Insert Upload
       description: >
-        <a href="https://github.com/clear-street/docs/examples/uploads/create_insert_upload.py"> Example </a>
+        <a href="https://github.com/clear-street/docs/blob/master/examples/uploads/create_insert_upload.py" target="_blank"> Click for example </a>
         <br />
         Upload the provided CSV file for processing asynchronously. Use this endpoint if you have very large number of trades (> 10000). Your file will be uploaded to our servers, and then subsequently processed.
         <p>The columns for a CSV file should match the JSON path dot-notation of the fields available in the <b><a href="#operation/trades_insert">insert trades endpoint</a></b>. For example, the column `side.direction` would be the column header to set the direction of a trade, and the column `instrument.ticker` would set the trade's instrument ticker, etc.</p>
@@ -79,7 +79,7 @@ paths:
         - Uploads
       summary: Create Cancel Upload
       description: >
-        <a href="https://github.com/clear-street/docs/examples/uploads/create_cancel_upload.py"> Example </a>
+        <a href="https://github.com/clear-street/docs/blob/master/examples/uploads/create_cancel_upload.py" target="_blank"> Click for example </a>
         <br />
         Upload the provided CSV file for processing cancels asynchronously.
         <tr><th>account</th><td>100001</td></tr>
@@ -118,7 +118,7 @@ paths:
         - Uploads
       summary: Get Upload By ID
       description: >
-        <a href="https://github.com/clear-street/docs/examples/uploads/get_upload_by_id.py"> Example </a>
+        <a href="https://github.com/clear-street/docs/blob/master/examples/uploads/get_upload_by_id.py" target="_blank"> Click for example </a>
         <br />
         Get an existing upload. Use this endpoint when you want to the know the status of a previously created upload.
       operationId: uploads_get_by_id
@@ -146,7 +146,7 @@ paths:
         - Trades
       summary: Insert Trades
       description: >
-        <a href="https://github.com/clear-street/docs/examples/trades/insert"> Example </a>
+        <a href="https://github.com/clear-street/docs/tree/master/examples/trades/insert" target="_blank"> Click for examples </a>
         <br />
         Insert the provided trades atomically. Use this endpoint if you want atomicity and immediate confirmation; this request will either fully process all your trades, or reject them all atomically. Therefore, a successful call to this endpoint guarantees that your trades have been accepted by our systems. This endpoint can accept up to 1000 trades.
         <ul>
@@ -190,7 +190,7 @@ paths:
         - Trades
       summary: Cancel Trade By ID
       description: >
-        <a href="https://github.com/clear-street/docs/examples/trades/cancel_trade_by_id.py"> Example </a>
+        <a href="https://github.com/clear-street/docs/blob/master/examples/trades/cancel_trade_by_id.py" target="_blank"> Click for example </a>
         <br />
         Cancel a trade that were previously created. Note, you can only cancel a trade that have been accepted. If you uploaded asynchronously with a file, you must wait for the trade to be processed and accepted.
       operationId: trades_cancel
