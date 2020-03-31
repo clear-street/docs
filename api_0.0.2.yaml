@@ -110,6 +110,8 @@ paths:
         <li><b>Transfer Trade</b> trades are done to transfer from one account to another within the same legal entity. An example would be to transfer shares from a trading account to an error account.</li>
         <li><b>Allocation Trade</b> trades are done to allocate to a customer account. An example would be to allocate shares at an average price from an average price account to a customer account. </li>
         </ul>
+
+        <b>The Fields below vary depending upon trade-type. Change the value of the `type` drop-down below to switch between trade-types.</b>
       operationId: trades_insert
       parameters:
         - in: body
