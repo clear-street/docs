@@ -1,13 +1,44 @@
 swagger: '2.0'
+servers:
+  - url: //api.clearstreet.io/v1
+    description: Production server
+  - url: //api.sandbox.clearstreet.io/v1
+    description: Sandbox server
 info:
   version: 0.0.1
   title: Clear Street API
+  contact:
+    name: API Support
+    email: eng@clearstreet.io
+    url: https://clear-street.github.io/docs
+  x-logo:
+    url: 'https://cdn.builtinnyc.com/sites/www.builtinnyc.com/files/styles/company_logo/public/2019-05/navy%20logo%20only%201.png'
+    backgroundColor: '#FFFFFF'
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html' 
   description: |
     <b>This is a beta version of Clear Street's public API. It currently contains endpoints for programmatically deliverying trades to Clear Street over a secured internet connection.</b>
-    
-    The `uploads` collection of endpoints allow you to upload a `CSV` file to us, in the same format as our <b>[trade-file specification](https://github.com/clear-street/docs/blob/master/trade_file.md)</b>.  The `trade` collection of endpoints allow you to delivery trades directly through the API on a trade-by-trade basis.
-    
-    End-to-end security is provided through an SSL connection and an API-key that will be provided to select users of our API. This API-key must be provided in the header of each HTTP request. More details about the API-key will be provided in the next update of this documentation.
+
+    # Environments
+    Clear Street operates two environments: sandbox and production. Each environment is completely isolated from the other. No data is ever shared. All activity in our sandbox environment has no actual impact; all accounts in our sandbox use canned data. We recommend testing in our sandbox environment first before moving to production.
+
+    Sandbox endpoint URL: `https://api.sandbox.clearstreet.io/v1`
+
+    Production endpoint URL: `https://api.clearstreet.io/v1`
+
+    # Authentication
+    End-to-end security is provided through an SSL connection and an API-key that will be provided to users of our API.
+
+    The API-key provided to you will take the form a <a href="https://swagger.io/docs/specification/authentication/bearer-authentication">bearer token</a>. Every request you make, therefore, must contain your API-key in the header of the request in the following form:
+
+    <pre>Authorization: Bearer &lt;KEY&gt;</pre>
+
+    Where `<KEY>` is the API-key provided to you.
+tags:
+  - name: Uploads
+    description: |
+      This collection of endpoints allow you to upload a `CSV` file to us, in the same format as our <b>[trade-file specification](https://github.com/clear-street/docs/blob/master/trade_file.md)</b>. You may prefer to use a file-upload if you have a extremely large number of trades (> 10000), or if you have dependency on legacy systems that deal with `CSV` files.
 basePath: /
 schemes:
   - http
@@ -25,9 +56,7 @@ paths:
         - Uploads
       summary: Create Insert Upload
       description: >
-        <a href="https://github.com/clear-street/docs/blob/master/examples/uploads/create_insert_upload.py" target="_blank"> Click for example </a>
-        <br />
-        Upload the provided CSV file for processing asynchronously. Use this endpoint if you have very large number of trades (> 10000). Your file will be uploaded to our servers, and then subsequently processed.
+        Upload the provided CSV file for processing asynchronously. Your file will be uploaded to our servers, and then subsequently processed.
         <p>The columns for a CSV file should match the JSON path dot-notation of the fields available in the <b><a href="#operation/trades_insert">insert trades endpoint</a></b>. For example, the column `side.direction` would be the column header to set the direction of a trade, and the column `instrument.ticker` would set the trade's instrument ticker, etc.</p>
         <p>Our <b>[trade-file specification](https://github.com/clear-street/docs/blob/master/trade_file.md)</b> has more details.</p>
         <p>Example column headers with associated example values&#58;
@@ -46,6 +75,7 @@ paths:
         <tr><th>side.qualifier</th><td>&nbsp;</td></tr>
         <tr><th>exec.timestamp</th><td>1545952392000</td></tr>
         <tr><th>exec.mic</th><td>XNYS</td></tr></table></p>
+        <a href="https://github.com/clear-street/docs/blob/master/examples/uploads/create_insert_upload.py" target="_blank">Example code.</a>
       operationId: uploads_insert_create
       consumes:
         - multipart/form-data
@@ -78,13 +108,15 @@ paths:
       tags:
         - Uploads
       summary: Create Cancel Upload
-      description: >
-        <a href="https://github.com/clear-street/docs/blob/master/examples/uploads/create_cancel_upload.py" target="_blank"> Click for example </a>
-        <br />
+      description: |
         Upload the provided CSV file for processing cancels asynchronously.
+
+        Example column headers with associated example values&#58;
+        <table>
         <tr><th>account</th><td>100001</td></tr>
         <tr><th>trade_id</th><td>12343</td></tr>
-        <tr><th>by_client_id</th></tr>
+        <tr><th>by_client_id</th><td>false</td></tr>
+        </table>
       operationId: uploads_cancel_create
       consumes:
         - multipart/form-data
@@ -117,9 +149,7 @@ paths:
       tags:
         - Uploads
       summary: Get Upload By ID
-      description: >
-        <a href="https://github.com/clear-street/docs/blob/master/examples/uploads/get_upload_by_id.py" target="_blank"> Click for example </a>
-        <br />
+      description: |
         Get an existing upload. Use this endpoint when you want to the know the status of a previously created upload.
       operationId: uploads_get_by_id
       parameters:
@@ -146,13 +176,12 @@ paths:
         - Trades
       summary: Insert Trades
       description: >
-        <a href="https://github.com/clear-street/docs/tree/master/examples/trades/insert" target="_blank"> Click for examples </a>
-        <br />
-        Insert the provided trades atomically. Use this endpoint if you want atomicity and immediate confirmation; this request will either fully process all your trades, or reject them all atomically. Therefore, a successful call to this endpoint guarantees that your trades have been accepted by our systems. This endpoint can accept up to 1000 trades.
+        Insert the provided trades atomically. Use this endpoint if you want atomicity and immediate confirmation; this request will either fully process all your trades, or reject them all atomically. Therefore, a successful call to this endpoint guarantees that your trades have been accepted by our systems. This endpoint can accept up to 1000 trades at a time.
         <ul>
-        <li><b>Exchange Trade</b> trades represent trades done directly on an exchange. An example would be a trading account buying shares on Nasdaq.</li>
-        <li><b>Bilateral Trade</b> trades represent trades done bilaterally broker to broker. An example would be Bank of America's trading account buying shares from Goldman Sach's trading account.</li>
-        <li><b>Transfer Trade</b> trades are done to transfer from one account to another. An example would be to transfer shares from a trading account to an error account.</li>
+        <li><b>Exchange Trade</b>  trades done directly on an exchange. An example would be a trading account buying shares on Nasdaq.</li>
+        <li><b>Bilateral Trade</b> trades done bilaterally broker to broker. An example would be Bank of America's trading account buying shares from Goldman Sachs' trading account.</li>
+        <li><b>Transfer Trade</b> trades are done to transfer from one account to another within the same legal entity. An example would be to transfer shares from a trading account to an error account.</li>
+        <li><b>Allocation Trade</b> trades are done to allocate to a customer account. An example would be to allocate shares at an average price from an average price account to a customer account. </li>
         </ul>
       operationId: trades_insert
       parameters:
@@ -190,8 +219,6 @@ paths:
         - Trades
       summary: Cancel Trade By ID
       description: >
-        <a href="https://github.com/clear-street/docs/blob/master/examples/trades/cancel_trade_by_id.py" target="_blank"> Click for example </a>
-        <br />
         Cancel a trade that were previously created. Note, you can only cancel a trade that have been accepted. If you uploaded asynchronously with a file, you must wait for the trade to be processed and accepted.
       operationId: trades_cancel
       parameters:
