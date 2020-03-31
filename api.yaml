@@ -18,14 +18,16 @@ info:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html' 
   description: |
-    <b>This is a beta version of Clear Street's public API. It currently contains endpoints for programmatically deliverying trades to Clear Street over a secured internet connection.</b>
+    <b>This is a beta version of Clear Street's public API. This API is RESTful; it has resource-oriented URLs, returns JSON-encoded responses, and uses standard HTTP codes, authentication, and verbs.</b>
 
     # Environments
     Clear Street operates two environments: sandbox and production. Each environment is completely isolated from the other. No data is ever shared. All activity in our sandbox environment has no actual impact; all accounts in our sandbox use canned data. We recommend testing in our sandbox environment first before moving to production.
 
-    Sandbox endpoint URL: `https://api.sandbox.clearstreet.io/v1`
+    The following are the base URLs for each environment. Each endpoint in this API must be prefixed with one of the following base URLs:
 
-    Production endpoint URL: `https://api.clearstreet.io/v1`
+    Sandbox base URL: `https://api.sandbox.clearstreet.io/v1`
+
+    Production base URL: `https://api.clearstreet.io/v1`
 
     # Authentication
     End-to-end security is provided through an SSL connection and an API-key that will be provided to users of our API.
@@ -35,10 +37,55 @@ info:
     <pre>Authorization: Bearer &lt;KEY&gt;</pre>
 
     Where `<KEY>` is the API-key provided to you.
+    
+    Here's an example of constructing a request in Python:
+
+    ```python
+    import requests
+
+    # change URL based on environment
+    URL = "https://api.sandbox.clearstreet.io/v1/trades"
+
+    # set provided API-key here
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYXQiOjE1ODU2MTk2NDYsImV4cCI6MTU4NTYyMzI0NiwidWlkIjoyfQ.B6wdfKRro9JxPrhjn8QchPOfGFSWexfg_2EX0V_tkdA'
+    }
+
+    # construct your message
+    payload = [{
+        "type": "allocation_trade",
+        "timestamp": 1556544618,
+        "client_trade_id": "042919-1a",
+        "date": 20190304,
+        "account_id": 100016,
+        "mic": "XNAS",
+        "exec_mpid": "CSMM",
+        "capacity": "principal",
+        "quantity": "100",
+        "price": "140.00",
+        "instrument": {
+            "identifier": "ATRA",
+            "identifier_type": "ticker",
+            "currency": "USD",
+            "country": "USA"
+        },
+        "side": {
+            "direction": "buy"
+        },
+        "target_account_id": 100021
+    }]
+
+    # send request
+    requests.post(url=URL, headers=headers, json=payload)
+    ```
 tags:
+  - name: Trades
+    description: |
+      Trade endpoints are used to insert or cancel trades into a our systems.
   - name: Uploads
     description: |
-      This collection of endpoints allow you to upload a `CSV` file to us, in the same format as our <b>[trade-file specification](https://github.com/clear-street/docs/blob/master/trade_file.md)</b>. You may prefer to use a file-upload if you have a extremely large number of trades (> 10000), or if you have dependency on legacy systems that deal with `CSV` files.
+      Upload endpoints allow you to upload a `CSV` file that contain trades, in the same format as our <b>[trade-file specification](https://github.com/clear-street/docs/blob/master/trade_file.md)</b>. You may prefer to use a file-upload if you have a extremely large number of trades (> 10000), or if you have dependency on legacy systems that deal with `CSV` files. We recommend using <b><a href="#tag/Trades">trade endpoints</a></b> when possible, especially for real-time trade reporting.
 basePath: /
 schemes:
   - http
@@ -48,6 +95,91 @@ produces:
   - application/json
 
 paths:
+  # trade endpoints
+  # -----------------------------------------------------------------------------
+  /trades:
+    post:
+      tags:
+        - Trades
+      summary: Insert Trades
+      description: >
+        Insert the provided trades atomically. Use this endpoint if you want atomicity and immediate confirmation; this request will either fully process all your trades, or reject them all atomically. Therefore, a successful call to this endpoint guarantees that your trades have been accepted by our systems. This endpoint can accept up to 1000 trades at a time.
+        <ul>
+        <li><b>Exchange Trade</b>  trades done directly on an exchange. An example would be a trading account buying shares on Nasdaq.</li>
+        <li><b>Bilateral Trade</b> trades done bilaterally broker to broker. An example would be Bank of America's trading account buying shares from Goldman Sachs' trading account.</li>
+        <li><b>Transfer Trade</b> trades are done to transfer from one account to another within the same legal entity. An example would be to transfer shares from a trading account to an error account.</li>
+        <li><b>Allocation Trade</b> trades are done to allocate to a customer account. An example would be to allocate shares at an average price from an average price account to a customer account. </li>
+        </ul>
+      operationId: trades_insert
+      parameters:
+        - in: body
+          name: trades
+          required: true
+          description: Array of trades to upload
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Trade'
+      responses:
+        '202':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/TradeSubmitted'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error'
+        '422':
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /trades/{trade_id}:
+    delete:
+      tags:
+        - Trades
+      summary: Cancel Trade By ID
+      description: >
+        Cancel a trade that were previously created. Note, you can only cancel a trade that have been accepted. If you uploaded asynchronously with a file, you must wait for the trade to be processed and accepted.
+      operationId: trades_cancel
+      parameters:
+        - in: path
+          name: trade_id
+          required: true
+          description: Clear Street assigned unique trade_id
+          type: string
+        - in: query
+          name: is_client_trade_id
+          required: false
+          description: True if the given trade_id is a client_trade_id
+          type: boolean
+        - in: query
+          name: account_id
+          required: false
+          description: Provide only if `is_client_trade_id` is true. This is the account_id the trade was booked to
+          type: integer
+      responses:
+        '202':
+          description: OK
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+
   # upload endpoints
   # -----------------------------------------------------------------------------
   /uploads/insert:
@@ -55,27 +187,13 @@ paths:
       tags:
         - Uploads
       summary: Create Insert Upload
-      description: >
+      description: |
         Upload the provided CSV file for processing asynchronously. Your file will be uploaded to our servers, and then subsequently processed.
-        <p>The columns for a CSV file should match the JSON path dot-notation of the fields available in the <b><a href="#operation/trades_insert">insert trades endpoint</a></b>. For example, the column `side.direction` would be the column header to set the direction of a trade, and the column `instrument.ticker` would set the trade's instrument ticker, etc.</p>
-        <p>Our <b>[trade-file specification](https://github.com/clear-street/docs/blob/master/trade_file.md)</b> has more details.</p>
-        <p>Example column headers with associated example values&#58;
-        <table>
-        <tr><th>type</th><td>execution</th></tr>
-        <tr><th>id</th><td>0</td></tr>
-        <tr><th>date</th><td>20190101</td></tr>
-        <tr><th>account</th><td>T-50264430-bc41</td></tr>
-        <tr><th>capacity</th><td>principal</td></tr>
-        <tr><th>quantity</th><td>100</td></tr>
-        <tr><th>price</th><td>150.01</td></tr>
-        <tr><th>instrument.identifier</th><td>AAPL</td></tr>
-        <tr><th>instrument.identifier_type</th><td>ticker</td></tr>
-        <tr><th>instrument.mic</th><td>XNAS</td></tr>
-        <tr><th>side.direction</th><td>buy</td></tr>
-        <tr><th>side.qualifier</th><td>&nbsp;</td></tr>
-        <tr><th>exec.timestamp</th><td>1545952392000</td></tr>
-        <tr><th>exec.mic</th><td>XNYS</td></tr></table></p>
-        <a href="https://github.com/clear-street/docs/blob/master/examples/uploads/create_insert_upload.py" target="_blank">Example code.</a>
+
+        The columns for a CSV file should match the JSON path dot-notation of the fields available in the <b><a href="#operation/trades_insert">insert trades endpoint</a></b>. For example, the column `side.direction` would be the column header to set the direction of a trade, and the column `instrument.ticker` would set the trade's instrument ticker, etc.
+
+        Our <b>[trade-file specification](https://github.com/clear-street/docs/blob/master/trade_file.md)</b> has more details. You can also <b><a href="examples/trades.csv">download an example file</a></b>.
+        
       operationId: uploads_insert_create
       consumes:
         - multipart/form-data
@@ -165,91 +283,6 @@ paths:
             $ref: '#/definitions/UploadStatus'
         '404':
           description: Not Found
-          schema:
-            $ref: '#/definitions/Error'
-
-  # trade endpoints
-  # -----------------------------------------------------------------------------
-  /trades:
-    post:
-      tags:
-        - Trades
-      summary: Insert Trades
-      description: >
-        Insert the provided trades atomically. Use this endpoint if you want atomicity and immediate confirmation; this request will either fully process all your trades, or reject them all atomically. Therefore, a successful call to this endpoint guarantees that your trades have been accepted by our systems. This endpoint can accept up to 1000 trades at a time.
-        <ul>
-        <li><b>Exchange Trade</b>  trades done directly on an exchange. An example would be a trading account buying shares on Nasdaq.</li>
-        <li><b>Bilateral Trade</b> trades done bilaterally broker to broker. An example would be Bank of America's trading account buying shares from Goldman Sachs' trading account.</li>
-        <li><b>Transfer Trade</b> trades are done to transfer from one account to another within the same legal entity. An example would be to transfer shares from a trading account to an error account.</li>
-        <li><b>Allocation Trade</b> trades are done to allocate to a customer account. An example would be to allocate shares at an average price from an average price account to a customer account. </li>
-        </ul>
-      operationId: trades_insert
-      parameters:
-        - in: body
-          name: trades
-          required: true
-          description: Array of trades to upload
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Trade'
-      responses:
-        '202':
-          description: OK
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/TradeSubmitted'
-        '400':
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/Error'
-        '422':
-          description: Unprocessable Entity
-          schema:
-            $ref: '#/definitions/Error'
-        '500':
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/Error'
-
-  /trades/{trade_id}:
-    delete:
-      tags:
-        - Trades
-      summary: Cancel Trade By ID
-      description: >
-        Cancel a trade that were previously created. Note, you can only cancel a trade that have been accepted. If you uploaded asynchronously with a file, you must wait for the trade to be processed and accepted.
-      operationId: trades_cancel
-      parameters:
-        - in: path
-          name: trade_id
-          required: true
-          description: Clear Street assigned unique trade_id
-          type: string
-        - in: query
-          name: is_client_trade_id
-          required: false
-          description: True if the given trade_id is a client_trade_id
-          type: boolean
-        - in: query
-          name: account_id
-          required: false
-          description: Provide only if `is_client_trade_id` is true. This is the account_id the trade was booked to
-          type: integer
-      responses:
-        '202':
-          description: OK
-        '400':
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/Error'
-        '409':
-          description: Conflict
-          schema:
-            $ref: '#/definitions/Error'
-        '500':
-          description: Internal Server Error
           schema:
             $ref: '#/definitions/Error'
 

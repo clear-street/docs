@@ -9,6 +9,7 @@
 </div>
 
 ### Table of Contents
+ - [API](https://clear-street.github.io/docs)
  - [Trade File](/trade_file.md)
  - [SFTP Access](/sftp.md)
  - [OMS](/oms.md)
