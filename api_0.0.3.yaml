@@ -5,7 +5,7 @@ servers:
   - url: //api.sandbox.clearstreet.io/v1
     description: Sandbox server
 info:
-  version: 0.0.1
+  version: 0.0.3
   title: Clear Street API
   contact:
     name: API Support
@@ -111,7 +111,7 @@ paths:
         <li><b>Allocation Trade</b> trades are done to allocate to a customer account. An example would be to allocate shares at an average price from an average price account to a customer account. </li>
         </ul>
 
-        <b>The Fields below vary depending upon trade-type. Change the value of the `type` drop-down below to switch between trade-types.</b>
+        <b>The fields below vary depending upon trade-type. Change the value of the `type` drop-down below to switch between trade-types.</b>
       operationId: trades_insert
       parameters:
         - in: body
