@@ -148,7 +148,7 @@ paths:
         - Trades
       summary: Cancel Trade By ID
       description: >
-        Cancel a trade that were previously created. Note, you can only cancel a trade that have been accepted. If you uploaded asynchronously with a file, you must wait for the trade to be processed and accepted.
+        Cancel a trade either by the Clear Street assigned `trade_id`, or `client_trade_id` that was provided in the original trade. If the ID you provide is, in fact, a `client_trade_id`, you must set `is_client_trade_id` to true, and also provide the `account_id` for the original trade.
       operationId: trades_cancel
       parameters:
         - in: path
