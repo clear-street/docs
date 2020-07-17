@@ -26,7 +26,7 @@ Each row in the file represents a single trade. Columns that are unrecognized, o
 | `quantity` | `numeric` | The quantity of the trade (supports fractional quantities) | `100` |
 | `price` | `numeric` | The price of the trade | `100.01` |
 | `behalf_of_account_id` | `integer` | Clear Street provided account_id if this trade is on behalf of another account | `23` |
-| `behalf_of_entity_id` | `integer` | [DEPRECATED] Clear Street provided entity_id if this trade is on behalf of another entity | `23` |
+| `behalf_of_entity_id` | `integer` | [DEPRECATED (use `behalf_of_account_id`)] Clear Street provided entity_id if this trade is on behalf of another entity | `23` |
 | `solicited` | `bool` | True if this trade was solicited, false otherwise | `false` |
 | `registered_rep` | `string` | The registered rep on this trade | `joe` |
 | `branch_office` | `string` | The branch office for this trade | `NY` |
@@ -40,7 +40,8 @@ Each row in the file represents a single trade. Columns that are unrecognized, o
 | `settlement.date` | `string` | Explicit settlement date for irregular-way settlement in `YYYYMMDD` foramt | `20200101` |
 | `capacity` | `string` | Either `principal`, `agency`, `mixed`, or `riskless_principal` | `mixed` |
 | `contra_mpid` | `string` | Contra-party's MPID | `CLST` |
-| `contra_dtc_num` | `string` | Contra-party's DTCC number | `9100` |
+| `contra_clearing_num` | `string` | Contra-party's clearing number (DTCC for equities) | `9100` |
+| `contra_dtc_num` | `string` | [DEPRECATED (use `contra_clearing_num`)] Contra-party's DTCC number | `9100` |
 | `contra_side_qualifier` | `string` | Contra-party side qualifier, either `short`, `open`, or `close` | `short` |
 | `is_when_issued` | `bool` | True if the trade should be considered as "when issued" | `false` |
 | `exec_mpid` | `string` | MPID fo the executing party, if different than `contra_mpid` | `9192` |
@@ -119,7 +120,7 @@ This trade represents a trade between two trading entities. For example, trading
 | `settlement.date` | No | `null` |
 | `capacity` | Yes |
 | `contra_mpid` | Yes |
-| `contra_dtc_num` | Yes |
+| `contra_clearing_num` | Yes |
 | `is_when_issued` | No | `false` |
 | `exec_mpid` | Yes |
 | `fees.commission` | No | `null` |
