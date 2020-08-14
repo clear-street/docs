@@ -567,9 +567,9 @@ definitions:
         type: string
         enum:
           - transfer_trade
+          - allocation_trade
           - exchange_trade
           - bilateral_trade
-          - allocation_trade
         description: Trade type.
         x-nullable: false
       timestamp:
