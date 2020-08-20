@@ -410,9 +410,15 @@ definitions:
         type: string
         enum:
           - 'short'
+        description: Trade qualifier, if any
+        default: null
+        x-nullable: true
+      position:
+        type: string
+        enum:
           - 'open'
           - 'close'
-        description: Trade qualifier, if any
+        description: Trade position, if any
         default: null
         x-nullable: true
 

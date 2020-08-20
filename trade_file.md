@@ -35,7 +35,8 @@ Each row in the file represents a single trade. Columns that are unrecognized, o
 | `instrument.country` | `string` | ISO 3166 alpha-3 country code where the instrument trades | `USA` |
 | `instrument.currency` | `string` | ISO 4217 alpha-3 currency code in which the instrument trades | `USD` |
 | `side.direction` | `string` | Either `buy` or `sell` | `buy` |
-| `side.qualifier` | `string` | Either `short`, `open` or `close` | `short`
+| `side.qualifier` | `string` | Either `short` or NULL | `short`
+| `side.position`  | `string` | Either `open` or `close` | `open`
 | `settlement.currency` | `string` | ISO 4217 alpha-3 currency code in which to settle this trade | `USD` |
 | `settlement.date` | `string` | Explicit settlement date for irregular-way settlement in `YYYYMMDD` foramt | `20200101` |
 | `capacity` | `string` | Either `principal`, `agency`, `mixed`, or `riskless_principal` | `mixed` |
@@ -78,6 +79,7 @@ This trade represents a trade between a trading entity and an exchange. For exam
 | `instrument.currency` | Yes |
 | `side.direction` | Yes |
 | `side.qualifier` | No | `null` |
+| `side.position` | No | `null` |
 | `settlement.currency` | No | `USD` |
 | `settlement.date` | No | `null` |
 | `capacity` | Yes |
@@ -116,6 +118,7 @@ This trade represents a trade between two trading entities. For example, trading
 | `instrument.currency` | Yes |
 | `side.direction` | Yes |
 | `side.qualifier` | No | `null` |
+| `side.position` | No | `null` |
 | `settlement.currency` | No | `USD` |
 | `settlement.date` | No | `null` |
 | `capacity` | Yes |
@@ -157,6 +160,7 @@ This trade type is used to facilitate average-price workflows, i.e. averaging ma
 | `instrument.currency` | Yes |
 | `side.direction` | Yes |
 | `side.qualifier` | No | `null` |
+| `side.position` | No | `null` |
 | `settlement.currency` | No | `USD` |
 | `settlement.date` | No | `null` |
 | `target_account_id` | Yes |
@@ -191,6 +195,7 @@ This trade type is to facilitate trade movement between Clear Street internal ac
 | `instrument.currency` | Yes |
 | `side.direction` | Yes |
 | `side.qualifier` | No | `null` |
+| `side.position` | No | `null` |
 | `settlement.currency` | No | `USD` |
 | `settlement.date` | No | `null` |
 | `target_account_id` | Yes |
