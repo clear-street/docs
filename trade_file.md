@@ -35,7 +35,7 @@ Each row in the file represents a single trade. Columns that are unrecognized, o
 | `instrument.country` | `string` | ISO 3166 alpha-3 country code where the instrument trades | `USA` |
 | `instrument.currency` | `string` | ISO 4217 alpha-3 currency code in which the instrument trades | `USD` |
 | `side.direction` | `string` | Either `buy` or `sell` | `buy` |
-| `side.qualifier` | `string` | Either `short` or NULL | `short`
+| `side.qualifier` | `string` | `short` | `short`
 | `side.position`  | `string` | Either `open` or `close` | `open`
 | `settlement.currency` | `string` | ISO 4217 alpha-3 currency code in which to settle this trade | `USD` |
 | `settlement.date` | `string` | Explicit settlement date for irregular-way settlement in `YYYYMMDD` foramt | `20200101` |
