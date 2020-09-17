@@ -1,5 +1,5 @@
 <div class="center">
-<p align="center"><img src="assets/logo.png" align="center" width="30%" height="30%"></p>
+<p align="center"><img src="assets/logo.png" align="center" width="20%" height="20%"></p>
   <h1 align="center">Clear Street</h1>
   <p align="center">
   	<h2 align="center">
