@@ -12,7 +12,7 @@ info:
     email: eng@clearstreet.io
     url: https://clear-street.github.io/docs
   x-logo:
-    url: 'https://cdn.builtinnyc.com/sites/www.builtinnyc.com/files/styles/company_logo/public/2019-05/navy%20logo%20only%201.png'
+    url: 'https://clear-street.github.io/docs/assets/logo.png'
     backgroundColor: '#FFFFFF'
   license:
     name: Apache 2.0
