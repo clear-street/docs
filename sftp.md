@@ -144,9 +144,9 @@ There are 3 levels of activities: `org`, `entity`, and `account`, each represent
 
 The Journal Activity file details all journal movements made across per account for a specific day. This could involve cash movements or position movements. A sample journal entry in this file is as follows:
 
-| Date     | Org Name     | Entity Name              | Account ID | Account Name | Account Full Name | Instrument Name | Description | Cusip     | Isin         | Sedol   | Currency | Instrument Type | Segment | Memo                  | TD Quantity | TD Amount | SD Quantity | SD Amount |
-| -------- | ------------ | ------------------------ | ---------- | ------------ | ----------------- | --------------- | ----------- | --------- | ------------ | ------- | -------- | --------------- | ------- | --------------------- | ----------- | --------- | ----------- | --------- |
-| 20190207 | Clear Street | Clear Street FTP Trading | 00XX00     | clstftp      | Clear Street FTP  | AAPL            | Apple Inc.  | 037833100 | US0378331005 | 2046251 |          | Common Equity   | sl      | DLVR Journal for AAPL | 4000        | 0         | 4000        | 0         |
+| Date     | Org Name     | Entity Name              | Account ID | Account Name | Account Full Name | Instrument Name | Description | Cusip     | Isin         | Sedol   | Currency | Instrument Type | Segment | Memo                  | TD Quantity | TD Amount | SD Quantity | SD Amount | Position Type |
+| -------- | ------------ | ------------------------ | ---------- | ------------ | ----------------- | --------------- | ----------- | --------- | ------------ | ------- | -------- | --------------- | ------- | --------------------- | ----------- | --------- | ----------- | --------- | ------------- |
+| 20190207 | Clear Street | Clear Street FTP Trading | 00XX00     | clstftp      | Clear Street FTP  | AAPL            | Apple Inc.  | 037833100 | US0378331005 | 2046251 |          | Common Equity   | sl      | DLVR Journal for AAPL | 4000        | 0         | 4000        | 0         | Net           |
 
 ##### Trade Activity
 
