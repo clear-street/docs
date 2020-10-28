@@ -18,7 +18,7 @@ Each row in the file represents a single trade. Columns that are unrecognized, o
 
 | Name       | Type  | Description | Example |
 | -----------| ------|-------------|----------------------------------------- |
-| `type` | `string` | Trade type, either `bilateral_trade`, `exchange_trade`, `allocation_trade`, or `transfer_trade` | `exchange_trade` |
+| `type` | `string` | Trade type, either `bilateral_trade`, `exchange_trade`, `allocation_trade`, `transfer_trade`, or `away_trade` | `exchange_trade` |
 | `timestamp`  | `integer` |  Timestamp of when the trade occurred in milliseconds since unix epoch | `1571408966810` |
 | `client_trade_id` | `string` | Your unique ID for this trade. Must be unique across days | `T-50264430-bc41` 
 | `date`        | `integer` | Trade date for the trade in `YYYYMMDD` format | `20200101` |
@@ -203,6 +203,45 @@ This trade type is to facilitate trade movement between Clear Street internal ac
 | `fees.commission` | No | `null` |
 | `fees.omit_sec` | No | `false` |
 | `fees.omit_taf` | No | `false` |
+| `cancel_trade_id` | No | `null` | Straight cancel vs a correction of a trade from one account into another account
+
+### Away Trade
+This trade type allows customers to execute away from Clear Street. An example would be a customer executing at another broker/dealer but settling the trade at Clear Street. 
+| Column | Required? | Default | Notes |
+| - | - | - | - |
+| `type` | Yes |
+| `timestamp` | Yes |
+| `client_trade_id` | Yes |
+| `date` | Yes |
+| `account_id` | Yes |
+| `quantity` | Yes |
+| `price` | Yes |
+| `behalf_of_account_id` | No | `null` |
+| `solicited` | Yes |
+| `registered_rep` | Yes |
+| `branch_office` | No | `null` |
+| `instrument.identifier` | Yes |
+| `instrument.identifier_type` | Yes |
+| `instrument.country` | Yes |
+| `instrument.currency` | Yes |
+| `side.direction` | Yes |
+| `side.qualifier` | No | `null` |
+| `side.position` | No | `null` |
+| `settlement.currency` | No | `USD` |
+| `settlement.date` | No | `null` |
+| `capacity` | Yes |
+| `contra_mpid` | Yes |
+| `contra_clearing_num` | Yes |
+| `is_when_issued` | No | `false` |
+| `exec_mpid` | Yes |
+| `fees.commission` | No | `null` |
+| `fees.omit_sec` | No | `false` |
+| `fees.omit_taf` | No | `false` |
+| `locate.id` | Conditional | `null` | Required if short-sale |
+| `locate.source` | Conditional | `null` | Required if short-sale |
+| `order_id` | No | `null` | Links executions in avg price account to allocation trade type
+| `nscc_clearing` | No | `null` | Either `contra`, `agu`, `qsr`, `corr`, `corr_fees` or `null`
+| `last_market` | No | `null` | Contains the exchange where orders were routed to by broker on a bilateral trade
 | `cancel_trade_id` | No | `null` | Straight cancel vs a correction of a trade from one account into another account
 
 ### Insert vs. Cancel
