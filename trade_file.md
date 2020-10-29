@@ -71,7 +71,7 @@ This trade represents a trade between a trading entity and an exchange. For exam
 | `price` | Yes |
 | `behalf_of_account_id` | No | `null` |
 | `solicited` | Yes |
-| `registered_rep` | Yes |
+| `registered_rep` | No | `null`
 | `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
 | `instrument.identifier_type` | Yes |
@@ -110,7 +110,7 @@ This trade represents a trade between two trading entities. For example, trading
 | `price` | Yes |
 | `behalf_of_account_id` | No | `null` |
 | `solicited` | Yes |
-| `registered_rep` | Yes |
+| `registered_rep` | No | `null`
 | `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
 | `instrument.identifier_type` | Yes |
@@ -152,7 +152,7 @@ This trade type is used to facilitate average-price workflows, i.e. averaging ma
 | `price` | Yes |
 | `behalf_of_account_id` | No | `null` |
 | `solicited` | Yes |
-| `registered_rep` | Yes |
+| `registered_rep` | No | `null`
 | `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
 | `instrument.identifier_type` | Yes |
@@ -187,7 +187,7 @@ This trade type is to facilitate trade movement between Clear Street internal ac
 | `price` | Yes |
 | `behalf_of_account_id` | No | `null` |
 | `solicited` | Yes |
-| `registered_rep` | Yes |
+| `registered_rep` | No | `null`
 | `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
 | `instrument.identifier_type` | Yes |
@@ -210,15 +210,14 @@ This trade type allows customers to execute away from Clear Street. An example w
 | Column | Required? | Default | Notes |
 | - | - | - | - |
 | `type` | Yes |
-| `timestamp` | Yes |
 | `client_trade_id` | Yes |
+| `timestamp` | Yes |
 | `date` | Yes |
 | `account_id` | Yes |
 | `quantity` | Yes |
 | `price` | Yes |
 | `behalf_of_account_id` | No | `null` |
-| `solicited` | Yes |
-| `registered_rep` | Yes |
+| `registered_rep` | No | `null`
 | `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
 | `instrument.identifier_type` | Yes |
@@ -226,22 +225,11 @@ This trade type allows customers to execute away from Clear Street. An example w
 | `instrument.currency` | Yes |
 | `side.direction` | Yes |
 | `side.qualifier` | No | `null` |
-| `side.position` | No | `null` |
-| `settlement.currency` | No | `USD` |
-| `settlement.date` | No | `null` |
 | `capacity` | Yes |
+| `exec_mpid` | Yes |
 | `contra_mpid` | Yes |
 | `contra_clearing_num` | Yes |
-| `is_when_issued` | No | `false` |
-| `exec_mpid` | Yes |
 | `fees.commission` | No | `null` |
-| `fees.omit_sec` | No | `false` |
-| `fees.omit_taf` | No | `false` |
-| `locate.id` | Conditional | `null` | Required if short-sale |
-| `locate.source` | Conditional | `null` | Required if short-sale |
-| `order_id` | No | `null` | Links executions in avg price account to allocation trade type
-| `nscc_clearing` | No | `null` | Either `contra`, `agu`, `qsr`, `corr`, `corr_fees` or `null`
-| `last_market` | No | `null` | Contains the exchange where orders were routed to by broker on a bilateral trade
 | `cancel_trade_id` | No | `null` | Straight cancel vs a correction of a trade from one account into another account
 
 ### Insert vs. Cancel
