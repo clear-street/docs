@@ -18,7 +18,7 @@ Each row in the file represents a single trade. Columns that are unrecognized, o
 
 | Name       | Type  | Description | Example |
 | -----------| ------|-------------|----------------------------------------- |
-| `type` | `string` | Trade type, either `bilateral_trade`, `exchange_trade`, `allocation_trade`, or `transfer_trade` | `exchange_trade` |
+| `type` | `string` | Trade type, either `bilateral_trade`, `exchange_trade`, `allocation_trade`, `transfer_trade`, or `away_trade` | `exchange_trade` |
 | `timestamp`  | `integer` |  Timestamp of when the trade occurred in milliseconds since unix epoch | `1571408966810` |
 | `client_trade_id` | `string` | Your unique ID for this trade. Must be unique across days | `T-50264430-bc41` 
 | `date`        | `integer` | Trade date for the trade in `YYYYMMDD` format | `20200101` |
@@ -71,7 +71,7 @@ This trade represents a trade between a trading entity and an exchange. For exam
 | `price` | Yes |
 | `behalf_of_account_id` | No | `null` |
 | `solicited` | Yes |
-| `registered_rep` | Yes |
+| `registered_rep` | No | `null`
 | `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
 | `instrument.identifier_type` | Yes |
@@ -110,7 +110,7 @@ This trade represents a trade between two trading entities. For example, trading
 | `price` | Yes |
 | `behalf_of_account_id` | No | `null` |
 | `solicited` | Yes |
-| `registered_rep` | Yes |
+| `registered_rep` | No | `null`
 | `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
 | `instrument.identifier_type` | Yes |
@@ -152,7 +152,7 @@ This trade type is used to facilitate average-price workflows, i.e. averaging ma
 | `price` | Yes |
 | `behalf_of_account_id` | No | `null` |
 | `solicited` | Yes |
-| `registered_rep` | Yes |
+| `registered_rep` | No | `null`
 | `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
 | `instrument.identifier_type` | Yes |
@@ -187,7 +187,7 @@ This trade type is to facilitate trade movement between Clear Street internal ac
 | `price` | Yes |
 | `behalf_of_account_id` | No | `null` |
 | `solicited` | Yes |
-| `registered_rep` | Yes |
+| `registered_rep` | No | `null`
 | `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
 | `instrument.identifier_type` | Yes |
@@ -203,6 +203,33 @@ This trade type is to facilitate trade movement between Clear Street internal ac
 | `fees.commission` | No | `null` |
 | `fees.omit_sec` | No | `false` |
 | `fees.omit_taf` | No | `false` |
+| `cancel_trade_id` | No | `null` | Straight cancel vs a correction of a trade from one account into another account
+
+### Away Trade
+This trade type allows customers to execute away from Clear Street. An example would be a customer executing at another broker/dealer but settling the trade at Clear Street. 
+| Column | Required? | Default | Notes |
+| - | - | - | - |
+| `type` | Yes |
+| `client_trade_id` | Yes |
+| `timestamp` | Yes |
+| `date` | Yes |
+| `account_id` | Yes |
+| `quantity` | Yes |
+| `price` | Yes |
+| `behalf_of_account_id` | No | `null` |
+| `registered_rep` | No | `null`
+| `branch_office` | No | `null` |
+| `instrument.identifier` | Yes |
+| `instrument.identifier_type` | Yes |
+| `instrument.country` | Yes |
+| `instrument.currency` | Yes |
+| `side.direction` | Yes |
+| `side.qualifier` | No | `null` |
+| `capacity` | Yes |
+| `exec_mpid` | Yes |
+| `contra_mpid` | Yes |
+| `contra_clearing_num` | Yes |
+| `fees.commission` | No | `null` |
 | `cancel_trade_id` | No | `null` | Straight cancel vs a correction of a trade from one account into another account
 
 ### Insert vs. Cancel
