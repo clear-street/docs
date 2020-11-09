@@ -8,6 +8,7 @@
 	</p>
 </div>
 
+
 FIX trade specification details the tags and values along with description of values for each trade field for processing incoming trades from OMS clients. We currently utilizing FIX 4.2 format.
 
 ### FIX inbound trade specification
