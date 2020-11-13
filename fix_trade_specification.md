@@ -24,7 +24,7 @@ FIX trade specification details the tags and values along with description of va
 | `Trade Date` | `75` |  | `Integer` | `8` | `Mandatory` | `Mandatory` | `Mandatory` | `Mandatory` | `Mandatory` | Trade Date in `YYYYMMDD` format | `20201102` |
 | `Instrument Identifier Type` | `22` | `1` `2` `4` `8` | `Integer` | `1` | `Mandatory` | `Mandatory` | `Mandatory` | `Mandatory` | `Mandatory` | `1-CUSIP 2-SEDOL 4-ISIN 8-TICKER` | `8` |
 | `Instrument Identifier` | `48` |  | `String` |  | `Mandatory` | `Mandatory` | `Mandatory` | `Mandatory` | `Mandatory` | Instrument Identifier based on tag 22 | `AAPL` |
-| `Instrument Country` | `421` |  | `String` | `3` | `Optional` | `Optional` | `Optional` | `Optional` | `Optional` | ISO 3166 alpha-3 country code where the instrument trades | `USA` |
+| `Instrument Country` | `421` |  | `String` | `3` | `Mandatory` | `Mandatory` | `Mandatory` | `Mandatory` | `Mandatory` | ISO 3166 alpha-3 country code where the instrument trades | `USA` |
 | `Instrument Currency` | `15` |  | `String` | `3` | `Mandatory` | `Mandatory` | `Mandatory` | `Mandatory` | `Mandatory` | ISO 4217 alpha-3 currency code in which the instrument trades | `USD` |
 | `Price` | `31` |  | `Decimal` |  | `Mandatory` | `Mandatory` | `Mandatory` | `Mandatory` | `Mandatory` | The price of the trade | `120.12` |
 | `Quantity` | `32` |  | `Decimal` |  | `Mandatory` | `Mandatory` | `Mandatory` | `Mandatory` | `Mandatory` | The quantity of the trade (supports fractional quantities) | `2` |
