@@ -9,7 +9,17 @@
 </div>
 
 
-FIX trade specification details the tags and values along with description of values for each trade field for processing incoming trades from OMS clients. We currently utilizing FIX 4.2 format.
+FIX trade specification details the tags and values along with description of values for each trade field for processing incoming trades from OMS clients. Clear Street currently utilizes FIX 4.2 format.
+
+### Configuring FIX Session
+<p>A FIX session is defined as a unique combination of a BeginString (the FIX version number <b>4.2</b>), a SenderCompID (OMS Client ID as defined by Clear Street), and a TargetCompID (Clear Street's ID <b>CLST</b>). A SessionQualifier can also be used to disambiguate otherwise identical sessions.</p>
+
+<p>A FIX session has an active time period during which all data is transmitted. Clear Street currently accepts connections between 5 AM EST to 9 PM EST on all business days.</p>
+<p>A Logon message (Tag <b>35=A</b>) must be sent to Clear Street on every business day to indicate the begining of activity and a Logout message (Tag <b>35=5</b>)must be sent to Clear Street indicating end of activity for that day.</p> 
+<p>Clear Street also recommends exchange of heartbeats every 30 seconds by seding a message with tag <b>35=0</b>.</p>
+<p>Clear Street execpts every message sent to have a unique continuous sequence number as part of message with tag <b>34=</b>. If there are any gaps in sequence numbers, a sequence reset message will sent to OMS client with tag <b>34=4</b>.</p>
+<p>All trade messages must have tag <b>35=8</b> indicating that each message is an execution report. Please note that we have added few custom tags starting with 9001 to allow clients to send specific information needed for trades to be processed at our end. These tags are listed as part of the inbound specification.</p>
+
 
 ### FIX inbound trade specification
 
@@ -58,3 +68,18 @@ FIX trade specification details the tags and values along with description of va
 | ---------------- | ------- | ---------------- | ---------- | ------------------------------------------- | ----------------- |
 | `Trade Details` |  |  |  | FIX message received from OMS |  |
 | `Response` | `9011` |  | `String` | ACK or NACK with reason | `accepted` |
+
+### FIX inbound example message for Bilateral trade
+`8=FIX.4.29=25335=849=OMS_CLIENT56=0000913234=12914152=20201021-21:42:3420=09001=B1=10007817=CLIENT_TRADE_ID75=2020102122=448=US70450Y1038421=USA15=USD31=000213.48000032=0000000298754=263=064=2020102360=155169025700547=M440=0295375=ABCD76=WXYZ10=180`
+
+### FIX inbound example message for Transfer trade
+`8=FIX.4.29=24535=849=OMS_CLIENT56=0000913234=12914252=20201021-21:42:3420=09001=T1=10007817=CLIENT_TRADE_ID75=2020102122=448=US70450Y1038421=USA15=USD31=000213.48000032=0000000298754=263=064=2020102360=155169025700547=P76=ABCD79=10001710=180`
+
+### FIX inbound example message for Allocation trade
+`8=FIX.4.29=24535=849=OMS_CLIENT56=0000913234=12914352=20201021-21:42:3420=09001=A1=10007817=CLIENT_TRADE_ID75=2020102122=448=US70450Y1038421=USA15=USD31=000213.48000032=0000000298754=263=064=2020102360=155169025700547=A76=ABCD79=10001710=180`
+
+### FIX inbound example message for Exchange trade
+`8=FIX.4.29=24335=849=OMS_CLIENT56=0000913234=12914452=20201021-21:42:3420=09001=E1=10007817=CLIENT_TRADE_ID75=2020102122=448=US70450Y1038421=USA15=USD31=000213.48000032=0000000298754=263=064=2020102360=155169025700547=R76=ABCD30=NYSE10=180`
+
+### FIX inbound example message for Away trade
+`8=FIX.4.29=25335=849=OMS_CLIENT56=0000913234=12914552=20201021-21:42:3420=09001=W1=10007817=CLIENT_TRADE_ID75=2020102122=448=US70450Y1038421=USA15=USD31=000213.48000032=0000000298754=263=064=2020102360=155169025700547=M440=0295375=ABCD76=WXYZ10=180`
