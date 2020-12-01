@@ -24,8 +24,8 @@ FIX trade specification details the tags and values along with description of va
 
 This trade type is used to facilitate average-price workflows, i.e. averaging many trades for a customer and allocating it to them as a single trade.
 
-| Name                         | FIX Tag | Allowable Values | Type       | Length | Allocation  | Description                                 | Example           |
-| ---------------------------- | ------- | ---------------- | ---------- | ------ | ---------- | ------------------------------------------- | ----------------- |
+| Name | FIX Tag | Allowable Values | Type | Length | Required? | Description | Example |
+| - | - | - | - | - | - | - | - |
 | `Execution Transaction Type` | `20` | `0` `1` | `Integer` | `1` | `R` | `0-New` `1-Cancel` | `0` |
 | `Trade Type` | `9001` | `A` | `String` | `1` | `R` | `A-Allocation` | `A` |
 | `Account ID` | `1` |  | `Integer` | `6` | `R` | Clear Street provided account id | `100000` |
@@ -63,8 +63,8 @@ This trade type is used to facilitate average-price workflows, i.e. averaging ma
 
 This trade type represents a customer executing away from Clear Street LLC. For example, direct customer of CLST routes order for execution to Goldman.
 
-| Name                         | FIX Tag | Allowable Values | Type       | Length | Away  | Description                                 | Example           |
-| ---------------------------- | ------- | ---------------- | ---------- | ------ | ---------- | ------------------------------------------- | ----------------- |
+| Name | FIX Tag | Allowable Values | Type | Length | Required? | Description | Example |
+| - | - | - | - | - | - | - | - |
 | `Execution Transaction Type` | `20` | `0` `1` | `Integer` | `1` | `R` | `0-New` `1-Cancel` | `0` |
 | `Trade Type` | `9001` | `W` | `String` | `1` | `R` | `W-Away` | `W` |
 | `Account ID` | `1` |  | `Integer` | `6` | `R` | Clear Street provided account id | `100000` |
@@ -109,8 +109,8 @@ This trade type represents a customer executing away from Clear Street LLC. For 
 
 This trade represents a trade between two trading entities. For example, trading firm XYZ buys 100 share of AAPL from trading firm ABC.
 
-| Name                         | FIX Tag | Allowable Values | Type       | Length | Bilateral  | Description                                 | Example           |
-| ---------------------------- | ------- | ---------------- | ---------- | ------ | ---------- | ------------------------------------------- | ----------------- |
+| Name | FIX Tag | Allowable Values | Type | Length | Required? | Description | Example |
+| - | - | - | - | - | - | - | - |
 | `Execution Transaction Type` | `20` | `0` `1` | `Integer` | `1` | `R` | `0-New` `1-Cancel` | `0` |
 | `Trade Type` | `9001` | `B` | `String` | `1` | `R` | `B-Bilateral` | `B` |
 | `Account ID` | `1` |  | `Integer` | `6` | `R` | Clear Street provided account id | `100000` |
@@ -155,8 +155,8 @@ This trade represents a trade between two trading entities. For example, trading
 
 This trade represents a trade between a trading entity and an exchange. For example, trading firm XYX buys 100 shares of AAPL directly on Nasdaq.
 
-| Name                         | FIX Tag | Allowable Values | Type       | Length | Exchange  | Description                                 | Example           |
-| ---------------------------- | ------- | ---------------- | ---------- | ------ | ---------- | ------------------------------------------- | ----------------- |
+| Name | FIX Tag | Allowable Values | Type | Length | Required? | Description | Example |
+| - | - | - | - | - | - | - | - |
 | `Execution Transaction Type` | `20` | `0` `1` | `Integer` | `1` | `R` | `0-New` `1-Cancel` | `0` |
 | `Trade Type` | `9001` | `E` | `String` | `1` | `R` | `E-Exchange` | `E` |
 | `Account ID` | `1` |  | `Integer` | `6` | `R` | Clear Street provided account id | `100000` |
@@ -198,8 +198,8 @@ This trade represents a trade between a trading entity and an exchange. For exam
 
 This trade type is to facilitate trade movement between Clear Street internal accounts. For example, trade movement from a proprietary account to an average price account.
 
-| Name                         | FIX Tag | Allowable Values | Type       | Length | Transfer  | Description                                 | Example           |
-| ---------------------------- | ------- | ---------------- | ---------- | ------ | ---------- | ------------------------------------------- | ----------------- |
+| Name | FIX Tag | Allowable Values | Type | Length | Required? | Description | Example |
+| - | - | - | - | - | - | - | - |
 | `Execution Transaction Type` | `20` | `0` `1` | `Integer` | `1` | `R` | `0-New` `1-Cancel` | `0` |
 | `Trade Type` | `9001` | `T` | `String` | `1` | `R` | `T-Transfer` | `T` |
 | `Account ID` | `1` |  | `Integer` | `6` | `R` | Clear Street provided account id | `100000` |
