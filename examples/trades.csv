@@ -1,0 +1,8 @@
+timestamp,type,client_trade_id,date,instrument.identifier_type,instrument.identifier,instrument.country,instrument.currency,account_id,capacity,quantity,price,side.direction,side.qualifier,mic,exec_mpid,locate.id,locate.source,fees.commission,fees.taf_quantity,fees.apply_bill,fees.apply_sec,fees.apply_orf,fees.apply_ftt,fees.apply_pt,fees.local_taxf,is_when_issued,settlement.currency,settlement.date,user_data,contra_mpid,contra_dtc_num,target_account_id,behalf_of_account_id,contra_side_qualifier,interest.yield,interest.accrued,interest.accrued_days
+1582706171,bilateral_trade,5110654-B,20200221,ticker,UVXY,USA,USD,100018,agency,100,17.180000,buy,,,CPST,,,0.000000,,,,,,,,,USD,,,CODA,0161,,100020,,,,
+1582706332,bilateral_trade,5110665-B,20200221,ticker,UVXY,USA,USD,100018,agency,100,17.110000,buy,,,CPST,,,0.000000,,,,,,,,,USD,,,CODA,0161,,100020,,,,
+1582706493,bilateral_trade,5110683-S,20200221,ticker,UVXY,USA,USD,100018,agency,200,17.160000,sell,,,CPST,,,0.000000,,,,,,,,,USD,,,CODA,0161,,100020,,,,
+1582707274,allocation_trade,5111659-S,20200221,ticker,OIH,USA,USD,100018,agency,500,9.600000,sell,,,CPST,,,0.000000,,,,,,,,,USD,,,,,100021,100021,,,,
+1582707275,bilateral_trade,5111659-B,20200221,ticker,OIH,USA,USD,100018,agency,500,9.600000,buy,,,CPST,,,0.000000,,,,,,,,,USD,,,VALR,0295,,100021,,,,
+1582706336,allocation_trade,5110665-S,20200221,ticker,UVXY,USA,USD,100018,agency,200,17.145000,sell,,,CPST,,,0.640000,,,,,,,,,USD,,,,,100020,100020,,,,
+1582706498,allocation_trade,5110683-B,20200221,ticker,UVXY,USA,USD,100018,agency,200,17.160000,buy,,,CPST,,,0.000000,,,,,,,,,USD,,,,,100020,100020,,,,

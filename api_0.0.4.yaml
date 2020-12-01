@@ -1,0 +1,847 @@
+swagger: '2.0'
+servers:
+  - url: //api.clearstreet.io/v1
+    description: Production server
+  - url: //api.sandbox.clearstreet.io/v1
+    description: Sandbox server
+info:
+  version: 0.0.3
+  title: Clear Street API
+  contact:
+    name: API Support
+    email: eng@clearstreet.io
+    url: https://clear-street.github.io/docs
+  x-logo:
+    url: 'https://clear-street.github.io/docs/assets/logo.png'
+    backgroundColor: '#FFFFFF'
+  license:
+    name: Apache 2.0
+    url: 'http://www.apache.org/licenses/LICENSE-2.0.html' 
+  description: |
+    <b>This is a beta version of Clear Street's public API. This API is RESTful; it has resource-oriented URLs, returns JSON-encoded responses, and uses standard HTTP codes, authentication, and verbs.</b>
+
+    # Environments
+    Clear Street operates two environments: sandbox and production. Each environment is completely isolated from the other. No data is ever shared. All activity in our sandbox environment has no actual impact; all accounts in our sandbox use canned data. We recommend testing in our sandbox environment first before moving to production.
+
+    The following are the base URLs for each environment. Each endpoint in this API must be prefixed with one of the following base URLs:
+
+    Sandbox base URL: `https://api.sandbox.clearstreet.io/v1`
+
+    Production base URL: `https://api.clearstreet.io/v1`
+
+    # Authentication
+    End-to-end security is provided through an SSL connection and an API-key that will be provided to users of our API.
+
+    The API-key provided to you will take the form a <a href="https://swagger.io/docs/specification/authentication/bearer-authentication">bearer token</a>. Every request you make, therefore, must contain your API-key in the header of the request in the following form:
+
+    <pre>Authorization: Bearer &lt;KEY&gt;</pre>
+
+    Where `<KEY>` is the API-key provided to you.
+    
+    Here's an example of constructing a request in Python:
+
+    ```python
+    import requests
+
+    # change URL based on environment
+    URL = "https://api.sandbox.clearstreet.io/v1/trades"
+
+    # set provided API-key here
+    headers = {
+        'Content-Type': 'application/json',
+        'Authorization': 'Bearer yJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJjYXQiOjE1ODU2MTk2NDYsImV4cCI6MTU4NTYyMzI0NiwidWlkIjoyfQ.B6wdfKRro9JxPrhjn8QchPOfGFSWexfg_2EX0V_tkdA'
+    }
+
+    # construct your message
+    payload = [{
+        "type": "allocation_trade",
+        "timestamp": 1556544618,
+        "client_trade_id": "042919-1a",
+        "date": 20190304,
+        "account_id": 100016,
+        "mic": "XNAS",
+        "exec_mpid": "CSMM",
+        "capacity": "principal",
+        "quantity": "100",
+        "price": "140.00",
+        "instrument": {
+            "identifier": "ATRA",
+            "identifier_type": "ticker",
+            "currency": "USD",
+            "country": "USA"
+        },
+        "side": {
+            "direction": "buy"
+        },
+        "target_account_id": 100021
+    }]
+
+    # send request
+    requests.post(url=URL, headers=headers, json=payload)
+    ```
+tags:
+  - name: Trades
+    description: |
+      Trade endpoints are used to insert or cancel trades into a our systems.
+  - name: Uploads
+    description: |
+      Upload endpoints allow you to upload a `CSV` file that contain trades, in the same format as our <b>[trade-file specification](https://github.com/clear-street/docs/blob/master/trade_file.md)</b>. You may prefer to use a file-upload if you have a extremely large number of trades (> 10000), or if you have dependency on legacy systems that deal with `CSV` files. We recommend using <b><a href="#tag/Trades">trade endpoints</a></b> when possible, especially for real-time trade reporting.
+basePath: /
+schemes:
+  - http
+consumes:
+  - application/json
+produces:
+  - application/json
+
+paths:
+  # trade endpoints
+  # -----------------------------------------------------------------------------
+  /trades:
+    post:
+      tags:
+        - Trades
+      summary: Insert Trades
+      description: >
+        Insert the provided trades atomically. Use this endpoint if you want atomicity and immediate confirmation; this request will either fully process all your trades, or reject them all atomically. Therefore, a successful call to this endpoint guarantees that your trades have been accepted by our systems. This endpoint can accept up to 1000 trades at a time.
+        <ul>
+        <li><b>Exchange Trade</b>  trades done directly on an exchange. An example would be a trading account buying shares on Nasdaq.</li>
+        <li><b>Bilateral Trade</b> trades done bilaterally broker to broker. An example would be Bank of America's trading account buying shares from Goldman Sachs' trading account.</li>
+        <li><b>Transfer Trade</b> trades are done to transfer from one account to another within the same legal entity. An example would be to transfer shares from a trading account to an error account.</li>
+        <li><b>Allocation Trade</b> trades are done to allocate to a customer account. An example would be to allocate shares at an average price from an average price account to a customer account. </li>
+        </ul>
+
+        <b>The fields below vary depending upon trade-type. Change the value of the `type` drop-down below to switch between trade-types.</b>
+      operationId: trades_insert
+      parameters:
+        - in: body
+          name: trades
+          required: true
+          description: Array of trades to upload
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Trade'
+      responses:
+        '202':
+          description: OK
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/TradeSubmitted'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error'
+        '422':
+          description: Unprocessable Entity
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /trades/{trade_id}:
+    delete:
+      tags:
+        - Trades
+      summary: Cancel Trade By ID
+      description: >
+        Cancel a trade either by the Clear Street assigned `trade_id`, or `client_trade_id` that was provided in the original trade. If the ID you provide is, in fact, a `client_trade_id`, you must set `is_client_trade_id` to true, and also provide the `account_id` for the original trade.
+      operationId: trades_cancel
+      parameters:
+        - in: path
+          name: trade_id
+          required: true
+          description: Clear Street assigned unique trade_id
+          type: string
+        - in: query
+          name: is_client_trade_id
+          required: false
+          description: True if the given trade_id is a client_trade_id
+          type: boolean
+        - in: query
+          name: account_id
+          required: false
+          description: Provide only if `is_client_trade_id` is true. This is the account_id the trade was booked to
+          type: integer
+      responses:
+        '202':
+          description: OK
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+
+  # upload endpoints
+  # -----------------------------------------------------------------------------
+  /uploads/insert:
+    post:
+      tags:
+        - Uploads
+      summary: Create Insert Upload
+      description: |
+        Upload the provided CSV file for processing asynchronously. Your file will be uploaded to our servers, and then subsequently processed.
+
+        The columns for a CSV file should match the JSON path dot-notation of the fields available in the <b><a href="#operation/trades_insert">insert trades endpoint</a></b>. For example, the column `side.direction` would be the column header to set the direction of a trade, and the column `instrument.ticker` would set the trade's instrument ticker, etc.
+
+        Our <b>[trade-file specification](https://github.com/clear-street/docs/blob/master/trade_file.md)</b> has more details. You can also <b><a href="examples/trades.csv">download an example file</a></b>.
+        
+      operationId: uploads_insert_create
+      consumes:
+        - multipart/form-data
+      parameters:
+        - name: file
+          in: formData
+          type: file
+          required: true
+          description: The file to upload. Must have a *.csv extension.
+      responses:
+        '202':
+          description: OK
+          schema:
+            $ref: '#/definitions/Upload'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /uploads/cancel:
+    post:
+      tags:
+        - Uploads
+      summary: Create Cancel Upload
+      description: |
+        Upload the provided CSV file for processing cancels asynchronously.
+
+        Example column headers with associated example values&#58;
+        <table>
+        <tr><th>account</th><td>100001</td></tr>
+        <tr><th>trade_id</th><td>12343</td></tr>
+        <tr><th>by_client_id</th><td>false</td></tr>
+        </table>
+      operationId: uploads_cancel_create
+      consumes:
+        - multipart/form-data
+      parameters:
+        - name: file
+          in: formData
+          type: file
+          required: true
+          description: The file to upload. Must have a *.csv extension.
+      responses:
+        '202':
+          description: OK
+          schema:
+            $ref: '#/definitions/Upload'
+        '400':
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/Error'
+        '409':
+          description: Conflict
+          schema:
+            $ref: '#/definitions/Error'
+        '500':
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/Error'
+
+  /uploads/{upload_id}:
+    get:
+      tags:
+        - Uploads
+      summary: Get Upload By ID
+      description: |
+        Get an existing upload. Use this endpoint when you want to the know the status of a previously created upload.
+      operationId: uploads_get_by_id
+      parameters:
+        - in: path
+          name: upload_id
+          required: true
+          description: upload_id that identifies a previously created upload
+          type: string
+      responses:
+        '200':
+          description: OK
+          schema:
+            $ref: '#/definitions/UploadStatus'
+        '404':
+          description: Not Found
+          schema:
+            $ref: '#/definitions/Error'
+
+definitions:
+  ErrorBase:
+    type: object
+    properties:
+        message:
+        type: string
+        description: Error details, if any
+    example:
+        message: <error-details>
+
+  Error:
+    type: object
+    allOf:
+      - $ref: '#/definitions/ErrorBase'
+    required:
+      - type
+    properties:
+      type:
+        type: string
+        enum:
+          - internal
+          - malformed_trade
+          - too_many_trades
+          - file_exists
+          - empty_file
+          - unsupported_file
+          - upload_not_found
+          - trade_already_canceled
+          - missing_account_id
+        x-nullable: false
+
+  Upload:
+    type: object
+    description: Represents an upload's details
+    required:
+      - created_at
+      - upload_id
+      - org_id
+      - user_id
+      - name
+      - s3_key
+    properties:
+      created_at:
+        type: integer
+        description: Timestamp when the upload was created; milliseconds since unix epoch
+        x-nullable: false
+      upload_id:
+        type: string
+        description: SHA256 hash of the trades you uploaded. This uniquely identifies your upload
+        example: 3d4b424aa96e2751228ad4b78f8882073e5e29079047ad524a0ed719b57c42db
+        x-nullable: false
+      org_id:
+        type: integer
+        format: int64
+        description: The orgID of the user who created this upload
+        example: 1
+        x-nullable: false
+      user_id:
+        type: integer
+        format: int64
+        description: The userID of the user who created this upload
+        example: 1
+        x-nullable: false
+      name:
+        type: string
+        description: Name of the upload; this will be the filename if the upload
+        x-nullable: false
+      s3_key:
+        type: string
+        description: AWS S3 key
+        x-nullable: false
+
+  UploadStatus:
+    type: object
+    allOf:
+      - $ref: '#/definitions/Upload'
+    description: Represents an upload's status
+    required:
+      - trades_processed
+      - trades_skipped
+      - status
+      - completed
+    properties:
+      updated_at:
+        type: integer
+        description: Timestamp when the upload was last updated; milliseconds since unix epoch
+        x-nullable: false
+      trades_processed:
+        type: integer
+        description: The number of trades processed from this upload
+        x-nullable: false
+      trades_skipped:
+        type: integer
+        description: The number of trades skipped from this upload
+        x-nullable: false
+      status:
+        type: string
+        description: The status of this upload
+        x-nullable: false
+      completed:
+        type: boolean
+        description: True if this upload has finished processing
+        x-nullable: false
+
+  Side:
+    type: object
+    description: Trade direction, either buy or sell with qualifiers
+    required:
+      - direction
+    properties:
+      direction:
+        type: string
+        enum:
+          - 'buy'
+          - 'sell'
+        description: Trade direction
+        example: sell
+        x-nullable: false
+      qualifier:
+        type: string
+        enum:
+          - 'short'
+        description: Trade qualifier, if any
+        default: null
+        x-nullable: true
+      position:
+        type: string
+        enum:
+          - 'open'
+          - 'close'
+        description: Trade position, if any
+        default: null
+        x-nullable: true
+
+  Interest:
+    type: object
+    description: Interest specific details for fixed income trades only.
+    required:
+      - yield
+      - accrued
+      - accrued_days
+    properties:
+      yield:
+        type: string
+        pattern: "^[-]?[0-9]*\\.?[0-9]+$"
+        description: Yield for the security
+        x-nullable: false
+      accrued:
+        type: string
+        pattern: "^[-]?[0-9]*\\.?[0-9]+$"
+        description: Accrued interest to be paid
+        x-nullable: false
+      accrued_days:
+        type: integer
+        description: Number of days of accrued interest
+        x-nullable: false
+
+  Fees:
+    type: object
+    description: Fees associated with a trade.
+    properties:
+      commission:
+        type: string
+        pattern: "^[-]?[0-9]*\\.?[0-9]+$"
+        description: Commission charged or paid
+        example: '0'
+        default: null
+        x-nullable: true
+      omit_sec:
+        type: boolean
+        description: True if SEC fees should be applied
+        example: false
+        default: false
+      omit_taf:
+        type: boolean
+        description: True if Clear Street's billable rate should be applied
+        example: false
+        default: false
+      omit_bill:
+        type: boolean
+        description: True if Clear Street's billable rate should be applied
+        example: false
+        default: false
+    x-nullable: true
+
+  Settlement:
+    type: object
+    description: Settlement details. Required typically for special settlement situations.
+    properties:
+      currency:
+        type: string
+        minLength: 3
+        maxLength: 3
+        description: Settlement currency for the trade if different than the issue currency of the security. This should be a 3-letter ISO 4217 code.
+        example: USD
+        default: null
+        x-nullable: true
+      date:
+        type: integer
+        minimum: 20190101
+        maximum: 21000101
+        description: Only provide for irregular-way, i.e. you've negotiated a special settlement arrangement for this trade; represents settlement date in YYYYMMDD format
+        default: null
+        x-nullable: true
+
+  Locate:
+    type: object
+    description: Locate details. Applicable only when locates are required, i.e. for short sales.
+    required:
+      - id
+      - source
+    properties:
+      id:
+        type: string
+        minLength: 1
+        maxLength: 256
+        description: ID of the locate obtained for short sales.
+        example: LOC12345
+        x-nullable: false
+      source:
+        type: string
+        minLength: 1
+        maxLength: 256
+        description: Identifies the firm supplying the locate (usually the MPID). Mandatory for short-sales, optional otherwise
+        x-nullable: false
+
+  Instrument:
+    type: object
+    description: Instrument details.
+    required:
+      - identifier
+      - identifier_type
+      - country
+      - currency
+    properties:
+      identifier:
+        type: string
+        minLength: 1
+        maxLength: 256
+        description: Official identifier. If you use `ticker`, then ensure you use a common ticker (e.g. `AAPL` for Apple Inc. on NASDAQ)
+        example: AAPL
+        x-nullable: false
+      identifier_type:
+        type: string
+        enum:
+          - 'ticker'
+          - 'cusip'
+          - 'isin'
+          - 'sedol'
+        description: Identifier type.
+        x-nullable: false
+      country:
+        type: string
+        minLength: 1
+        maxLength: 4
+        description: ISO 3166 Alpha-3 Country Code of where the instrument was traded
+        example: USA
+        x-nullable: false
+      currency:
+        type: string
+        minLength: 1
+        maxLength: 4
+        description: ISO 4217 Alpha-3 Currency Code of the currency in which the instrument is traded in
+        example: USD
+        x-nullable: false
+
+  Trade:
+    type: object
+    discriminator: type
+    description: Base trade details; common amongst all trade types.
+    required:
+      - type
+      - timestamp
+      - client_trade_id
+      - date
+      - account_id
+      - quantity
+      - price
+      - instrument
+      - side
+    properties:
+      type:
+        type: string
+        enum:
+          - transfer_trade
+          - allocation_trade
+          - exchange_trade
+          - bilateral_trade
+        description: Trade type.
+        x-nullable: false
+      timestamp:
+        type: integer
+        description: Timestamp of when the trade occurred in milliseconds since unix epoch.
+        example: 1545952392000
+        x-nullable: false
+      client_trade_id:
+        type: string
+        minLength: 1
+        maxLength: 256
+        description: Unique ID for this trade that you define.
+        example: T-50264430-bc41
+        x-nullable: false
+      date:
+        type: integer
+        minimum: 20010101
+        maximum: 21000101
+        description: Trade date for the trade in YYYYMMDD format
+        example: 20200101
+        x-nullable: false
+      account_id:
+        type: integer
+        minimum: 0
+        description: Clear Street provided account_id that you want this trade booked to.
+        example: 1002
+        x-nullable: false
+      quantity:
+        type: string
+        pattern: "^[-]?[0-9]*\\.?[0-9]+$"
+        description: The quantity of the trade
+        x-nullable: false
+        example: '100'
+      price:
+        type: string
+        pattern: "^[-]?[0-9]*\\.?[0-9]+$"
+        description: The price of the trade
+        x-nullable: false
+        example: '10.00'
+      behalf_of_entity_id:
+        type: integer
+        description: DEPRECATED - Prefer behalf_of_account_id instead. EntityID for who this trade is behalf of
+        example: 1002
+        x-nullable: true
+      behalf_of_account_id:
+        type: integer
+        description: AccountID for who this trade is behalf of
+        example: 1002
+        x-nullable: true
+      solicited:
+        type: boolean
+        description: True if this trade was solicited
+        x-nullable: true
+      registered_rep:
+        type: string
+        description: The registered rep for this trade, if any
+        x-nullable: true
+      branch_office:
+        type: string
+        description: The branch office submitting this trade, if any
+        x-nullable: true
+      instrument:
+        $ref: '#/definitions/Instrument'
+      side:
+        $ref: '#/definitions/Side'
+      settlement:
+        $ref: '#/definitions/Settlement'
+      user_data:
+        type: object
+        description: Free-form JSON to attach to the trade
+        x-nullable: true
+      order_id:
+        type: string
+        description: The order id is to link all the executions in the avg price account(exchange and bi-lateral trade types) to the allocation trade type
+        default: null
+        x-nullable: true
+      cancel_trade_id:
+        type: string
+        description: The original trade id that is being canceled, if any
+        default: null
+        x-nullable: true
+          
+  TradeSubmitted:
+    type: object
+    description: Submitted trade details
+    properties:
+      client_trade_id:
+        type: string
+        minLength: 1
+        maxLength: 256
+        description: Unique ID for this trade that you defined.
+        example: T-50264430-bc41
+        x-nullable: false
+      trade_id:
+        type: string
+        description: Unique ID for this trade provided by Clear Street.
+        example: 1893
+        x-nullable: false
+
+  transfer_trade:
+    type: object
+    allOf:
+      - $ref: '#/definitions/Trade'
+    description: Transfer trade type.
+    required:
+      - target_account_id
+    properties:
+      target_account_id:
+        type: integer
+        minimum: 0
+        description: The destination Clear Street account_id
+        example: 1002
+        x-nullable: false
+      capacity:
+        type: string
+        enum:
+          - principal
+          - agency
+          - mixed
+          - riskless_principal
+        description: Capacity on the trade
+      fees:
+        $ref: '#/definitions/Fees'
+
+  allocation_trade:
+    type: object
+    allOf:
+      - $ref: '#/definitions/Trade'
+    description: Allocation trade type.
+    required:
+      - target_account_id
+    properties:
+      target_account_id:
+        type: integer
+        minimum: 0
+        description: The destination Clear Street account_id
+        example: 1002
+        x-nullable: false
+      capacity:
+        type: string
+        enum:
+          - principal
+          - agency
+          - mixed
+          - riskless_principal
+        description: Capacity on the trade
+        x-nullable: false
+      contra_side_qualifier:
+        type: string
+        enum:
+          - 'short'
+          - 'open'
+          - 'close'
+        description: Contra trade side qualifier, if any
+        default: null
+        x-nullable: true
+      fees:
+        $ref: '#/definitions/Fees'
+
+  exchange_trade:
+    type: object
+    allOf:
+      - $ref: '#/definitions/Trade'
+    description: Trade executed directly on an exchange
+    required:
+      - capacity
+      - mic
+      - exec_mpid
+    properties:
+      capacity:
+        type: string
+        enum:
+          - principal
+          - agency
+          - mixed
+          - riskless_principal
+        description: Your capacity on the trade
+        x-nullable: false
+      mic:
+        type: string
+        description: ISO 10383 Market Identifer Code for the exchange where this trade took place.
+        minLength: 1
+        maxLength: 10
+        example: XNAS
+        x-nullable: false
+      exec_mpid:
+        type: string
+        description: MPID of the executing party, if any
+        minLength: 1
+        maxLength: 10
+        example: CLST
+        x-nullable: false
+      is_when_issued:
+        type: boolean
+        description: True if the trade was done as When Issued
+        default: false
+        example: false
+      fees:
+        $ref: '#/definitions/Fees'
+      locate:
+        $ref: '#/definitions/Locate'
+
+  bilateral_trade:
+    type: object
+    allOf:
+      - $ref: '#/definitions/Trade'
+    description: Trade executed bilaterially broker to broker
+    required:
+      - capacity
+      - contra_mpid
+      - contra_dtc_num
+      - exec_mpid
+    properties:
+      capacity:
+        type: string
+        enum:
+          - principal
+          - agency
+          - mixed
+          - riskless_principal
+        description: Your capacity on the trade
+        x-nullable: false
+      contra_mpid:
+        type: string
+        description: Contra party's MPID
+        minLength: 1
+        maxLength: 10
+        example: XNAS
+        x-nullable: false
+      contra_dtc_num:
+        type: string
+        description: Contra party's DTC number
+        minLength: 1
+        x-nullable: false
+      is_when_issued:
+        type: boolean
+        description: True if the trade was done as When Issued
+        default: false
+        example: false
+      exec_mpid:
+        type: string
+        description: MPID of the executing party, if different than contra_mpid
+        minLength: 1
+        maxLength: 10
+        example: CLST
+        x-nullable: false
+      interest:
+        $ref: '#/definitions/Interest'
+      fees:
+        $ref: '#/definitions/Fees'
+      locate:
+        $ref: '#/definitions/Locate'
+      last_market:
+        type: string
+        description: The last market is the exchange where the trade executed (if we route orders to a broker(bi lateral trade) and they route to an exchange), if any
+        default: null
+        x-nullable: true
+      nscc_clearing:
+        type: string
+        enum:
+          - contra
+          - agu
+          - qsr
+          - corr
+          - corr_fees
+        description: NSCC clearing details related to locking; They lock when value is contra or agu. We lock in other cases.
+        default: null
+        x-nullable: true  
+  

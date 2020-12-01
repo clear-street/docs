@@ -1,5 +1,5 @@
 <div class="center">
-<p align="center"><img src="https://user-images.githubusercontent.com/523933/49741959-91a1da00-fc65-11e8-911f-521331f87174.png" align="center" width="20%" height="20%"></p>
+<p align="center"><img src="assets/logo.png" align="center" width="20%" height="20%"></p>
   <h1 align="center">Clear Street</h1>
   <p align="center">
   	<h2 align="center">
@@ -144,26 +144,26 @@ There are 3 levels of activities: `org`, `entity`, and `account`, each represent
 
 The Journal Activity file details all journal movements made across per account for a specific day. This could involve cash movements or position movements. A sample journal entry in this file is as follows:
 
-| Date     | Org Name     | Entity Name              | Account ID | Account Name | Account Full Name | Instrument Name | Description | Cusip     | Isin         | Sedol   | Currency | Instrument Type | Segment | Memo                  | TD Quantity | TD Amount | SD Quantity | SD Amount |
-| -------- | ------------ | ------------------------ | ---------- | ------------ | ----------------- | --------------- | ----------- | --------- | ------------ | ------- | -------- | --------------- | ------- | --------------------- | ----------- | --------- | ----------- | --------- |
-| 20190207 | Clear Street | Clear Street FTP Trading | 00XX00     | clstftp      | Clear Street FTP  | AAPL            | Apple Inc.  | 037833100 | US0378331005 | 2046251 |          | Common Equity   | sl      | DLVR Journal for AAPL | 4000        | 0         | 4000        | 0         |
+| Date     | Org Name     | Entity Name              | Account ID | Account Name | Account Full Name | Instrument Name | Description | Cusip     | Isin         | Sedol   | Currency | Instrument Type | Segment | Memo                  | TD Quantity | TD Amount | SD Quantity | SD Amount | Position Type |
+| -------- | ------------ | ------------------------ | ---------- | ------------ | ----------------- | --------------- | ----------- | --------- | ------------ | ------- | -------- | --------------- | ------- | --------------------- | ----------- | --------- | ----------- | --------- | ------------- |
+| 20190207 | Clear Street | Clear Street FTP Trading | 00XX00     | clstftp      | Clear Street FTP  | AAPL            | Apple Inc.  | 037833100 | US0378331005 | 2046251 |          | Common Equity   | sl      | DLVR Journal for AAPL | 4000        | 0         | 4000        | 0         | Net           |
 
 ##### Trade Activity
 
 The Trade Activity file details all trades made, across per account for a specific day. A sample trade entry in this file is as follows:
 
-| Date     | Org Name     | Entity Name           | Account ID | Account Name                  | Account Full Name | Client Trade ID | Trade ID                   | Trade Date | Settle Date | Action | Side | Side Qualifier | Quantity | Instrument Name | Description | Instrument Type | Cusip     | Isin         | Sedol   | Price  | Currency | Gross Amount | Fee Bill | Fee Commission | Fee Ftt | Fee Local Tax | Fee PtmLevy | Fee Sec | Fee Taf | Net Amount |
-| -------- | ------------ | --------------------- | ---------- | ----------------------------- | ----------------- | --------------- | -------------------------- | ---------- | ----------- | ------ | ---- | -------------- | -------- | --------------- | ----------- | --------------- | --------- | ------------ | ------- | ------ | -------- | ------------ | -------- | -------------- | ------- | ------------- | ----------- | ------- | ------- | ---------- |
-| 20190207 | Clear Street | clearstreet.4.clrstrt | 00XX00     | clearstreet.4.22.clr-strt-ftp | Clear Street FTP  | 001234CLSTTRD   | 01DQDPYPNW6XX1P3B7FGF2YCNJ | 20190207   | 20190209    | insert | sell | short          | 10682067 | AAPL            | Apple Inc.  | Common Equity   | 037833100 | US0378331005 | 2046251 | 100.00 | USD      | 250000       | 0        | 769.48         | 0       | 0             | 0           | 0.4     | 5.95    | 250860.48  |
+| Date     | Org Name     | Entity Name           | Account ID | Account Name                  | Account Full Name | Client Trade ID | Trade ID                   | Trade Date | Settle Date | Action | Side | Side Qualifier | Quantity | Instrument Name | Description | Instrument Type | Cusip     | Isin         | Sedol   | Price  | Currency | Gross Amount | Fee Bill | Fee Commission | Fee Ftt | Fee Local Tax | Fee PtmLevy | Fee Sec | Fee Taf | Net Amount | Fee ORF | Open/Close Indicator |
+| -------- | ------------ | --------------------- | ---------- | ----------------------------- | ----------------- | --------------- | -------------------------- | ---------- | ----------- | ------ | ---- | -------------- | -------- | --------------- | ----------- | --------------- | --------- | ------------ | ------- | ------ | -------- | ------------ | -------- | -------------- | ------- | ------------- | ----------- | ------- | ------- | ---------- | ------- | -------------------- |
+| 20190207 | Clear Street | clearstreet.4.clrstrt | 00XX00     | clearstreet.4.22.clr-strt-ftp | Clear Street FTP  | 001234CLSTTRD   | 01DQDPYPNW6XX1P3B7FGF2YCNJ | 20190207   | 20190209    | insert | sell | short          | 10682067 | AAPL            | Apple Inc.  | Common Equity   | 037833100 | US0378331005 | 2046251 | 100.00 | USD      | 250000       | 0        | 769.48         | 0       | 0             | 0           | 0.4     | 5.95    | 250860.48  | 0.45    | Open                 |
 
 
 ##### Position Activity
 
 The Position Activity file details all positions across per account for a specific day. This could be held positions, or positions awaiting settlement. A sample position entry in this file is as follows:
 
-| Date     | Org Name     | Entity Name           | Account ID | Account Name                  | Account Full Name | Instrument Name | Description | Cusip     | Isin         | Sedol   | Currency | Instrument Type | Previous TD Quantity | Today TD Quantity | Closing Price | TD Long Market Value | TD Short Market Value | Previous SD Quantity | Today SD Quantity | SD Long Market Value | SD Short Market Value |
-| -------- | ------------ | --------------------- | ---------- | ----------------------------- | ----------------- | --------------- | ----------- | --------- | ------------ | ------- | -------- | --------------- | -------------------- | ----------------- | ------------- | -------------------- | --------------------- | -------------------- | ----------------- | -------------------- | --------------------- |
-| 20190207 | Clear Street | clearstreet.4.clrstrt | 00XX00     | clearstreet.4.22.clr-strt-ftp | Clear Street FTP  | AAPL            | Apple Inc.  | 037833100 | US0378331005 | 2046251 | USD      | Common Equity   | 0                    | 2000              | 100.54        | 201080               | 0                     | 0                    | 4000              | 402160               | 0                     |
+| Date     | Org Name     | Entity Name           | Account ID | Account Name                  | Account Full Name | Instrument Name | Description | Cusip     | Isin         | Sedol   | Currency | Instrument Type | Previous TD Quantity | Today TD Quantity | Closing Price | TD Long Market Value | TD Short Market Value | Previous SD Quantity | Today SD Quantity | SD Long Market Value | SD Short Market Value | Margin Percent | Margin Amount |
+| -------- | ------------ | --------------------- | ---------- | ----------------------------- | ----------------- | --------------- | ----------- | --------- | ------------ | ------- | -------- | --------------- | -------------------- | ----------------- | ------------- | -------------------- | --------------------- | -------------------- | ----------------- | -------------------- | --------------------- |----------------|---------------|
+| 20190207 | Clear Street | clearstreet.4.clrstrt | 00XX00     | clearstreet.4.22.clr-strt-ftp | Clear Street FTP  | AAPL            | Apple Inc.  | 037833100 | US0378331005 | 2046251 | USD      | Common Equity   | 0                    | 2000              | 100.54        | 201080               | 0                     | 0                    | 4000              | 402160               | 0                     | .340           | 1360          |
 
 ##### Summary Activity
 
