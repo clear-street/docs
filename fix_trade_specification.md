@@ -24,7 +24,7 @@ FIX trade specification details the tags and values along with description of va
 
 This trade type is used to facilitate average-price workflows, i.e. averaging many trades for a customer and allocating it to them as a single trade.
 
-| `               Name               ` | FIX Tag | Allowable Values | Type | Length | Required? | Description | Example |
+| Name&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; | FIX Tag | Allowable Values | Type | Length | Required? | Description | Example |
 | - | - | - | - | - | - | - | - |
 | `Execution Transaction Type` | `20` | `0` `1` | `Integer` | `1` | `R` | `0-New` `1-Cancel` | `0` |
 | `Trade Type` | `9001` | `A` | `String` | `1` | `R` | `A-Allocation` | `A` |
