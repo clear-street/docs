@@ -16,7 +16,7 @@ FIX trade specification details the tags and values along with description of va
 <p>A FIX session has an active time period during which all data is transmitted. Clear Street currently accepts connections between 5 AM EST to 9 PM EST on all business days.</p>
 <p>A Logon message (Tag <b>35=A</b>) must be sent to Clear Street on every business day to indicate the begining of activity and a Logout message (Tag <b>35=5</b>)must be sent to Clear Street indicating end of activity for that day.</p> 
 <p>Clear Street also recommends exchange of heartbeats every 30 seconds by seding a message with tag <b>35=0</b>.</p>
-<p>Clear Street execpts every message sent to have a unique continuous sequence number as part of message with tag <b>34=</b>. If there are any gaps in sequence numbers, a sequence reset message will sent to OMS client with tag <b>34=4</b>.</p>
+<p>Clear Street expects every message sent to have a unique continuous sequence number as part of message with tag <b>34=</b>. If there are any gaps in sequence numbers, a sequence reset message will sent to OMS client with tag <b>34=4</b>.</p>
 <p>All trade messages must have tag <b>35=8</b> indicating that each message is an execution report. Please note that we have added few custom tags starting with 9001 to allow clients to send specific information needed for trades to be processed at our end. These tags are listed as part of the inbound specification.</p>
 
 
