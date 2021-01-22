@@ -47,7 +47,7 @@ This trade type is used to facilitate average-price workflows, i.e. averaging ma
 | `Settlement Date Type` | `63` | `0` `7` | `Integer` | `1` | `R` | `0-Regular` `7-When_Issued` | `0` |
 | `Settlement Date` | `64` |  | `Integer` | `8` | `CR` | Defaults to 99991231 for when issued trades and not required for when issued trades. Settlement date in `YYYYMMDD` format | `20201104` |
 | `Solicited` | `325` | `F` `T` | `String` | `1` | `O` | `F-Solicited` `T-Not Solicited` | `T` |
-| `Trade Execution Time` | `60` |  | `Integer` |  | `R` | Timestamp of when the trade occurred in milliseconds since unix epoch | `1551690257005` |
+| `Trade Execution Time` | `60` |  | `UTCTimestamp` |  | `R` | Timestamp of when the trade occurred in YYYYMMDD-HH:MM:SS.sss | `20201021-13:42:34.123` |
 | `Capacity` | `47` | `A` `M` `P` `R` | `String` | `1` | `R` | `A-Agency` `M-Mixed` `P-Principal` `R-Riskless Principal` | `P` |
 | `Contra Side Qualifier` | `9004` | `5` `6` | `Integer` |  | `CR` | `5-Sell Short` `6-Sell Exempt` | `5` |
 | `Commission` | `12` |  | `Decimal` |  | `O` | Commission charged or paid | `0.12` |
@@ -56,7 +56,7 @@ This trade type is used to facilitate average-price workflows, i.e. averaging ma
 | `Order ID` | `37` |  | `String` |  | `O` | Order ID to link all the executions in the average price account | `123456` |
 
 ### FIX inbound example message for Allocation Trade
-`8=FIX.4.29=24535=849=OMS_CLIENT56=0000913234=12914352=20201021-21:42:3420=09001=A1=10007817=CLIENT_TRADE_ID75=2020102122=448=US70450Y1038421=USA15=USD31=000213.48000032=0000000298754=263=064=2020102360=155169025700547=A76=ABCD79=10001710=180`
+`8=FIX.4.29=25335=849=OMS_CLIENT56=0000913234=12914352=20201021-21:42:3420=09001=A1=10007817=CLIENT_TRADE_ID75=2020102122=448=US70450Y1038421=USA15=USD31=000213.48000032=0000000298754=263=064=2020102360=20201021-13:42:34.12347=A76=ABCD79=10001710=180`
 
 
 ### FIX inbound trade specification for Away Trade
@@ -86,7 +86,7 @@ This trade type represents a customer executing away from Clear Street LLC. For 
 | `Settlement Date Type` | `63` | `0` `7` | `Integer` | `1` | `R` | `0-Regular` `7-When_Issued` | `0` |
 | `Settlement Date` | `64` |  | `Integer` | `8` | `CR` | Defaults to 99991231 for when issued trades and not required for when issued trades. Settlement date in `YYYYMMDD` format | `20201104` |
 | `Solicited` | `325` | `F` `T` | `String` | `1` | `O` | `F-Solicited` `T-Not Solicited` | `T` |
-| `Trade Execution Time` | `60` |  | `Integer` |  | `R` | Timestamp of when the trade occurred in milliseconds since unix epoch | `1551690257005` |
+| `Trade Execution Time` | `60` |  | `UTCTimestamp` |  | `R` | Timestamp of when the trade occurred in YYYYMMDD-HH:MM:SS.sss | `20201021-13:42:34.123` |
 | `Capacity` | `47` | `A` `M` `P` `R` | `String` | `1` | `R` | `A-Agency` `M-Mixed` `P-Principal` `R-Riskless Principal` | `P` |
 | `Contra Clearing Number` | `440` |  | `Integer` | `4` | `R` | Contra-party's clearing number | `9132` |
 | `Contra MPID` | `375` |  | `String` | `4` | `R` | Contra-party's MPID | `CLST` |
@@ -102,7 +102,7 @@ This trade type represents a customer executing away from Clear Street LLC. For 
 | `NSCC Clearing` | `9010` | `agu` `contra` `corr` `corr_fees` `qsr` | `String` |  | `O` | `agu` `contra` `corr` `corr_fees` `qsr` | `qsr` |
 
 ### FIX inbound example message for Away Trade
-`8=FIX.4.29=25335=849=OMS_CLIENT56=0000913234=12914552=20201021-21:42:3420=09001=W1=10007817=CLIENT_TRADE_ID75=2020102122=448=US70450Y1038421=USA15=USD31=000213.48000032=0000000298754=263=064=2020102360=155169025700547=M440=0295375=ABCD76=WXYZ10=180`
+`8=FIX.4.29=26135=849=OMS_CLIENT56=0000913234=12914552=20201021-21:42:3420=09001=W1=10007817=CLIENT_TRADE_ID75=2020102122=448=US70450Y1038421=USA15=USD31=000213.48000032=0000000298754=263=064=2020102360=20201021-13:42:34.12347=M440=0295375=ABCD76=WXYZ10=180`
 
 
 ### FIX inbound trade specification for Bilateral Trade
@@ -132,7 +132,7 @@ This trade represents a trade between two trading entities. For example, trading
 | `Settlement Date Type` | `63` | `0` `7` | `Integer` | `1` | `R` | `0-Regular` `7-When_Issued` | `0` |
 | `Settlement Date` | `64` |  | `Integer` | `8` | `CR` | Defaults to 99991231 for when issued trades and not required for when issued trades. Settlement date in `YYYYMMDD` format | `20201104` |
 | `Solicited` | `325` | `F` `T` | `String` | `1` | `O` | `F-Solicited` `T-Not Solicited` | `T` |
-| `Trade Execution Time` | `60` |  | `Integer` |  | `R` | Timestamp of when the trade occurred in milliseconds since unix epoch | `1551690257005` |
+| `Trade Execution Time` | `60` |  | `UTCTimestamp` |  | `R` | Timestamp of when the trade occurred in YYYYMMDD-HH:MM:SS.sss | `20201021-13:42:34.123` |
 | `Capacity` | `47` | `A` `M` `P` `R` | `String` | `1` | `R` | `A-Agency` `M-Mixed` `P-Principal` `R-Riskless Principal` | `P` |
 | `Contra Clearing Number` | `440` |  | `Integer` | `4` | `R` | Contra-party's clearing number | `9132` |
 | `Contra MPID` | `375` |  | `String` | `4` | `R` | Contra-party's MPID | `CLST` |
@@ -148,7 +148,7 @@ This trade represents a trade between two trading entities. For example, trading
 | `NSCC Clearing` | `9010` | `agu` `contra` `corr` `corr_fees` `qsr` | `String` | `O` | `agu` `contra` `corr` `corr_fees` `qsr` | `qsr` |
 
 ### FIX inbound example message for Bilateral Trade
-`8=FIX.4.29=25335=849=OMS_CLIENT56=0000913234=12914152=20201021-21:42:3420=09001=B1=10007817=CLIENT_TRADE_ID75=2020102122=448=US70450Y1038421=USA15=USD31=000213.48000032=0000000298754=263=064=2020102360=155169025700547=M440=0295375=ABCD76=WXYZ10=180`
+`8=FIX.4.29=26135=849=OMS_CLIENT56=0000913234=12914152=20201021-21:42:3420=09001=B1=10007817=CLIENT_TRADE_ID75=2020102122=448=US70450Y1038421=USA15=USD31=000213.48000032=0000000298754=263=064=2020102360=20201021-13:42:34.12347=M440=0295375=ABCD76=WXYZ10=180`
 
 
 ### FIX inbound trade specification for Exchange Trade
@@ -178,7 +178,7 @@ This trade represents a trade between a trading entity and an exchange. For exam
 | `Settlement Date Type` | `63` | `0` `7` | `Integer` | `1` | `R` | `0-Regular` `7-When_Issued` | `0` |
 | `Settlement Date` | `64` |  | `Integer` | `8` | `CR` | Defaults to 99991231 for when issued trades and not required for when issued trades. Settlement date in `YYYYMMDD` format | `20201104` |
 | `Solicited` | `325` | `F` `T` | `String` | `1` | `O` | `F-Solicited` `T-Not Solicited` | `T` |
-| `Trade Execution Time` | `60` |  | `Integer` |  | `R` | Timestamp of when the trade occurred in milliseconds since unix epoch | `1551690257005` |
+| `Trade Execution Time` | `60` |  | `UTCTimestamp` |  | `R` | Timestamp of when the trade occurred in YYYYMMDD-HH:MM:SS.sss | `20201021-13:42:34.123` |
 | `Capacity` | `47` | `A` `M` `P` `R` | `String` | `1` | `R` | `A-Agency` `M-Mixed` `P-Principal` `R-Riskless Principal` | `P` |
 | `Executing MPID` | `76` |  | `String` | `4` | `R` | Executing party's MPID | `ANON` |
 | `Contra Side Qualifier` | `9004` | `5` `6` | `Integer` |  | `CR` | `5-Sell Short` `6-Sell Exempt` | `5` |
@@ -191,7 +191,7 @@ This trade represents a trade between a trading entity and an exchange. For exam
 | `Order ID` | `37` |  | `String` |  | `O` | Order ID to link all the executions in the average price account | `123456` |
 
 ### FIX inbound example message for Exchange Trade
-`8=FIX.4.29=24335=849=OMS_CLIENT56=0000913234=12914452=20201021-21:42:3420=09001=E1=10007817=CLIENT_TRADE_ID75=2020102122=448=US70450Y1038421=USA15=USD31=000213.48000032=0000000298754=263=064=2020102360=155169025700547=R76=ABCD30=NYSE10=180`
+`8=FIX.4.29=25135=849=OMS_CLIENT56=0000913234=12914452=20201021-21:42:3420=09001=E1=10007817=CLIENT_TRADE_ID75=2020102122=448=US70450Y1038421=USA15=USD31=000213.48000032=0000000298754=263=064=2020102360=20201021-13:42:34.12347=R76=ABCD30=NYSE10=180`
 
 
 ### FIX inbound trade specification for Transfer Trade
@@ -221,7 +221,7 @@ This trade type is to facilitate trade movement between Clear Street internal ac
 | `Settlement Date Type` | `63` | `0` `7` | `Integer` | `1` | `R` | `0-Regular` `7-When_Issued` | `0` |
 | `Settlement Date` | `64` |  | `Integer` | `8` | `CR` | Defaults to 99991231 for when issued trades and not required for when issued trades. Settlement date in `YYYYMMDD` format | `20201104` |
 | `Solicited` | `325` | `F` `T` | `String` | `1` | `O` | `F-Solicited` `T-Not Solicited` | `T` |
-| `Trade Execution Time` | `60` |  | `Integer` |  | `R` | Timestamp of when the trade occurred in milliseconds since unix epoch | `1551690257005` |
+| `Trade Execution Time` | `60` |  | `UTCTimestamp` |  | `R` | Timestamp of when the trade occurred in YYYYMMDD-HH:MM:SS.sss | `20201021-13:42:34.123` |
 | `Capacity` | `47` | `A` `M` `P` `R` | `String` | `1` | `R` | `A-Agency` `M-Mixed` `P-Principal` `R-Riskless Principal` | `P` |
 | `Contra Side Qualifier` | `9004` | `5` `6` | `Integer` |  | `CR` | `5-Sell Short` `6-Sell Exempt` | `5` |
 | `Commission` | `12` |  | `Decimal` |  | `O` | Commission charged or paid | `0.12` |
@@ -229,7 +229,7 @@ This trade type is to facilitate trade movement between Clear Street internal ac
 | `Omit TAF Fee` | `9006` | `F` `T` | `String` | `1` | `O` | True if TAF fees should not be applied | `T` |
 
 ### FIX inbound example message for Transfer Trade
-`8=FIX.4.29=24535=849=OMS_CLIENT56=0000913234=12914252=20201021-21:42:3420=09001=T1=10007817=CLIENT_TRADE_ID75=2020102122=448=US70450Y1038421=USA15=USD31=000213.48000032=0000000298754=263=064=2020102360=155169025700547=P76=ABCD79=10001710=180`
+`8=FIX.4.29=25335=849=OMS_CLIENT56=0000913234=12914252=20201021-21:42:3420=09001=T1=10007817=CLIENT_TRADE_ID75=2020102122=448=US70450Y1038421=USA15=USD31=000213.48000032=0000000298754=263=064=2020102360=20201021-13:42:34.12347=P76=ABCD79=10001710=180`
 
 
 ### FIX outbound (response) specification
