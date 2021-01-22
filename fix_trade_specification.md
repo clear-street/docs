@@ -47,7 +47,7 @@ This trade type is used to facilitate average-price workflows, i.e. averaging ma
 | `Settlement Date Type` | `63` | `0` `7` | `Integer` | `1` | `R` | `0-Regular` `7-When_Issued` | `0` |
 | `Settlement Date` | `64` |  | `Integer` | `8` | `CR` | Defaults to 99991231 for when issued trades and not required for when issued trades. Settlement date in `YYYYMMDD` format | `20201104` |
 | `Solicited` | `325` | `F` `T` | `String` | `1` | `O` | `F-Solicited` `T-Not Solicited` | `T` |
-| `Trade Execution Time` | `60` |  | `Integer` | `9` | `R` | Timestamp of when the trade occurred in milliseconds since unix epoch | `174220664` |
+| `Trade Execution Time` | `60` |  | `Integer` |  | `R` | Timestamp of when the trade occurred in milliseconds since unix epoch | `1551690257005` |
 | `Capacity` | `47` | `A` `M` `P` `R` | `String` | `1` | `R` | `A-Agency` `M-Mixed` `P-Principal` `R-Riskless Principal` | `P` |
 | `Contra Side Qualifier` | `9004` | `5` `6` | `Integer` |  | `CR` | `5-Sell Short` `6-Sell Exempt` | `5` |
 | `Commission` | `12` |  | `Decimal` |  | `O` | Commission charged or paid | `0.12` |
@@ -86,7 +86,7 @@ This trade type represents a customer executing away from Clear Street LLC. For 
 | `Settlement Date Type` | `63` | `0` `7` | `Integer` | `1` | `R` | `0-Regular` `7-When_Issued` | `0` |
 | `Settlement Date` | `64` |  | `Integer` | `8` | `CR` | Defaults to 99991231 for when issued trades and not required for when issued trades. Settlement date in `YYYYMMDD` format | `20201104` |
 | `Solicited` | `325` | `F` `T` | `String` | `1` | `O` | `F-Solicited` `T-Not Solicited` | `T` |
-| `Trade Execution Time` | `60` |  | `Integer` | `9` | `R` | Timestamp of when the trade occurred in milliseconds since unix epoch | `174220664` |
+| `Trade Execution Time` | `60` |  | `Integer` |  | `R` | Timestamp of when the trade occurred in milliseconds since unix epoch | `1551690257005` |
 | `Capacity` | `47` | `A` `M` `P` `R` | `String` | `1` | `R` | `A-Agency` `M-Mixed` `P-Principal` `R-Riskless Principal` | `P` |
 | `Contra Clearing Number` | `440` |  | `Integer` | `4` | `R` | Contra-party's clearing number | `9132` |
 | `Contra MPID` | `375` |  | `String` | `4` | `R` | Contra-party's MPID | `CLST` |
@@ -132,7 +132,7 @@ This trade represents a trade between two trading entities. For example, trading
 | `Settlement Date Type` | `63` | `0` `7` | `Integer` | `1` | `R` | `0-Regular` `7-When_Issued` | `0` |
 | `Settlement Date` | `64` |  | `Integer` | `8` | `CR` | Defaults to 99991231 for when issued trades and not required for when issued trades. Settlement date in `YYYYMMDD` format | `20201104` |
 | `Solicited` | `325` | `F` `T` | `String` | `1` | `O` | `F-Solicited` `T-Not Solicited` | `T` |
-| `Trade Execution Time` | `60` |  | `Integer` | `9` | `R` | Timestamp of when the trade occurred in milliseconds since unix epoch | `174220664` |
+| `Trade Execution Time` | `60` |  | `Integer` |  | `R` | Timestamp of when the trade occurred in milliseconds since unix epoch | `1551690257005` |
 | `Capacity` | `47` | `A` `M` `P` `R` | `String` | `1` | `R` | `A-Agency` `M-Mixed` `P-Principal` `R-Riskless Principal` | `P` |
 | `Contra Clearing Number` | `440` |  | `Integer` | `4` | `R` | Contra-party's clearing number | `9132` |
 | `Contra MPID` | `375` |  | `String` | `4` | `R` | Contra-party's MPID | `CLST` |
@@ -178,7 +178,7 @@ This trade represents a trade between a trading entity and an exchange. For exam
 | `Settlement Date Type` | `63` | `0` `7` | `Integer` | `1` | `R` | `0-Regular` `7-When_Issued` | `0` |
 | `Settlement Date` | `64` |  | `Integer` | `8` | `CR` | Defaults to 99991231 for when issued trades and not required for when issued trades. Settlement date in `YYYYMMDD` format | `20201104` |
 | `Solicited` | `325` | `F` `T` | `String` | `1` | `O` | `F-Solicited` `T-Not Solicited` | `T` |
-| `Trade Execution Time` | `60` |  | `Integer` | `9` | `R` | Timestamp of when the trade occurred in milliseconds since unix epoch | `174220664` |
+| `Trade Execution Time` | `60` |  | `Integer` |  | `R` | Timestamp of when the trade occurred in milliseconds since unix epoch | `1551690257005` |
 | `Capacity` | `47` | `A` `M` `P` `R` | `String` | `1` | `R` | `A-Agency` `M-Mixed` `P-Principal` `R-Riskless Principal` | `P` |
 | `Executing MPID` | `76` |  | `String` | `4` | `R` | Executing party's MPID | `ANON` |
 | `Contra Side Qualifier` | `9004` | `5` `6` | `Integer` |  | `CR` | `5-Sell Short` `6-Sell Exempt` | `5` |
@@ -221,7 +221,7 @@ This trade type is to facilitate trade movement between Clear Street internal ac
 | `Settlement Date Type` | `63` | `0` `7` | `Integer` | `1` | `R` | `0-Regular` `7-When_Issued` | `0` |
 | `Settlement Date` | `64` |  | `Integer` | `8` | `CR` | Defaults to 99991231 for when issued trades and not required for when issued trades. Settlement date in `YYYYMMDD` format | `20201104` |
 | `Solicited` | `325` | `F` `T` | `String` | `1` | `O` | `F-Solicited` `T-Not Solicited` | `T` |
-| `Trade Execution Time` | `60` |  | `Integer` | `9` | `R` | Timestamp of when the trade occurred in milliseconds since unix epoch | `174220664` |
+| `Trade Execution Time` | `60` |  | `Integer` |  | `R` | Timestamp of when the trade occurred in milliseconds since unix epoch | `1551690257005` |
 | `Capacity` | `47` | `A` `M` `P` `R` | `String` | `1` | `R` | `A-Agency` `M-Mixed` `P-Principal` `R-Riskless Principal` | `P` |
 | `Contra Side Qualifier` | `9004` | `5` `6` | `Integer` |  | `CR` | `5-Sell Short` `6-Sell Exempt` | `5` |
 | `Commission` | `12` |  | `Decimal` |  | `O` | Commission charged or paid | `0.12` |
