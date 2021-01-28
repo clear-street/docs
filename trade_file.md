@@ -123,7 +123,7 @@ This trade represents a trade between two trading entities. For example, trading
 | `settlement.date` | No | `null` |
 | `capacity` | Yes |
 | `contra_mpid` | Yes |
-| `contra_clearing_num` | Yes |
+| `contra_clearing_num` | No | Derived Value | If not supplied the value will be derived from an internal MPID to clearing number mapping | 
 | `is_when_issued` | No | `false` |
 | `exec_mpid` | Yes |
 | `fees.commission` | No | `null` |
@@ -228,7 +228,7 @@ This trade type allows customers to execute away from Clear Street. An example w
 | `capacity` | Yes |
 | `exec_mpid` | Yes |
 | `contra_mpid` | Yes |
-| `contra_clearing_num` | Yes |
+| `contra_clearing_num` | No | Derived Value | If not supplied the value will be derived from an internal MPID to clearing number mapping |
 | `fees.commission` | No | `null` |
 | `cancel_trade_id` | No | `null` | Straight cancel vs a correction of a trade from one account into another account
 
