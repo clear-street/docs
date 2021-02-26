@@ -88,7 +88,7 @@ This trade type represents a customer executing away from Clear Street LLC. For 
 | `Solicited` | `325` | `F` `T` | `String` | `1` | `O` | `F-Solicited` `T-Not Solicited` | `T` |
 | `Trade Execution Time` | `60` |  | `UTCTimestamp` |  | `R` | Timestamp of when the trade occurred in YYYYMMDD-HH:MM:SS.sss | `20201021-13:42:34.123` |
 | `Capacity` | `47` | `A` `M` `P` `R` | `String` | `1` | `R` | `A-Agency` `M-Mixed` `P-Principal` `R-Riskless Principal` | `P` |
-| `Contra Clearing Number` | `440` |  | `Integer` | `4` | `O` | Contra-party's clearing number | `9132` |
+| `Contra Clearing Number` | `440` |  | `Integer` | `4` | `O` | Contra-party's clearing number, If not supplied the value will be derived from an internal MPID to clearing number mapping | `9132` |
 | `Contra MPID` | `375` |  | `String` | `4` | `R` | Contra-party's MPID | `CLST` |
 | `Executing MPID` | `76` |  | `String` | `4` | `R` | Executing party's MPID | `ANON` |
 | `Contra Side Qualifier` | `9004` | `5` `6` | `Integer` |  | `CR` | `5-Sell Short` `6-Sell Exempt` | `5` |
@@ -134,7 +134,7 @@ This trade represents a trade between two trading entities. For example, trading
 | `Solicited` | `325` | `F` `T` | `String` | `1` | `O` | `F-Solicited` `T-Not Solicited` | `T` |
 | `Trade Execution Time` | `60` |  | `UTCTimestamp` |  | `R` | Timestamp of when the trade occurred in YYYYMMDD-HH:MM:SS.sss | `20201021-13:42:34.123` |
 | `Capacity` | `47` | `A` `M` `P` `R` | `String` | `1` | `R` | `A-Agency` `M-Mixed` `P-Principal` `R-Riskless Principal` | `P` |
-| `Contra Clearing Number` | `440` |  | `Integer` | `4` | `O` | Contra-party's clearing number | `9132` |
+| `Contra Clearing Number` | `440` |  | `Integer` | `4` | `O` | Contra-party's clearing number, If not supplied the value will be derived from an internal MPID to clearing number mapping | `9132` |
 | `Contra MPID` | `375` |  | `String` | `4` | `R` | Contra-party's MPID | `CLST` |
 | `Executing MPID` | `76` |  | `String` | `4` | `R` |Executing party's MPID | `ANON` |
 | `Contra Side Qualifier` | `9004` | `5` `6` | `Integer` |  | `CR` | `5-Sell Short` `6-Sell Exempt` | `5` |
