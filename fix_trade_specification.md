@@ -147,6 +147,7 @@ This trade represents a trade between two trading entities. For example, trading
 | `Locate Source` | `9008` |  | `String` |  | `CR` | Firm supplying the locate (usually MPID); Required for Sell Short | `CLST` |
 | `Order ID` | `37` |  | `String` |  | `O` | Order ID to link all the executions in the average price account | `123456` |
 | `NSCC Clearing` | `9010` | `agu` `contra` `corr` `corr_fees` `qsr` | `String` | `O` | `agu` `contra` `corr` `corr_fees` `qsr` | `qsr` |
+| `Last Liquidity Indicator` | `851` | `1` `2` `3` `4` | `Integer` |  | `O` | `1 - Added Liquidity` `2 - Removed Liquidity` `3 - Liquidity Routed Out` `4 - Netted Liquidity` | `1` |
 
 ### FIX inbound example message for Bilateral Trade
 `8=FIX.4.29=26135=849=OMS_CLIENT56=0000913234=12914152=20201021-21:42:3420=09001=B1=10007817=CLIENT_TRADE_ID75=2020102122=448=US70450Y1038421=USA15=USD31=000213.48000032=0000000298754=263=064=2020102360=20201021-13:42:34.12347=M440=0295375=ABCD76=WXYZ10=180`
@@ -190,6 +191,7 @@ This trade represents a trade between a trading entity and an exchange. For exam
 | `Locate ID` | `9007` |  | `String` |  | `CR` | Locate ID obtained for a short sale; Required for Sell Short | `123456` |
 | `Locate Source` | `9008` |  | `String` |  | `CR` | Firm supplying the locate (usually MPID); Required for Sell Short | `CLST` |
 | `Order ID` | `37` |  | `String` |  | `O` | Order ID to link all the executions in the average price account | `123456` |
+| `Last Liquidity Indicator` | `851` | `1` `2` `3` `4` | `Integer` |  | `O` | `1 - Added Liquidity` `2 - Removed Liquidity` `3 - Liquidity Routed Out` `4 - Netted Liquidity` | `1` |
 
 ### FIX inbound example message for Exchange Trade
 `8=FIX.4.29=25135=849=OMS_CLIENT56=0000913234=12914452=20201021-21:42:3420=09001=E1=10007817=CLIENT_TRADE_ID75=2020102122=448=US70450Y1038421=USA15=USD31=000213.48000032=0000000298754=263=064=2020102360=20201021-13:42:34.12347=R76=ABCD30=NYSE10=180`
