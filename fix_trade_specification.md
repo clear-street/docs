@@ -8,6 +8,9 @@
 	</p>
 </div>
 
+An updated display of these docs is available [here](https://clear-street.github.io/FIX-docs/#allocation-trade). The content is the same in both documents.
+
+
 FIX trade specification details the tags and values along with description of values for each trade field for processing incoming trades from OMS clients. Clear Street currently utilizes FIX 4.2 format.
 
 ### Configuring FIX Session
