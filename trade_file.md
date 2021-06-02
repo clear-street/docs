@@ -144,7 +144,7 @@ This trade type is used to facilitate average-price workflows, i.e. averaging ma
 | Column | Required? | Default | Notes |
 | - | - | - | - |
 | `type` | Yes |
-| `timestamp` | Yes |
+| `timestamp` | No | Time Received |
 | `client_trade_id` | Yes |
 | `date` | Yes |
 | `account_id` | Yes |
@@ -179,7 +179,7 @@ This trade type is to facilitate trade movement between Clear Street internal ac
 | Column | Required? | Default | Notes |
 | - | - | - | - |
 | `type` | Yes |
-| `timestamp` | Yes |
+| `timestamp` | No | Time Received
 | `client_trade_id` | Yes |
 | `date` | Yes |
 | `account_id` | Yes |
@@ -211,7 +211,7 @@ This trade type allows customers to execute away from Clear Street. An example w
 | - | - | - | - |
 | `type` | Yes |
 | `client_trade_id` | Yes |
-| `timestamp` | Yes |
+| `timestamp` | No | Time Received
 | `date` | Yes |
 | `account_id` | Yes |
 | `quantity` | Yes |
