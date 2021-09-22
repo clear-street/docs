@@ -44,7 +44,7 @@ This trade type is used to facilitate average-price workflows, i.e. averaging ma
 | `Maturity Month Year` | `200` | | `Integer` | `6` | `CR` | Month and year of the maturity for an Option. Maturity Month Year in format `YYYYMM`. Required for Options where tags 22 or 48 are not provided. | `202107` |
 | `Put Or Call` | `201` | `0` `1` | `Integer` | `1` | `CR` | Indicates whether an Option is for a put or a call `0 = Put` `1 = Call` Required for Options where tags 22 or 48 are not provided. | `1` |
 | `Strike Price` | `202` | | `Decimal` | `8` | `CR` | Strike Price for an Option. Required for Options where tags 22 or 48 are not provided. | `100.50` |
-| `Maturity Day` | `205` | | `Integer` | `2` | `CR` | To be used in conjunction with Maturity Month Year `200` to sepcify a particular maturity date for an Option. Required for Options where tags 22 or 48 are not provided. | `30` | 
+| `Maturity Day` | `205` | | `Integer` | `2` | `CR` | To be used in conjunction with Maturity Month Year `200` to specify a particular maturity date for an Option. Required for Options where tags 22 or 48 are not provided. | `30` | 
 | `Instrument Country` | `421` |  | `String` | `3` | `R` | ISO 3166 alpha-3 country code where the instrument trades | `USA` |
 | `Instrument Currency` | `15` |  | `String` | `3` | `R` | ISO 4217 alpha-3 currency code in which the instrument trades | `USD` |
 | `Price` | `31` |  | `Decimal` |  | `R` | The price of the trade | `120.12` |
@@ -90,7 +90,7 @@ This trade type represents a customer executing away from Clear Street LLC. For 
 | `Maturity Month Year` | `200` | | `Integer` | `6` | `CR` | Month and year of the maturity for an Option. Maturity Month Year in format `YYYYMM`. Required for Options where tags 22 or 48 are not provided. | `202107` |
 | `Put Or Call` | `201` | `0` `1` | `Integer` | `1` | `CR` | Indicates whether an Option is for a put or a call `0 = Put` `1 = Call` Required for Options where tags 22 or 48 are not provided. | `1` |
 | `Strike Price` | `202` | | `Decimal` | `8` | `CR` | Strike Price for an Option. Required for Options where tags 22 or 48 are not provided. | `100.50` |
-| `Maturity Day` | `205` | | `Integer` | `2` | `CR` | To be used in conjunction with Maturity Month Year `200` to sepcify a particular maturity date for an Option. Required for Options where tags 22 or 48 are not provided. | `30` | 
+| `Maturity Day` | `205` | | `Integer` | `2` | `CR` | To be used in conjunction with Maturity Month Year `200` to specify a particular maturity date for an Option. Required for Options where tags 22 or 48 are not provided. | `30` | 
 | `Instrument Country` | `421` |  | `String` | `3` | `R` | ISO 3166 alpha-3 country code where the instrument trades | `USA` |
 | `Instrument Currency` | `15` |  | `String` | `3` | `R` | ISO 4217 alpha-3 currency code in which the instrument trades | `USD` |
 | `Price` | `31` |  | `Decimal` |  | `R` | The price of the trade | `120.12` |
@@ -142,7 +142,7 @@ This trade represents a trade between two trading entities. For example, trading
 | `Maturity Month Year` | `200` | | `Integer` | `6` | `CR` | Month and year of the maturity for an Option. Maturity Month Year in format `YYYYMM`. Required for Options where tags 22 or 48 are not provided. | `202107` |
 | `Put Or Call` | `201` | `0` `1` | `Integer` | `1` | `CR` | Indicates whether an Option is for a put or a call `0 = Put` `1 = Call` Required for Options where tags 22 or 48 are not provided. | `1` |
 | `Strike Price` | `202` | | `Decimal` | `8` | `CR` | Strike Price for an Option. Required for Options where tags 22 or 48 are not provided. | `100.50` |
-| `Maturity Day` | `205` | | `Integer` | `2` | `CR` | To be used in conjunction with Maturity Month Year `200` to sepcify a particular maturity date for an Option. Required for Options where tags 22 or 48 are not provided. | `30` | 
+| `Maturity Day` | `205` | | `Integer` | `2` | `CR` | To be used in conjunction with Maturity Month Year `200` to specify a particular maturity date for an Option. Required for Options where tags 22 or 48 are not provided. | `30` | 
 | `Instrument Country` | `421` |  | `String` | `3` | `R` | ISO 3166 alpha-3 country code where the instrument trades | `USA` |
 | `Instrument Currency` | `15` |  | `String` | `3` | `R` | ISO 4217 alpha-3 currency code in which the instrument trades | `USD` |
 | `Price` | `31` |  | `Decimal` |  | `R` | The price of the trade | `120.12` |
@@ -195,7 +195,7 @@ This trade represents a trade between a trading entity and an exchange. For exam
 | `Maturity Month Year` | `200` | | `Integer` | `6` | `CR` | Month and year of the maturity for an Option. Maturity Month Year in format `YYYYMM`. Required for Options where tags 22 or 48 are not provided. | `202107` |
 | `Put Or Call` | `201` | `0` `1` | `Integer` | `1` | `CR` | Indicates whether an Option is for a put or a call `0 = Put` `1 = Call` Required for Options where tags 22 or 48 are not provided. | `1` |
 | `Strike Price` | `202` | | `Decimal` | `8` | `CR` | Strike Price for an Option. Required for Options where tags 22 or 48 are not provided. | `100.50` |
-| `Maturity Day` | `205` | | `Integer` | `2` | `CR` | To be used in conjunction with Maturity Month Year `200` to sepcify a particular maturity date for an Option. Required for Options where tags 22 or 48 are not provided. | `30` | 
+| `Maturity Day` | `205` | | `Integer` | `2` | `CR` | To be used in conjunction with Maturity Month Year `200` to specify a particular maturity date for an Option. Required for Options where tags 22 or 48 are not provided. | `30` | 
 | `Instrument Country` | `421` |  | `String` | `3` | `R` | ISO 3166 alpha-3 country code where the instrument trades | `USA` |
 | `Instrument Currency` | `15` |  | `String` | `3` | `R` | ISO 4217 alpha-3 currency code in which the instrument trades | `USD` |
 | `Price` | `31` |  | `Decimal` |  | `R` | The price of the trade | `120.12` |
@@ -245,7 +245,7 @@ This trade type is to facilitate trade movement between Clear Street internal ac
 | `Maturity Month Year` | `200` | | `Integer` | `6` | `CR` | Month and year of the maturity for an Option. Maturity Month Year in format `YYYYMM`. Required for Options where tags 22 or 48 are not provided. | `202107` |
 | `Put Or Call` | `201` | `0` `1` | `Integer` | `1` | `CR` | Indicates whether an Option is for a put or a call `0 = Put` `1 = Call` Required for Options where tags 22 or 48 are not provided. | `1` |
 | `Strike Price` | `202` | | `Decimal` | `8` | `CR` | Strike Price for an Option. Required for Options where tags 22 or 48 are not provided. | `100.50` |
-| `Maturity Day` | `205` | | `Integer` | `2` | `CR` | To be used in conjunction with Maturity Month Year `200` to sepcify a particular maturity date for an Option. Required for Options where tags 22 or 48 are not provided. | `30` | 
+| `Maturity Day` | `205` | | `Integer` | `2` | `CR` | To be used in conjunction with Maturity Month Year `200` to specify a particular maturity date for an Option. Required for Options where tags 22 or 48 are not provided. | `30` | 
 | `Instrument Country` | `421` |  | `String` | `3` | `R` | ISO 3166 alpha-3 country code where the instrument trades | `USA` |
 | `Instrument Currency` | `15` |  | `String` | `3` | `R` | ISO 4217 alpha-3 currency code in which the instrument trades | `USD` |
 | `Price` | `31` |  | `Decimal` |  | `R` | The price of the trade | `120.12` |
