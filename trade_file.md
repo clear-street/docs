@@ -22,7 +22,7 @@ Each row in the file represents a single trade. Columns that are unrecognized, o
 | `timestamp`  | `integer` |  Timestamp of when the trade occurred in milliseconds since unix epoch | `1571408966810` |
 | `client_trade_id` | `string` | Your unique ID for this trade. Must be unique across days | `T-50264430-bc41` 
 | `date`        | `integer` | Trade date for the trade in `YYYYMMDD` format | `20200101` |
-| `account_id` | `integer` | Clear Street provided account_id the trade should be booked to | `100023` |
+| `account_id` | `integer` | Clear Street provided account_id the trade should be booked to | `999999` |
 | `quantity` | `numeric` | The quantity of the trade (supports fractional quantities) | `100` |
 | `price` | `numeric` | The price of the trade | `100.01` |
 | `behalf_of_account_id` | `integer` | Clear Street provided account_id if this trade is on behalf of another account | `23` |
@@ -51,7 +51,7 @@ Each row in the file represents a single trade. Columns that are unrecognized, o
 | `fees.omit_taf` | `bool` | True if TAF fees should not be applied | `false` |
 | `locate.id` | `string` | ID of the locate obtained for a short-sale | `A234` |
 | `locate.source` | `string` | Identifies the firm supplying the locate (usually the MPID) | `Z322` |
-| `target_account_id` | `string` | Clear Street provided account_id that is the contra to this trade | `100024` |
+| `target_account_id` | `integer` | Clear Street provided account_id that is the contra to this trade | `99999` |
 | `mic` | `string` | ISO 10383 Market Identifer Code for the exchange where this trade took place | `XNYS` |
 | `order_id` | `string` | The order id is to link all the executions in the avg price account to the allocation trade type | `13454` |
 | `cancel_trade_id` | `string` | The original trade_id this trade is replacing | `13454` |
