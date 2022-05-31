@@ -2,10 +2,10 @@
 <p align="center"><img src="assets/logo.png" align="center" width="20%" height="20%"></p>
   <h1 align="center">Clear Street</h1>
   <p align="center">
-  	<h2 align="center">
-    	Trade File
-  	</h2>
-	</p>
+    <h2 align="center">
+      Trade File
+    </h2>
+  </p>
 </div>
 
 Clear Street's trade file is a CSV file that contains post-trade details. This file is used by Clear Street to manage the life-cycle of all post-trade trading activity.
@@ -89,8 +89,8 @@ This trade represents a trade between a trading entity and an exchange. For exam
 | `fees.commission` | No | `null` |
 | `fees.omit_sec` | No | `false` |
 | `fees.omit_taf` | No | `false` |
-| `locate.id` | Conditional | `null` | Required if short-sale |
-| `locate.source` | Conditional | `null` | Required if short-sale |
+| `locate.id` | No | `null` |
+| `locate.source` | No | `null` |
 | `order_id` | No | `null` | Links executions in avg price account to allocation trade type
 | `cancel_trade_id` | No | `null` | Straight cancel vs a correction of a trade from one account into another account
 
@@ -129,8 +129,8 @@ This trade represents a trade between two trading entities. For example, trading
 | `fees.commission` | No | `null` |
 | `fees.omit_sec` | No | `false` |
 | `fees.omit_taf` | No | `false` |
-| `locate.id` | Conditional | `null` | Required if short-sale |
-| `locate.source` | Conditional | `null` | Required if short-sale |
+| `locate.id` | No | `null` |
+| `locate.source` | No | `null` |
 | `order_id` | No | `null` | Links executions in avg price account to allocation trade type
 | `cancel_trade_id` | No | `null` | Straight cancel vs a correction of a trade from one account into another account
 | `last_market` | No | `null` | Contains the exchange where orders were routed to by broker on a bilateral trade

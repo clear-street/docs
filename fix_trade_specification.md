@@ -2,10 +2,10 @@
 <p align="center"><img src="assets/logo.png" align="center" width="20%" height="20%"></p>
   <h1 align="center">Clear Street</h1>
   <p align="center">
-  	<h2 align="center">
-    	FIX Trade Specification
-  	</h2>
-	</p>
+    <h2 align="center">
+      FIX Trade Specification
+    </h2>
+  </p>
 </div>
 
 An updated display of these docs is available [here](https://clear-street.github.io/FIX-docs/#allocation-trade). The content is the same in both documents.
@@ -112,8 +112,8 @@ This trade type represents a customer executing away from Clear Street LLC. For 
 | `Commission` | `12` |  | `Decimal` |  | `O` | Commission charged or paid | `0.12` |
 | `Omit SEC Fee` | `9005` | `F` `T` | `String` | `1` | `O` | True if SEC fees should not be applied | `T` |
 | `Omit TAF Fee` | `9006` | `F` `T` | `String` | `1` | `O` | True if TAF fees should not be applied | `T` |
-| `Locate ID` | `9007` |  | `String` |  | `CR` | Locate ID obtained for a short sale; Required for Sell Short | `123456` |
-| `Locate Source` | `9008` |  | `String` |  | `CR` | Firm supplying the locate (usually MPID); Required for Sell Short | `CLST` |
+| `Locate ID` | `9007` |  | `String` |  | `O` | Locate ID obtained for a short sale | `123456` |
+| `Locate Source` | `9008` |  | `String` |  | `O` | Firm supplying the locate (usually MPID) | `CLST` |
 | `Order ID` | `37` |  | `String` |  | `O` | Order ID to link all the executions in the average price account | `123456` |
 | `NSCC Clearing` | `9010` | `agu` `contra` `corr` `corr_fees` `qsr` | `String` |  | `O` | `agu` `contra` `corr` `corr_fees` `qsr` | `qsr` |
 
@@ -164,8 +164,8 @@ This trade represents a trade between two trading entities. For example, trading
 | `Commission` | `12` |  | `Decimal` |  | `O` | Commission charged or paid | `0.12` |
 | `Omit SEC Fee` | `9005` | `F` `T` | `String` | `1` | `O` | True if SEC fees should not be applied | `T` |
 | `Omit TAF Fee` | `9006` | `F` `T` | `String` | `1` | `O` | True if TAF fees should not be applied | `T` |
-| `Locate ID` | `9007` |  | `String` |  | `CR` | Locate ID obtained for a short sale; Required for Sell Short | `123456` |
-| `Locate Source` | `9008` |  | `String` |  | `CR` | Firm supplying the locate (usually MPID); Required for Sell Short | `CLST` |
+| `Locate ID` | `9007` |  | `String` |  | `O` | Locate ID obtained for a short sale | `123456` |
+| `Locate Source` | `9008` |  | `String` |  | `O` | Firm supplying the locate (usually MPID) | `CLST` |
 | `Order ID` | `37` |  | `String` |  | `O` | Order ID to link all the executions in the average price account | `123456` |
 | `NSCC Clearing` | `9010` | `agu` `contra` `corr` `corr_fees` `qsr` | `String` | `O` | `agu` `contra` `corr` `corr_fees` `qsr` | `qsr` |
 | `Last Liquidity Indicator` | `851` | `1` `2` `3` `4` | `Integer` |  | `O` | `1 - Added Liquidity` `2 - Removed Liquidity` `3 - Liquidity Routed Out` `4 - Netted Liquidity` | `1` |
@@ -215,8 +215,8 @@ This trade represents a trade between a trading entity and an exchange. For exam
 | `Commission` | `12` |  | `Decimal` |  | `O` | Commission charged or paid | `0.12` |
 | `Omit SEC Fee` | `9005` | `F` `T` | `String` | `1` | `O` | True if SEC fees should not be applied | `T` |
 | `Omit TAF Fee` | `9006` | `F` `T` | `String` | `1` | `O` | True if TAF fees should not be applied | `T` |
-| `Locate ID` | `9007` |  | `String` |  | `CR` | Locate ID obtained for a short sale; Required for Sell Short | `123456` |
-| `Locate Source` | `9008` |  | `String` |  | `CR` | Firm supplying the locate (usually MPID); Required for Sell Short | `CLST` |
+| `Locate ID` | `9007` |  | `String` |  | `O` | Locate ID obtained for a short sale | `123456` |
+| `Locate Source` | `9008` |  | `String` |  | `O` | Firm supplying the locate (usually MPID) | `CLST` |
 | `Order ID` | `37` |  | `String` |  | `O` | Order ID to link all the executions in the average price account | `123456` |
 | `Last Liquidity Indicator` | `851` | `1` `2` `3` `4` | `Integer` |  | `O` | `1 - Added Liquidity` `2 - Removed Liquidity` `3 - Liquidity Routed Out` `4 - Netted Liquidity` | `1` |
 
