@@ -211,7 +211,7 @@ This trade type allows customers to execute away from Clear Street. An example w
 | - | - | - | - |
 | `type` | Yes |
 | `client_trade_id` | Yes |
-| `timestamp` | Yes |
+| `timestamp` | No | Derived Value | If not supplied the value will default to the time the trade is ingested into the back office |
 | `date` | Yes |
 | `account_id` | Yes |
 | `quantity` | Yes |
