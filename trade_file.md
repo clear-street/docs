@@ -225,8 +225,8 @@ This trade type allows customers to execute away from Clear Street. An example w
 | `instrument.currency` | Yes |
 | `side.direction` | Yes |
 | `side.qualifier` | No | `null` |
-| `capacity` | Yes |
-| `exec_mpid` | Yes |
+| `capacity` | No | `agency` |
+| `exec_mpid` | No | `contra_mpid` value |
 | `contra_mpid` | Yes |
 | `contra_clearing_num` | No | Derived Value | If not supplied the value will be derived from an internal MPID to clearing number mapping |
 | `fees.commission` | No | `null` |
