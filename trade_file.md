@@ -230,6 +230,8 @@ This trade type allows customers to execute away from Clear Street. An example w
 | `contra_mpid` | Yes |
 | `contra_clearing_num` | No | Derived Value | If not supplied the value will be derived from an internal MPID to clearing number mapping |
 | `fees.commission` | No | `null` |
+| `fees.omit_sec` | No | `false` |
+| `fees.omit_taf` | No | `false` |
 | `cancel_trade_id` | No | `null` | Straight cancel vs a correction of a trade from one account into another account
 
 ### Insert vs. Cancel
