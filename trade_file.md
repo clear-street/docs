@@ -165,7 +165,7 @@ This trade type is used to facilitate average-price workflows, i.e. averaging ma
 | `settlement.date` | No | `null` |
 | `target_account_id` | Yes |
 | `capacity` | Yes |
-| `contra_side_qualifier` | CR | `null` | Set to `short` if customer short sale, otherwise not required
+| `contra_side_qualifier` | No* | `null` | Set to `short` if customer short sale, otherwise not required
 | `fees.commission` | No | `null` |
 | `fees.omit_sec` | No | `false` |
 | `fees.omit_taf` | No | `false` |
@@ -200,7 +200,7 @@ This trade type is to facilitate trade movement between Clear Street internal ac
 | `settlement.date` | No | `null` |
 | `target_account_id` | Yes |
 | `capacity` | Yes |
-| `contra_side_qualifier` | CR | `null` | Set to `short` if contra short sale, otherwise not required
+| `contra_side_qualifier` | No* | `null` | Set to `short` if contra short sale, otherwise not required
 | `fees.commission` | No | `null` |
 | `fees.omit_sec` | No | `false` |
 | `fees.omit_taf` | No | `false` |
