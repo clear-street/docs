@@ -43,7 +43,7 @@ Each row in the file represents a single trade. Columns that are unrecognized, o
 | `contra_mpid` | `string` | Contra-party's MPID | `CLST` |
 | `contra_clearing_num` | `string` | Contra-party's clearing number (DTCC for equities) | `9100` |
 | `contra_dtc_num` | `string` | [DEPRECATED (use `contra_clearing_num`)] Contra-party's DTCC number | `9100` |
-| `contra_side_qualifier` | `string` | Contra-party side qualifier, either `short`, `open`, or `close` | `short` |
+| `contra_side_qualifier` | `string` | The `side.qualifier` of the `target_account_id` of an allocation or transfer trade | `short` |
 | `is_when_issued` | `bool` | True if the trade should be considered as "when issued" | `false` |
 | `exec_mpid` | `string` | MPID fo the executing party, if different than `contra_mpid` | `9192` |
 | `fees.commission` | `string` | Commission charged or paid | `12.30` |
@@ -165,7 +165,7 @@ This trade type is used to facilitate average-price workflows, i.e. averaging ma
 | `settlement.date` | No | `null` |
 | `target_account_id` | Yes |
 | `capacity` | Yes |
-| `contra_side_qualifier` | Yes |
+| `contra_side_qualifier` | No* | `null` | Set to `short` if customer short sale, otherwise not required
 | `fees.commission` | No | `null` |
 | `fees.omit_sec` | No | `false` |
 | `fees.omit_taf` | No | `false` |
@@ -200,6 +200,7 @@ This trade type is to facilitate trade movement between Clear Street internal ac
 | `settlement.date` | No | `null` |
 | `target_account_id` | Yes |
 | `capacity` | Yes |
+| `contra_side_qualifier` | No* | `null` | Set to `short` if contra short sale, otherwise not required
 | `fees.commission` | No | `null` |
 | `fees.omit_sec` | No | `false` |
 | `fees.omit_taf` | No | `false` |
