@@ -78,8 +78,8 @@ This trade represents a trade between a trading entity and an exchange. For exam
 | `instrument.country` | Yes |
 | `instrument.currency` | Yes |
 | `side.direction` | Yes | 
-| `side.qualifier` | No | `null` |
-| `side.position` | No | `null` | Required for Options Trades
+| `side.qualifier` | No* | `null` | Set to `short` if short sale, otherwise not required
+| `side.position` | No* | `null` | Required for Options Trades, indicates opening or closing transaction
 | `settlement.currency` | No | `USD` |
 | `settlement.date` | No | `null` |
 | `capacity` | Yes |
@@ -117,8 +117,8 @@ This trade represents a trade between two trading entities. For example, trading
 | `instrument.country` | Yes |
 | `instrument.currency` | Yes |
 | `side.direction` | Yes |
-| `side.qualifier` | No | `null` |
-| `side.position` | No | `null` | Required for Options Trades
+| `side.qualifier` | No* | `null` | Set to `short` if short sale, otherwise not required
+| `side.position` | No* | `null` | Required for Options Trades, indicates opening or closing transaction
 | `settlement.currency` | No | `USD` |
 | `settlement.date` | No | `null` |
 | `capacity` | Yes |
@@ -160,7 +160,7 @@ This trade type is used to facilitate average-price workflows, i.e. averaging ma
 | `instrument.currency` | Yes |
 | `side.direction` | Yes |
 | `side.qualifier` | No | `null` |
-| `side.position` | No | `null` | Required for Options Trades
+| `side.position` | No* | `null` | Required for Options Trades, indicates opening or closing transaction
 | `settlement.currency` | No | `USD` |
 | `settlement.date` | No | `null` |
 | `target_account_id` | Yes |
@@ -194,8 +194,8 @@ This trade type is to facilitate trade movement between Clear Street internal ac
 | `instrument.country` | Yes |
 | `instrument.currency` | Yes |
 | `side.direction` | Yes |
-| `side.qualifier` | No | `null` |
-| `side.position` | No | `null` | Required for Options Trades
+| `side.qualifier` | No* | `null` | Set to `short` if short sale, otherwise not required
+| `side.position` | No* | `null` | Required for Options Trades, indicates opening or closing transaction
 | `settlement.currency` | No | `USD` |
 | `settlement.date` | No | `null` |
 | `target_account_id` | Yes |
@@ -225,8 +225,8 @@ This trade type allows customers to execute away from Clear Street. An example w
 | `instrument.country` | Yes |
 | `instrument.currency` | Yes |
 | `side.direction` | Yes |
-| `side.position` | No | `null` | Required for Options Trades
-| `side.qualifier` | No | `null` |
+| `side.qualifier` | No* | `null` | Set to `short` if short sale, otherwise not required
+| `side.position` | No* | `null` | Required for Options Trades, indicates opening or closing transaction
 | `capacity` | Yes |
 | `exec_mpid` | Yes |
 | `contra_mpid` | Yes |
