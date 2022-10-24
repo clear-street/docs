@@ -10,9 +10,11 @@
 
 Clear Street's trade file is a CSV file that contains post-trade details. This file is used by Clear Street to manage the life-cycle of all post-trade trading activity.
 
-The trade file should be a CSV file with `*.csv` extension. The first row of the file must be the "header" row where you specifiy column names. Column names are case-insenstive, but we recommend you always use lowercase. Column ordering does *not* matter; you can specify the columns in the order you prefer.
+The trade file should be a CSV file with `*.csv` (lowercase) extension. The first row of the file must be the "header" row where you specifiy column names. Column names are case-insenstive, but we recommend you always use lowercase. Column ordering does *not* matter; you can specify the columns in the order you prefer.
 
 Each row in the file represents a single trade. Columns that are unrecognized, or columns that might be conditionally unapplicable, are ignored. A trade has a `type` that dictates what columns apply to it. Columns that do not apply to a specific trade type are ignored. Therefore, you can provide all columns in your file, and selectively populate each column for a given row.
+
+There are no hard requirements in regards to filename aside from the `*.csv` extension described above.  Once a naming convention is chosen it should remain consistent and shouldn't be changed without explicit agreement from Clear Street.  As a matter of best practice, the filename should indicate the source of the trades, the version number, and the date formatted as `yyyymmdd`.  Additionally, `_` is preferred to spaces in filenames.  A good example of a filename would be `abcfirm_trades_1_20200102.csv`.
 
 ### Columns
 
