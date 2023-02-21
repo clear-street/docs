@@ -71,8 +71,8 @@ This trade represents a trade between a trading entity and an exchange. For exam
 | `account_id` | Yes |
 | `quantity` | Yes |
 | `price` | Yes |
-| `behalf_of_account_id` | No | `null` |Preferred if the trade is done on behalf of a Clear Street account ID
-| `solicited` | No*| `false` | Set the `true` if trade is solicited, otherwise not required
+| `behalf_of_account_id` | No | `null` | Preferred if the trade is done on behalf of a Clear Street account ID
+| `solicited` | No* | `false` | Set the `true` if trade is solicited, otherwise not required
 | `registered_rep` | No | `null`
 | `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
@@ -111,7 +111,7 @@ This trade represents a trade between two trading entities. For example, trading
 | `quantity` | Yes |
 | `price` | Yes |
 | `behalf_of_account_id` | No | `null` | Preferred if the trade is done on behalf of a Clear Street account 
-| `solicited` | No*| `false` | Set the `true` if trade is solicited, otherwise not required
+| `solicited` | No* | `false` | Set the `true` if trade is solicited, otherwise not required
 | `registered_rep` | No | `null`
 | `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
@@ -153,7 +153,7 @@ This trade type is used to facilitate average-price workflows, i.e. averaging ma
 | `quantity` | Yes |
 | `price` | Yes |
 | `behalf_of_account_id` | No | `null` |
-| `solicited` | No*| `false` | Set the `true` if trade is solicited, otherwise not required
+| `solicited` | No* | `false` | Set the `true` if trade is solicited, otherwise not required
 | `registered_rep` | No | `null`
 | `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
