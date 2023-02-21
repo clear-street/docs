@@ -25,7 +25,7 @@ There are no hard requirements in regards to filename aside from the `*.csv` ext
 | `client_trade_id` | `string` | Your unique ID for this trade. Must be unique across days | `T-50264430-bc41` 
 | `date`        | `integer` | Trade date for the trade in `YYYYMMDD` format | `20200101` |
 | `account_id` | `integer` | Clear Street provided account_id the trade should be booked to | `999999` |
-| `quantity` | `numeric` | The quantity of the trade (supports fractional quantities) | `100` |
+| `quantity` | `numeric` | The quantity of the trade | `100` |
 | `price` | `numeric` | The price of the trade | `100.01` |
 | `behalf_of_account_id` | `integer` | Clear Street provided account_id if this trade is on behalf of another account | `23` |
 | `behalf_of_entity_id` | `integer` | [DEPRECATED (use `behalf_of_account_id`)] Clear Street provided entity_id if this trade is on behalf of another entity | `23` |
@@ -37,7 +37,7 @@ There are no hard requirements in regards to filename aside from the `*.csv` ext
 | `instrument.country` | `string` | ISO 3166 alpha-3 country code where the instrument trades | `USA` |
 | `instrument.currency` | `string` | ISO 4217 alpha-3 currency code in which the instrument trades | `USD` |
 | `side.direction` | `string` | Either `buy` or `sell` | `buy` |
-| `side.qualifier` | `string` | `short` | `short`
+| `side.qualifier` | `string` | `short` to indicate if the trade is a short sale | `short`
 | `side.position`  | `string` | Either `open` or `close` | `open`
 | `settlement.currency` | `string` | ISO 4217 alpha-3 currency code in which to settle this trade | `USD` |
 | `settlement.date` | `string` | Explicit settlement date for irregular-way settlement in `YYYYMMDD` foramt | `20200101` |
@@ -47,7 +47,7 @@ There are no hard requirements in regards to filename aside from the `*.csv` ext
 | `contra_dtc_num` | `string` | [DEPRECATED (use `contra_clearing_num`)] Contra-party's DTCC number | `9100` |
 | `contra_side_qualifier` | `string` | The `side.qualifier` of the `target_account_id` of an allocation or transfer trade | `short` |
 | `is_when_issued` | `bool` | True if the trade should be considered as "when issued" | `false` |
-| `exec_mpid` | `string` | MPID fo the executing party, if different than `contra_mpid` | `9192` |
+| `exec_mpid` | `string` | MPID for the executing party | `CLST` |
 | `fees.commission` | `string` | Commission charged or paid | `12.30` |
 | `fees.omit_sec` | `bool` | True if SEC fees should not be applied | `false` |
 | `fees.omit_taf` | `bool` | True if TAF fees should not be applied | `false` |
@@ -71,8 +71,8 @@ This trade represents a trade between a trading entity and an exchange. For exam
 | `account_id` | Yes |
 | `quantity` | Yes |
 | `price` | Yes |
-| `behalf_of_account_id` | No | `null` |
-| `solicited` | Yes |
+| `behalf_of_account_id` | No | `null` |Preferred if the trade is done on behalf of a Clear Street account ID
+| `solicited` | No*| `false` | Set the `true` if trade is solicited, otherwise not required
 | `registered_rep` | No | `null`
 | `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
@@ -110,8 +110,8 @@ This trade represents a trade between two trading entities. For example, trading
 | `account_id` | Yes |
 | `quantity` | Yes |
 | `price` | Yes |
-| `behalf_of_account_id` | No | `null` |
-| `solicited` | Yes |
+| `behalf_of_account_id` | No | `null` | Preferred if the trade is done on behalf of a Clear Street account 
+| `solicited` | No*| `false` | Set the `true` if trade is solicited, otherwise not required
 | `registered_rep` | No | `null`
 | `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
@@ -153,7 +153,7 @@ This trade type is used to facilitate average-price workflows, i.e. averaging ma
 | `quantity` | Yes |
 | `price` | Yes |
 | `behalf_of_account_id` | No | `null` |
-| `solicited` | Yes |
+| `solicited` | No*| `false` | Set the `true` if trade is solicited, otherwise not required
 | `registered_rep` | No | `null`
 | `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
@@ -167,6 +167,8 @@ This trade type is used to facilitate average-price workflows, i.e. averaging ma
 | `settlement.date` | No | `null` |
 | `target_account_id` | Yes |
 | `capacity` | Yes |
+| `is_when_issued` | No | `false` |
+| `exec_mpid` | No* | `null` | If allocating an away execution to Clear Street, enter the executing broker here.  Otherwise, not required
 | `contra_side_qualifier` | No* | `null` | Set to `short` if customer short sale, otherwise not required
 | `fees.commission` | No | `null` |
 | `fees.omit_sec` | No | `false` |
@@ -202,6 +204,7 @@ This trade type is to facilitate trade movement between Clear Street internal ac
 | `settlement.date` | No | `null` |
 | `target_account_id` | Yes |
 | `capacity` | Yes |
+| `is_when_issued` | No | `false` |
 | `contra_side_qualifier` | No* | `null` | Set to `short` if contra short sale, otherwise not required
 | `fees.commission` | No | `null` |
 | `fees.omit_sec` | No | `false` |
