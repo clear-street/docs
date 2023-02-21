@@ -59,6 +59,7 @@ This trade type is used to facilitate average-price workflows, i.e. averaging ma
 | `Solicited` | `325` | `F` `T` | `String` | `1` | `O` | `F-Solicited` `T-Not Solicited` | `T` |
 | `Trade Execution Time` | `60` |  | `UTCTimestamp` |  | `R` | Timestamp of when the trade occurred in YYYYMMDD-HH:MM:SS.sss | `20201021-13:42:34.123` |
 | `Capacity` | `47` | `A` `M` `P` `R` | `String` | `1` | `R` | `A-Agency` `M-Mixed` `P-Principal` `R-Riskless Principal` | `P` |
+| `Executing MPID` | `76` |  | `String` | `4` | `O` | Executing party's MPID if allocating an away execution to Clear Street | `ANON` |
 | `Contra Side Qualifier` | `9004` | `5` `6` | `Integer` |  | `CR` | `5-Sell Short` `6-Sell Exempt` | `5` |
 | `Commission` | `12` |  | `Decimal` |  | `O` | Commission charged or paid | `0.12` |
 | `Target Account ID` | `79` |  | `Integer` | `6` | `R` | Clear Street provided account ID | `100000` |
