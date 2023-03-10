@@ -38,7 +38,6 @@ The filename must begin with the string `clientallocation` so that it can be aut
 | `price` | `numeric` | Yes | | The price of the allocation | `150.35` |
 | `fees.commission` | `string` | No | `0` | Total commission of the allocation | `100` |
 | `fees.omit_sec` | `bool` | No| `false` | `true` if SEC fees should not be applied | `true` |
-| `fees.omit_taf` | `bool` | No| `false` | `true` if TAF fees should not be applied | `true` |
 | `capacity` | `string` | Yes| | Either `principal`, `agency`, `mixed`, or `riskless_principal` | `agency` |
 | `client_account_id` | `integer` | Yes| | Clear Street provided account id to which the trade should be allocated | `123456` |
 | `solicited` | `bool` | No| `false` | `true` if this trade was solicited, `false` otherwise. Default to `false` if not provided | `false` |
