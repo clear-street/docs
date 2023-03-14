@@ -10,7 +10,7 @@
 
 Clear Street's client allocation file is a CSV file that contains instructions on how Clear Street should allocate a customer's trades.  The current use case for this file is limited to when a customer has executed away and needs to match average priced block trades with their executing broker, while allocating those blocks into different lots across more than one account that they have at Clear Street.  
 
-When Clear Street receives this file, an internal process will aggregate the allocations by `trade date`, `settlement date`, `side direction`, `side qualifier`, `side position`, `instrument identifier`,  `exec mpid`, and `contra clearing number` to create an average priced block trade that will attempt to match against the executing broker.  The block will then be allocated as instructed on the file.  
+When Clear Street receives this file, an internal process will aggregate the allocations by `omni account id`, `trade date`, `settlement date`, `side direction`, `side qualifier`, `side position`, `instrument identifier`,  `exec mpid`, and `contra clearing number` to create an average priced block trade that will attempt to match against the executing broker.  The block will then be allocated as instructed on the file.  
 
 In the case where a client executes away and the executing broker expects to settle the individual allocations (in lieu of a block trade), the client is expected to send an `Away Trade` using the [trade file spec](https://github.com/clear-street/docs/blob/master/trade_file.md).
 
@@ -24,6 +24,7 @@ The filename must begin with the string `clientallocation` so that it can be aut
 
 | Name       | Type  | Required? | Default Value | Description | Example | 
 | -----------| ------|-------------|----------------------------------------- |----------------------------------------- |----------------------------------------- |
+| `omni_account_id` | `string` | Yes | | Clear Street provided omnibus account id to which the executing broker should allege | `196789` |
 | `client_trade_id` | `string` | Yes | | Unique ID for this trade. Must be unique forever | `20230309trade1` |
 | `date` | `integer` | Yes | | Trade date for the allocation in YYYYMMDD format | `20230309` |
 | `exec_mpid` | `string` | Yes | | MPID of the executing broker | `CLST` |
@@ -39,7 +40,7 @@ The filename must begin with the string `clientallocation` so that it can be aut
 | `fees.commission` | `string` | No | `0` | Total commission of the allocation | `100` |
 | `fees.omit_sec` | `bool` | No| `false` | `true` if SEC fees should not be applied | `true` |
 | `capacity` | `string` | Yes| | Either `principal`, `agency`, `mixed`, or `riskless_principal` | `agency` |
-| `client_account_id` | `integer` | Yes| | Clear Street provided account id to which the trade should be allocated | `123456` |
+| `account_id` | `integer` | Yes| | Clear Street provided account id to which the trade should be allocated | `123456` |
 | `solicited` | `bool` | No| `false` | `true` if this trade was solicited, `false` otherwise. Default to `false` if not provided | `false` |
 | `timestamp` | `integer` | No| derived value | Timestamp of when the trade occurred in milliseconds since unix epoch. Will default to time of trade ingestion if not provided | `1678394397000` |
 | `contra_clearing_num` | `string` | No| derived value | Contra-party's clearing number (DTCC for equities). If not supplied the value will be derived from an internal MPID to clearing number mapping | `9132` |
