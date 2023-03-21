@@ -10,6 +10,7 @@
 
 ### Table of Contents
  - [API](https://clear-street.github.io/docs)
+ - [Client Allocation File](/client_allocation_file.md)
  - [Trade File](/trade_file.md)
  - [SFTP Access](/sftp.md)
  - [OMS](/oms.md)
