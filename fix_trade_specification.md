@@ -1,4 +1,5 @@
 
+
 ﻿<div class="center">
 <p align="center"><img src="assets/logo.png" align="center" width="20%" height="20%"></p>
   <h1 align="center">Clear Street</h1>
@@ -93,8 +94,8 @@ This trade type represents a customer executing away from Clear Street LLC. For 
 | `Put Or Call` | `201` | `0` `1` | `Integer` | `1` | `CR` | Indicates whether an Option is for a put or a call `0 = Put` `1 = Call` Required for Options where tags 22 or 48 are not provided.  (If tags 22 and 48 are provided, they will always be used with priority, and tags 55,167, 200, 201, 202, and 205 will be ignored) | `1` |
 | `Strike Price` | `202` | | `Decimal` | `8` | `CR` | Strike Price for an Option. Required for Options where tags 22 or 48 are not provided.  (If tags 22 and 48 are provided, they will always be used with priority, and tags 55,167, 200, 201, 202, and 205 will be ignored) | `100.50` |
 | `Maturity Day` | `205` | | `Integer` | `2` | `CR` | To be used in conjunction with Maturity Month Year `200` to specify a particular maturity date for an Option. Required for Options where tags 22 or 48 are not provided.  (If tags 22 and 48 are provided, they will always be used with priority, and tags 55,167, 200, 201, 202, and 205 will be ignored) | `30` | 
-| `Instrument Country` | `421` |  | `String` | `3` | `R` | ISO 3166 alpha-3 country code where the instrument trades | `USA` |
-| `Instrument Currency` | `15` |  | `String` | `3` | `R` | ISO 4217 alpha-3 currency code in which the instrument trades | `USD` |
+| `Instrument Country` | `421` |  | `String` | `3` | `R`* | ISO 3166 alpha-3 country code where the instrument trades.  Always required unless tag 22 `instrument.identifier_type` = 2 `sedol` (will be ignored in this case) | `USA` |
+| `Instrument Currency` | `15` |  | `String` | `3` | `R`* | ISO 4217 alpha-3 currency code in which the instrument trades.  Always required unless tag 22 `instrument.identifier_type` = 2 `sedol` (will be ignored in this case) | `USD` |
 | `Price` | `31` |  | `Decimal` |  | `R` | The price of the trade | `120.12` |
 | `Quantity` | `32` |  | `Decimal` |  | `R` | The quantity of the trade (supports fractional quantities) | `2` |
 | `Registered Rep` | `9002` |  | `String` |  | `O` | Registered rep on this trade | `REGREP` |
@@ -145,8 +146,8 @@ This trade represents a trade between two trading entities. For example, trading
 | `Put Or Call` | `201` | `0` `1` | `Integer` | `1` | `CR` | Indicates whether an Option is for a put or a call `0 = Put` `1 = Call` Required for Options where tags 22 or 48 are not provided.  (If tags 22 and 48 are provided, they will always be used with priority, and tags 55,167, 200, 201, 202, and 205 will be ignored) | `1` |
 | `Strike Price` | `202` | | `Decimal` | `8` | `CR` | Strike Price for an Option. Required for Options where tags 22 or 48 are not provided.  (If tags 22 and 48 are provided, they will always be used with priority, and tags 55,167, 200, 201, 202, and 205 will be ignored) | `100.50` |
 | `Maturity Day` | `205` | | `Integer` | `2` | `CR` | To be used in conjunction with Maturity Month Year `200` to specify a particular maturity date for an Option. Required for Options where tags 22 or 48 are not provided.  (If tags 22 and 48 are provided, they will always be used with priority, and tags 55,167, 200, 201, 202, and 205 will be ignored) | `30` | 
-| `Instrument Country` | `421` |  | `String` | `3` | `R` | ISO 3166 alpha-3 country code where the instrument trades | `USA` |
-| `Instrument Currency` | `15` |  | `String` | `3` | `R` | ISO 4217 alpha-3 currency code in which the instrument trades | `USD` |
+| `Instrument Country` | `421` |  | `String` | `3` | `R`* | ISO 3166 alpha-3 country code where the instrument trades.  Always required unless tag 22 `instrument.identifier_type` = 2 `sedol` (will be ignored in this case) | `USA` |
+| `Instrument Currency` | `15` |  | `String` | `3` | `R`* | ISO 4217 alpha-3 currency code in which the instrument trades.  Always required unless tag 22 `instrument.identifier_type` = 2 `sedol` (will be ignored in this case) | `USD` |
 | `Price` | `31` |  | `Decimal` |  | `R` | The price of the trade | `120.12` |
 | `Quantity` | `32` |  | `Decimal` |  | `R` | The quantity of the trade (supports fractional quantities) | `2` |
 | `Registered Rep` | `9002` |  | `String` |  | `O` | Registered rep on this trade | `REGREP` |
@@ -198,8 +199,8 @@ This trade represents a trade between a trading entity and an exchange. For exam
 | `Put Or Call` | `201` | `0` `1` | `Integer` | `1` | `CR` | Indicates whether an Option is for a put or a call `0 = Put` `1 = Call` Required for Options where tags 22 or 48 are not provided.  (If tags 22 and 48 are provided, they will always be used with priority, and tags 55,167, 200, 201, 202, and 205 will be ignored) | `1` |
 | `Strike Price` | `202` | | `Decimal` | `8` | `CR` | Strike Price for an Option. Required for Options where tags 22 or 48 are not provided.  (If tags 22 and 48 are provided, they will always be used with priority, and tags 55,167, 200, 201, 202, and 205 will be ignored) | `100.50` |
 | `Maturity Day` | `205` | | `Integer` | `2` | `CR` | To be used in conjunction with Maturity Month Year `200` to specify a particular maturity date for an Option. Required for Options where tags 22 or 48 are not provided.  (If tags 22 and 48 are provided, they will always be used with priority, and tags 55,167, 200, 201, 202, and 205 will be ignored) | `30` | 
-| `Instrument Country` | `421` |  | `String` | `3` | `R` | ISO 3166 alpha-3 country code where the instrument trades | `USA` |
-| `Instrument Currency` | `15` |  | `String` | `3` | `R` | ISO 4217 alpha-3 currency code in which the instrument trades | `USD` |
+| `Instrument Country` | `421` |  | `String` | `3` | `R`* | ISO 3166 alpha-3 country code where the instrument trades.  Always required unless tag 22 `instrument.identifier_type` = 2 `sedol` (will be ignored in this case) | `USA` |
+| `Instrument Currency` | `15` |  | `String` | `3` | `R`* | ISO 4217 alpha-3 currency code in which the instrument trades.  Always required unless tag 22 `instrument.identifier_type` = 2 `sedol` (will be ignored in this case) | `USD` |
 | `Price` | `31` |  | `Decimal` |  | `R` | The price of the trade | `120.12` |
 | `Quantity` | `32` |  | `Decimal` |  | `R` | The quantity of the trade (supports fractional quantities) | `2` |
 | `Registered Rep` | `9002` |  | `String` |  | `O` | Registered rep on this trade | `REGREP` |
@@ -248,8 +249,8 @@ This trade type is to facilitate trade movement between Clear Street internal ac
 | `Put Or Call` | `201` | `0` `1` | `Integer` | `1` | `CR` | Indicates whether an Option is for a put or a call `0 = Put` `1 = Call` Required for Options where tags 22 or 48 are not provided.  (If tags 22 and 48 are provided, they will always be used with priority, and tags 55,167, 200, 201, 202, and 205 will be ignored) | `1` |
 | `Strike Price` | `202` | | `Decimal` | `8` | `CR` | Strike Price for an Option. Required for Options where tags 22 or 48 are not provided.  (If tags 22 and 48 are provided, they will always be used with priority, and tags 55,167, 200, 201, 202, and 205 will be ignored) | `100.50` |
 | `Maturity Day` | `205` | | `Integer` | `2` | `CR` | To be used in conjunction with Maturity Month Year `200` to specify a particular maturity date for an Option. Required for Options where tags 22 or 48 are not provided.  (If tags 22 and 48 are provided, they will always be used with priority, and tags 55,167, 200, 201, 202, and 205 will be ignored) | `30` | 
-| `Instrument Country` | `421` |  | `String` | `3` | `R` | ISO 3166 alpha-3 country code where the instrument trades | `USA` |
-| `Instrument Currency` | `15` |  | `String` | `3` | `R` | ISO 4217 alpha-3 currency code in which the instrument trades | `USD` |
+| `Instrument Country` | `421` |  | `String` | `3` | `R`* | ISO 3166 alpha-3 country code where the instrument trades.  Always required unless tag 22 `instrument.identifier_type` = 2 `sedol` (will be ignored in this case) | `USA` |
+| `Instrument Currency` | `15` |  | `String` | `3` | `R`* | ISO 4217 alpha-3 currency code in which the instrument trades.  Always required unless tag 22 `instrument.identifier_type` = 2 `sedol` (will be ignored in this case) | `USD` |
 | `Price` | `31` |  | `Decimal` |  | `R` | The price of the trade | `120.12` |
 | `Quantity` | `32` |  | `Decimal` |  | `R` | The quantity of the trade (supports fractional quantities) | `2` |
 | `Registered Rep` | `9002` |  | `String` |  | `O` | Registered rep on this trade | `REGREP` |
