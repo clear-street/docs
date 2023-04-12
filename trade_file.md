@@ -77,8 +77,8 @@ This trade represents a trade between a trading entity and an exchange. For exam
 | `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
 | `instrument.identifier_type` | Yes |
-| `instrument.country` | Yes |
-| `instrument.currency` | Yes |
+| `instrument.country` | Yes* | Always required unless `instrument.identifier_type` is `sedol` (will be ignored in this case)
+| `instrument.currency` | Yes* | Always required unless `instrument.identifier_type` is `sedol` (will be ignored in this case)
 | `side.direction` | Yes | 
 | `side.qualifier` | No* | `null` | Set to `short` if short sale, otherwise not required
 | `side.position` | No* | `null` | Required for Options Trades, indicates opening or closing transaction
@@ -116,8 +116,8 @@ This trade represents a trade between two trading entities. For example, trading
 | `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
 | `instrument.identifier_type` | Yes |
-| `instrument.country` | Yes |
-| `instrument.currency` | Yes |
+| `instrument.country` | Yes* | Always required unless `instrument.identifier_type` is `sedol` (will be ignored in this case)
+| `instrument.currency` | Yes* | Always required unless `instrument.identifier_type` is `sedol` (will be ignored in this case)
 | `side.direction` | Yes |
 | `side.qualifier` | No* | `null` | Set to `short` if short sale, otherwise not required
 | `side.position` | No* | `null` | Required for Options Trades, indicates opening or closing transaction
@@ -158,8 +158,8 @@ This trade type is used to facilitate average-price workflows, i.e. averaging ma
 | `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
 | `instrument.identifier_type` | Yes |
-| `instrument.country` | Yes |
-| `instrument.currency` | Yes |
+| `instrument.country` | Yes* | Always required unless `instrument.identifier_type` is `sedol` (will be ignored in this case)
+| `instrument.currency` | Yes* | Always required unless `instrument.identifier_type` is `sedol` (will be ignored in this case)
 | `side.direction` | Yes |
 | `side.qualifier` | No | `null` |
 | `side.position` | No* | `null` | Required for Options Trades, indicates opening or closing transaction
@@ -195,8 +195,8 @@ This trade type is to facilitate trade movement between Clear Street internal ac
 | `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
 | `instrument.identifier_type` | Yes |
-| `instrument.country` | Yes |
-| `instrument.currency` | Yes |
+| `instrument.country` | Yes* | Always required unless `instrument.identifier_type` is `sedol` (will be ignored in this case)
+| `instrument.currency` | Yes* | Always required unless `instrument.identifier_type` is `sedol` (will be ignored in this case)
 | `side.direction` | Yes |
 | `side.qualifier` | No* | `null` | Set to `short` if short sale, otherwise not required
 | `side.position` | No* | `null` | Required for Options Trades, indicates opening or closing transaction
@@ -227,8 +227,8 @@ This trade type allows customers to execute away from Clear Street. An example w
 | `branch_office` | No | `null` |
 | `instrument.identifier` | Yes |
 | `instrument.identifier_type` | Yes |
-| `instrument.country` | Yes |
-| `instrument.currency` | Yes |
+| `instrument.country` | Yes* | Always required unless `instrument.identifier_type` is `sedol` (will be ignored in this case)
+| `instrument.currency` | Yes* | Always required unless `instrument.identifier_type` is `sedol` (will be ignored in this case)
 | `side.direction` | Yes |
 | `side.qualifier` | No* | `null` | Set to `short` if short sale, otherwise not required
 | `side.position` | No* | `null` | Required for Options Trades, indicates opening or closing transaction
