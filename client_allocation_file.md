@@ -33,8 +33,8 @@ The filename must begin with the string `clientallocation` so that it can be aut
 | `side.position` | `string` | No| `null` | Required for options trades, indicates opening or closing transaction (valid values are `open` or `close`) | `open` |
 | `instrument.identifier` | `string` | Yes | | The identifier string, e.g. `AAPL` if `identifier_type` is ticker | `AAPL` |
 | `instrument.identifier_type` | `string` | Yes | | Identifier type, either `ticker`, `cusip`, `isin` or `sedol` | `ticker` |
-| `instrument.country` | `string` | Yes | | ISO 3166 alpha-3 country code where the instrument trades | `USA` |
-| `instrument.currency` | `string` | Yes | | ISO 4217 alpha-3 currency code in which the instrument trades | `USD` |
+| `instrument.country` | `string` | Yes* | | ISO 3166 alpha-3 country code where the instrument trades.  Always required unless `instrument.identifier_type` is `sedol` (will be ignored in this case) | `USA` |
+| `instrument.currency` | `string` | Yes* | | ISO 4217 alpha-3 currency code in which the instrument trades.  Always required unless `instrument.identifier_type` is `sedol` (will be ignored in this case) | `USD` |
 | `quantity` | `numeric` | Yes | | The quantity of the allocation | `1000` |
 | `price` | `numeric` | Yes | | The price of the allocation | `150.35` |
 | `fees.commission` | `string` | No | `0` | Total commission of the allocation | `100` |
