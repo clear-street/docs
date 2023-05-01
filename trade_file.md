@@ -49,6 +49,7 @@ There are no hard requirements in regards to filename aside from the `*.csv` ext
 | `is_when_issued` | `bool` | True if the trade should be considered as "when issued" | `false` |
 | `exec_mpid` | `string` | MPID for the executing party | `CLST` |
 | `fees.commission` | `string` | Commission charged or paid | `12.30` |
+| `fixed_income.accrued_interest` | `string` | for fixed income securities, the portion of a future interest payment that the buyer must pay the seller | `1100.50` |
 | `fees.omit_sec` | `bool` | True if SEC fees should not be applied | `false` |
 | `fees.omit_taf` | `bool` | True if TAF fees should not be applied | `false` |
 | `locate.id` | `string` | ID of the locate obtained for a short-sale | `A234` |
@@ -237,6 +238,7 @@ This trade type allows customers to execute away from Clear Street. An example w
 | `contra_mpid` | Yes |
 | `contra_clearing_num` | No | Derived Value | If not supplied the value will be derived from an internal MPID to clearing number mapping |
 | `fees.commission` | No | `null` |
+| `fixed_income.accrued_interest` | No | `null` | 
 | `cancel_trade_id` | No | `null` | Straight cancel vs a correction of a trade from one account into another account
 
 ### Insert vs. Cancel
