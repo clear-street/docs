@@ -10,7 +10,7 @@
 
 Clear Street's client allocation file is a CSV file that contains instructions on how Clear Street should allocate a customer's trades.  The current use case for this file is limited to when a customer has executed away and needs to match average priced block trades with their executing broker, while allocating those blocks into different lots across more than one account that they have at Clear Street.  
 
-When Clear Street receives this file, an internal process will aggregate the allocations by `omni account id`, `trade date`, `settlement date`, `side direction`, `side qualifier`, `side position`, `instrument identifier`,  `exec mpid`, and `contra clearing number` to create an average priced block trade that will attempt to match against the executing broker.  The block will then be allocated as instructed on the file.  
+When Clear Street receives this file, an internal process will aggregate the allocations by `omni account id`, `trade date`, `settlement date`, `price`, `side direction`, `side qualifier`, `side position`, `instrument identifier`,  `exec mpid`, and `contra clearing number` to create an average priced block trade that will attempt to match against the executing broker.  The block will then be allocated as instructed on the file.  
 
 In the case where a client executes away and the executing broker expects to settle the individual allocations (in lieu of a block trade), the client is expected to send an `Away Trade` using the [trade file spec](https://github.com/clear-street/docs/blob/master/trade_file.md).
 
