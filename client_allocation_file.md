@@ -38,6 +38,7 @@ The filename must begin with the string `clientallocation` so that it can be aut
 | `quantity` | `numeric` | Yes | | The quantity of the allocation | `1000` |
 | `price` | `numeric` | Yes | | The price of the allocation | `150.35` |
 | `fees.commission` | `string` | No | `0` | Total commission of the allocation | `100` |
+| `fixed_income.accrued_interest` | `numeric` | No | `0` | For an allocation of fixed income securities, the portion of a future interest payment that the buyer must pay the seller | `50.75` |
 | `fees.omit_sec` | `bool` | No| `false` | `true` if SEC fees should not be applied | `true` |
 | `capacity` | `string` | Yes| | Either `principal`, `agency`, `mixed`, or `riskless_principal` | `agency` |
 | `account_id` | `integer` | Yes| | Clear Street provided account id to which the trade should be allocated | `123456` |
