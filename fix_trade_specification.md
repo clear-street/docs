@@ -67,6 +67,8 @@ This trade type is used to facilitate average-price workflows, i.e. averaging ma
 | `Omit SEC Fee` | `9005` | `F` `T` | `String` | `1` | `O` | True if SEC fees should not be applied | `T` |
 | `Omit TAF Fee` | `9006` | `F` `T` | `String` | `1` | `O` | True if TAF fees should not be applied | `T` |
 | `Order ID` | `37` |  | `String` |  | `O` | Order ID to link all the executions in the average price account | `123456` |
+| `Last Liquidity Indicator` | `851` | `1` `2` `3` `4` | `Integer` |  | `O` | `1 - Added Liquidity` `2 - Removed Liquidity` `3 - Liquidity Routed Out` `4 - Netted Liquidity` | `1` |
+| `Trade Liquidity Indicator` | `9730` |  | `String` |  | `O` | The liquidity indicator as provided by the exchange; used to specify what effect an order has had on the liquidity of the book and to determine resulting trading costs | `A` |
 
 ### FIX inbound example message for Allocation Trade
 `8=FIX.4.29=25335=849=OMS_CLIENT56=0000913234=12914352=20201021-21:42:3420=09001=A1=10007817=CLIENT_TRADE_ID75=2020102122=448=US70450Y1038421=USA15=USD31=000213.48000032=0000000298754=263=064=2020102360=20201021-13:42:34.12347=A76=ABCD79=10001710=180`
@@ -172,6 +174,7 @@ This trade represents a trade between two trading entities. For example, trading
 | `Order ID` | `37` |  | `String` |  | `O` | Order ID to link all the executions in the average price account | `123456` |
 | `NSCC Clearing` | `9010` | `agu` `contra` `corr` `corr_fees` `qsr` | `String` | `O` | `agu` `contra` `corr` `corr_fees` `qsr` | `qsr` |
 | `Last Liquidity Indicator` | `851` | `1` `2` `3` `4` | `Integer` |  | `O` | `1 - Added Liquidity` `2 - Removed Liquidity` `3 - Liquidity Routed Out` `4 - Netted Liquidity` | `1` |
+| `Trade Liquidity Indicator` | `9730` |  | `String` |  | `O` | The liquidity indicator as provided by the exchange; used to specify what effect an order has had on the liquidity of the book and to determine resulting trading costs | `A` |
 
 ### FIX inbound example message for Bilateral Trade
 `8=FIX.4.29=26135=849=OMS_CLIENT56=0000913234=12914152=20201021-21:42:3420=09001=B1=10007817=CLIENT_TRADE_ID75=2020102122=448=US70450Y1038421=USA15=USD31=000213.48000032=0000000298754=263=064=2020102360=20201021-13:42:34.12347=M440=0295375=ABCD76=WXYZ10=180`
@@ -222,6 +225,7 @@ This trade represents a trade between a trading entity and an exchange. For exam
 | `Locate Source` | `9008` |  | `String` |  | `O` | Firm supplying the locate (usually MPID) | `CLST` |
 | `Order ID` | `37` |  | `String` |  | `O` | Order ID to link all the executions in the average price account | `123456` |
 | `Last Liquidity Indicator` | `851` | `1` `2` `3` `4` | `Integer` |  | `O` | `1 - Added Liquidity` `2 - Removed Liquidity` `3 - Liquidity Routed Out` `4 - Netted Liquidity` | `1` |
+| `Trade Liquidity Indicator` | `9730` |  | `String` |  | `O` | The liquidity indicator as provided by the exchange; used to specify what effect an order has had on the liquidity of the book and to determine resulting trading costs | `A` |
 
 ### FIX inbound example message for Exchange Trade
 `8=FIX.4.29=25135=849=OMS_CLIENT56=0000913234=12914452=20201021-21:42:3420=09001=E1=10007817=CLIENT_TRADE_ID75=2020102122=448=US70450Y1038421=USA15=USD31=000213.48000032=0000000298754=263=064=2020102360=20201021-13:42:34.12347=R76=ABCD30=NYSE10=180`
