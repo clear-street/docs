@@ -132,6 +132,7 @@ This trade represents a trade between two trading entities. For example, trading
 | `fees.commission` | No | `null` |
 | `fees.omit_sec` | No | `false` |
 | `fees.omit_taf` | No | `false` |
+| `fixed_income.accrued_interest` | No | `Null` | `1100.50` |
 | `locate.id` | No | `null` |
 | `locate.source` | No | `null` |
 | `order_id` | No | `null` | Links executions in avg price account to allocation trade type
