@@ -222,7 +222,6 @@ This trade represents a trade between a trading entity and an exchange. For exam
 | `Contra Side Qualifier` | `9004` | `5` `6` | `Integer` |  | `CR` | `5-Sell Short` `6-Sell Exempt` | `5` |
 | `MIC` | `30` |  | `String` | `4` | `R` | ISO 10383 Market Identifer Code for the exchange | `NYSE` |
 | `Commission` | `12` |  | `Decimal` |  | `O` | Commission charged or paid | `0.12` |
-| `Accrued Interest Amount` | `159` |  | `Decimal` |  | `O` | for fixed income securities, the portion of a future interest payment that the buyer must pay the seller | `1100.50` |
 | `Omit SEC Fee` | `9005` | `F` `T` | `String` | `1` | `O` | True if SEC fees should not be applied | `T` |
 | `Omit TAF Fee` | `9006` | `F` `T` | `String` | `1` | `O` | True if TAF fees should not be applied | `T` |
 | `Locate ID` | `9007` |  | `String` |  | `O` | Locate ID obtained for a short sale | `123456` |
@@ -273,7 +272,6 @@ This trade type is to facilitate trade movement between Clear Street internal ac
 | `Contra Side Qualifier` | `9004` | `5` `6` | `Integer` |  | `CR` | `5-Sell Short` `6-Sell Exempt` | `5` |
 | `Target Account ID` | `79` |  | `Integer` | `6` | `R` | Clear Street provided account ID | `100000` |
 | `Commission` | `12` |  | `Decimal` |  | `O` | Commission charged or paid | `0.12` |
-| `Accrued Interest Amount` | `159` |  | `Decimal` |  | `O` | for fixed income securities, the portion of a future interest payment that the buyer must pay the seller | `1100.50` |
 | `Omit SEC Fee` | `9005` | `F` `T` | `String` | `1` | `O` | True if SEC fees should not be applied | `T` |
 | `Omit TAF Fee` | `9006` | `F` `T` | `String` | `1` | `O` | True if TAF fees should not be applied | `T` |
 
