@@ -63,6 +63,7 @@ This trade type is used to facilitate average-price workflows, i.e. averaging ma
 | `Executing MPID` | `76` |  | `String` | `4` | `O` | Executing party's MPID if allocating an away execution to Clear Street | `ANON` |
 | `Contra Side Qualifier` | `9004` | `5` `6` | `Integer` |  | `CR` | `5-Sell Short` `6-Sell Exempt` | `5` |
 | `Commission` | `12` |  | `Decimal` |  | `O` | Commission charged or paid | `0.12` |
+| `Accrued Interest Amount` | `159` |  | `Decimal` |  | `O` | for fixed income securities, the portion of a future interest payment that the buyer must pay the seller | `1100.50` |
 | `Target Account ID` | `79` |  | `Integer` | `6` | `R` | Clear Street provided account ID | `100000` |
 | `Omit SEC Fee` | `9005` | `F` `T` | `String` | `1` | `O` | True if SEC fees should not be applied | `T` |
 | `Omit TAF Fee` | `9006` | `F` `T` | `String` | `1` | `O` | True if TAF fees should not be applied | `T` |
@@ -115,6 +116,7 @@ This trade type represents a customer executing away from Clear Street LLC. For 
 | `Contra Side Qualifier` | `9004` | `5` `6` | `Integer` |  | `CR` | `5-Sell Short` `6-Sell Exempt` | `5` |
 | `MIC` | `30` |  | `String` | `4` | `O` | ISO 10383 Market Identifer Code for the exchange | `NYSE` |
 | `Commission` | `12` |  | `Decimal` |  | `O` | Commission charged or paid | `0.12` |
+| `Accrued Interest Amount` | `159` |  | `Decimal` |  | `O` | for fixed income securities, the portion of a future interest payment that the buyer must pay the seller | `1100.50` |
 | `Omit SEC Fee` | `9005` | `F` `T` | `String` | `1` | `O` | True if SEC fees should not be applied | `T` |
 | `Omit TAF Fee` | `9006` | `F` `T` | `String` | `1` | `O` | True if TAF fees should not be applied | `T` |
 | `Locate ID` | `9007` |  | `String` |  | `O` | Locate ID obtained for a short sale | `123456` |
@@ -167,6 +169,7 @@ This trade represents a trade between two trading entities. For example, trading
 | `Contra Side Qualifier` | `9004` | `5` `6` | `Integer` |  | `CR` | `5-Sell Short` `6-Sell Exempt` | `5` |
 | `MIC` | `30` |  | `String` | `4` | `O` | ISO 10383 Market Identifer Code for the exchange | `NYSE` |
 | `Commission` | `12` |  | `Decimal` |  | `O` | Commission charged or paid | `0.12` |
+| `Accrued Interest Amount` | `159` |  | `Decimal` |  | `O` | for fixed income securities, the portion of a future interest payment that the buyer must pay the seller | `1100.50` |
 | `Omit SEC Fee` | `9005` | `F` `T` | `String` | `1` | `O` | True if SEC fees should not be applied | `T` |
 | `Omit TAF Fee` | `9006` | `F` `T` | `String` | `1` | `O` | True if TAF fees should not be applied | `T` |
 | `Locate ID` | `9007` |  | `String` |  | `O` | Locate ID obtained for a short sale | `123456` |
