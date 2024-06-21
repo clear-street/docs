@@ -210,7 +210,6 @@ This trade type is to facilitate trade movement between Clear Street internal ac
 | `is_when_issued` | No | `false` |
 | `contra_side_qualifier` | No* | `null` | Set to `short` if contra short sale, otherwise not required
 | `fees.commission` | No | `null` |
-| `fixed_income.accrued_interest` | No | `null` | Value will be rounded to two decimal places |
 | `fees.omit_sec` | No | `false` |
 | `fees.omit_taf` | No | `false` |
 | `cancel_trade_id` | No | `null` | Straight cancel vs a correction of a trade from one account into another account
