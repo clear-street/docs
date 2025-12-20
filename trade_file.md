@@ -58,6 +58,7 @@ There are no hard requirements in regards to filename aside from the `*.csv` ext
 | `mic` | `string` | ISO 10383 Market Identifer Code for the exchange where this trade took place | `XNYS` |
 | `order_id` | `string` | The order id is to link all the executions in the avg price account to the allocation trade type | `13454` |
 | `cancel_trade_id` | `string` | The original trade_id this trade is replacing | `13454` |
+| `pset` | `string` | The specific loction where a trade's delivery and payment are meant to be settled (Place of Settlement)| `US` |
 
 ### Exchange Trade
 
@@ -96,7 +97,6 @@ This trade represents a trade between a trading entity and an exchange. For exam
 | `locate.source` | No | `null` |
 | `order_id` | No | `null` | Links executions in avg price account to allocation trade type
 | `cancel_trade_id` | No | `null` | Straight cancel vs a correction of a trade from one account into another account
-
 
 ### Bilateral Trade
 
@@ -139,7 +139,7 @@ This trade represents a trade between two trading entities. For example, trading
 | `cancel_trade_id` | No | `null` | Straight cancel vs a correction of a trade from one account into another account
 | `last_market` | No | `null` | Contains the exchange where orders were routed to by broker on a bilateral trade
 | `nscc_clearing` | No | `null` | Bilateral trade type, either `contra`, `agu`, `qsr`, `corr`, `corr_fees` or `null`
-
+| `pset` | No | derived value | Please see PSET Notes section below
 
 ### Allocation Trade
 
@@ -178,6 +178,7 @@ This trade type is used to facilitate average-price workflows, i.e. averaging ma
 | `fees.omit_taf` | No | `false` |
 | `order_id` | No | `null` | Links executions in avg price account to allocation trade type
 | `cancel_trade_id` | No | `null` | Straight cancel vs a correction of a trade from one account into another account
+| `pset` | No | derived value | Please see PSET Notes section below
 
 ### Transfer Trade
 
@@ -213,6 +214,7 @@ This trade type is to facilitate trade movement between Clear Street internal ac
 | `fees.omit_sec` | No | `false` |
 | `fees.omit_taf` | No | `false` |
 | `cancel_trade_id` | No | `null` | Straight cancel vs a correction of a trade from one account into another account
+| `pset` | No | derived value | Please see PSET Notes section below
 
 ### Away Trade
 This trade type allows customers to execute away from Clear Street. An example would be a customer executing at another broker/dealer but settling the trade at Clear Street. 
@@ -242,9 +244,64 @@ This trade type allows customers to execute away from Clear Street. An example w
 | `fees.commission` | No | `null` |
 | `fixed_income.accrued_interest` | No | `null` | Value will be rounded to two decimal places |
 | `cancel_trade_id` | No | `null` | Straight cancel vs a correction of a trade from one account into another account
+| `pset` | No | derived value | Please see PSET Notes section below
 
 ### Insert vs. Cancel
 
 By default, the trades provided in your file are trades you wish to *insert* into our systems. When you insert a trade into Clear Street, it is remembered forever with a `(account_id, client_trade_id)` pair. If you wish to cancel a trade, because perhaps your provided incorrect details, then you only need to provide us a file that contains the `(account_id, client_trade_id)` pair at a minimum.
 
 Therefore, to cancel all trades in a file, you can provide us the same exact file you used to insert the trades. Or you can construct a new file that contains just the `account_id` and `client_trade_id` columns.
+
+### PSET Notes
+
+By default, Clear Street will derive the PSET (place of settlement) for trades using attributes of the instrument on the trade(s).  If you wish to explicitly provide a PSET which directs a trade to settle in a PSET which is different from its default (for example, you wish to settle a trade in Euroclear which typically settles in the France), you can use this field to communicate the instruction.  PSETs are standardized references which typically use a SWIFT BIC code, but Clear Street will accept either the SWIFT BIC code or a "shortcode" as per the list of valid values provided below.  Either of the two can be provided.
+
+| PSET Name | PSET BIC | PSET Short Code |
+|---|---|---|
+| Australia Equity | `CAETAU21XXX` | `AU` |
+| Australia Fixed Income | `ACLRAU2SXXX` | `AUF` |
+| Austria | `OCSDATWWXXX` | `AT` |
+| Belgium Equity | `CIKBBEBBXXX` | `BE` |
+| Belgium Fixed Income | `NBBEBEBB216` | `BEF` |
+| Canada | `CDSLCATTXXX` | `CA` |
+| Clearstream | `CEDELULLXXX` | `CS` |
+| Czech Republic Equity Bond | `UNIYCZPPXXX` | `CZ` |
+| Czech Republic Government Bonds | `CNBACZPPXXX` | `CZG` |
+| Denmark | `VPDKDKKKXXX` | `DK` |
+| Euroclear | `MGTCBEBEXXX` | `EC` |
+| Finland | `APKEFIHHXXX` | `FI` |
+| France | `SICVFRPPXXX` | `FR` |
+| Germany | `DAKVDEFFXXX` | `DE` |
+| Greece Equity Bonds | `HCSDGRAAXXX` | `GR` |
+| Greece Government Bonds | `BNGRGRAAXXX` | `GRG` |
+| Hong Kong Equities | `XHKCHKH1XXX` | `HK` |
+| Hong Kong Fixed Income | `HKMAHKHCXXX` | `HKF` |
+| Hungary | `KELRHUHBXXX` | `HU` |
+| Indonesia Equity Bonds | `KSEIIDJAXXX` | `ID` |
+| Israel | `XTAEILITXXX` | `IL` |
+| Italy | `MOTIITMMXXX` | `IT` |
+| Japan Equity Bonds | `JJSDJPJTXXX` | `JP` |
+| Japan Government Bonds | `BOJPJPJTXXX` | `JPG` |
+| Malaysia Equity | `MCDSMYK1XXX` | `MY` |
+| Malaysia Fixed Income | `BNMAMYKLXXX` | `MYF` |
+| Mexico | `INDEMXMMXXX` | `MX` |
+| Netherlands | `NECINL2AXXX` | `NL` |
+| New Zealand | `RBNZNZ22XXX` | `NZ` |
+| Norway | `VPSNNOKKXXX` | `NO` |
+| Philippines | `PHCDPHM1XXX` | `PH` |
+| Poland Equity Bonds | `KDPWPLPWXXX` | `PL` |
+| Poland Government Bonds | `NBPLPLPWXXX` | `PLG` |
+| Portugal | `IBLSPTPPXXX` | `PT` |
+| Singapore Equity Bond | `CDPLSGSGXXX` | `SG` |
+| Singapore Government Bond | `MASGSGSMXXX` | `SGG` |
+| South Africa | `STRAZAJJXXX` | `ZA` |
+| Spain | `IBRCESMMXXX` | `ES` |
+| Sweden | `VPCSSESSXXX` | `SE` |
+| Switzerland | `INSECHZZXXX` | `CH` |
+| Thailand | `TSDCTHBKXXX` | `TH` |
+| Turkey Equity | `TVSBTRISXXX` | `TR` |
+| Turkey Fixed Income | `TCMBTR2AXXX` | `TRF` |
+| United Kingdom Ireland | `CRSTGB22XXX` | `GB` |
+| DTC | `DTCYUS33XXX` | `US` |
+| OCC | `TOCCUS4CXXX` | `OCC` |
+| Federal Reserve | `FRNYUS33XXX` | `FRB` |
