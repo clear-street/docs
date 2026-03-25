@@ -45,3 +45,58 @@ The filename must begin with the string `clientallocation` so that it can be aut
 | `solicited` | `bool` | No| `false` | `true` if this trade was solicited, `false` otherwise. Default to `false` if not provided | `false` |
 | `timestamp` | `integer` | No| derived value | Timestamp of when the trade occurred in milliseconds since unix epoch. Will default to time of trade ingestion if not provided | `1678394397000` |
 | `contra_clearing_num` | `string` | No| derived value | Contra-party's clearing number (DTCC for equities). If not supplied the value will be derived from an internal MPID to clearing number mapping | `9132` |
+| `pset` | `string` | No| derived value | Please see PSET Notes section below | `US` |
+
+### PSET Notes
+
+By default, Clear Street will derive the PSET (place of settlement) for trades using attributes of the instrument on the trade(s).  If you wish to explicitly provide a PSET which directs a trade to settle in a PSET which is different from its default (for example, you wish to settle a trade in Euroclear which typically settles in the France), you can use this field to communicate the instruction.  PSETs are standardized references which typically use a SWIFT BIC code, but Clear Street will accept either the SWIFT BIC code or a "shortcode" as per the list of valid values provided below.  Either of the two can be provided.
+
+| PSET Name | PSET BIC | PSET Short Code |
+|---|---|---|
+| Australia Equity | `CAETAU21XXX` | `AU` |
+| Australia Fixed Income | `ACLRAU2SXXX` | `AUF` |
+| Austria | `OCSDATWWXXX` | `AT` |
+| Belgium Equity | `CIKBBEBBXXX` | `BE` |
+| Belgium Fixed Income | `NBBEBEBB216` | `BEF` |
+| Canada | `CDSLCATTXXX` | `CA` |
+| Clearstream | `CEDELULLXXX` | `CS` |
+| Czech Republic Equity Bond | `UNIYCZPPXXX` | `CZ` |
+| Czech Republic Government Bonds | `CNBACZPPXXX` | `CZG` |
+| Denmark | `VPDKDKKKXXX` | `DK` |
+| Euroclear | `MGTCBEBEXXX` | `EC` |
+| Finland | `APKEFIHHXXX` | `FI` |
+| France | `SICVFRPPXXX` | `FR` |
+| Germany | `DAKVDEFFXXX` | `DE` |
+| Greece Equity Bonds | `HCSDGRAAXXX` | `GR` |
+| Greece Government Bonds | `BNGRGRAAXXX` | `GRG` |
+| Hong Kong Equities | `XHKCHKH1XXX` | `HK` |
+| Hong Kong Fixed Income | `HKMAHKHCXXX` | `HKF` |
+| Hungary | `KELRHUHBXXX` | `HU` |
+| Indonesia Equity Bonds | `KSEIIDJAXXX` | `ID` |
+| Israel | `XTAEILITXXX` | `IL` |
+| Italy | `MOTIITMMXXX` | `IT` |
+| Japan Equity Bonds | `JJSDJPJTXXX` | `JP` |
+| Japan Government Bonds | `BOJPJPJTXXX` | `JPG` |
+| Malaysia Equity | `MCDSMYK1XXX` | `MY` |
+| Malaysia Fixed Income | `BNMAMYKLXXX` | `MYF` |
+| Mexico | `INDEMXMMXXX` | `MX` |
+| Netherlands | `NECINL2AXXX` | `NL` |
+| New Zealand | `RBNZNZ22XXX` | `NZ` |
+| Norway | `VPSNNOKKXXX` | `NO` |
+| Philippines | `PHCDPHM1XXX` | `PH` |
+| Poland Equity Bonds | `KDPWPLPWXXX` | `PL` |
+| Poland Government Bonds | `NBPLPLPWXXX` | `PLG` |
+| Portugal | `IBLSPTPPXXX` | `PT` |
+| Singapore Equity Bond | `CDPLSGSGXXX` | `SG` |
+| Singapore Government Bond | `MASGSGSMXXX` | `SGG` |
+| South Africa | `STRAZAJJXXX` | `ZA` |
+| Spain | `IBRCESMMXXX` | `ES` |
+| Sweden | `VPCSSESSXXX` | `SE` |
+| Switzerland | `INSECHZZXXX` | `CH` |
+| Thailand | `TSDCTHBKXXX` | `TH` |
+| Turkey Equity | `TVSBTRISXXX` | `TR` |
+| Turkey Fixed Income | `TCMBTR2AXXX` | `TRF` |
+| United Kingdom Ireland | `CRSTGB22XXX` | `GB` |
+| DTC | `DTCYUS33XXX` | `US` |
+| OCC | `TOCCUS4CXXX` | `OCC` |
+| Federal Reserve | `FRNYUS33XXX` | `FRB` |
